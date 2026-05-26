@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@400;500;700;800&display=swap" rel="stylesheet"/>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <style>
 :root{--bg:#121212;--surface:#1a1a1a;--surface2:#151515;--line:#2f2f2f;--line2:#3a3a3a;--text:#f8f8f8;--muted:#8a8a9a;--hl:#ffde59;--hl-dim:#26220f;--hl-border:#5a5127;--danger:#c0392b;--sidebar-w:240px;--sidebar-min:52px;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -648,7 +648,12 @@ button,input,select,textarea{font-family:inherit;}
   </div>
 </div>
 <script>
+document.addEventListener('DOMContentLoaded',function(){
 /* ══ FIREBASE INIT ══ */
+if(typeof firebase==='undefined'){
+  document.body.innerHTML='<div style="display:flex;height:100vh;align-items:center;justify-content:center;background:#0d0d0d;color:#f87171;font-family:system-ui;text-align:center;padding:2rem;flex-direction:column;gap:1rem"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div style="font-size:1rem;font-weight:700">Firebase failed to load</div><div style="font-size:0.85rem;color:#8a8a9a;max-width:340px;line-height:1.6">This is usually caused by an ad blocker or browser extension blocking gstatic.com.<br><br>Try disabling your ad blocker for this page, or open in a private/incognito window.</div></div>';
+  return;
+}
 var firebaseConfig={apiKey:"AIzaSyCIVxdfzyomWgPTTzCdF4MvNvZEEempU0",authDomain:"group-chat-9f06f.firebaseapp.com",databaseURL:"https://group-chat-9f06f-default-rtdb.firebaseio.com/",projectId:"group-chat-9f06f",storageBucket:"group-chat-9f06f.appspot.com",messagingSenderId:"448025794493",appId:"1:448025794493:web:9a44237d247a63675724d4"};
 if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
 var auth=firebase.auth();
@@ -848,17 +853,26 @@ function doSignUp(){
   setAuthLoading('btnSignUp',true);
   auth.createUserWithEmailAndPassword(email,pass)
     .then(function(cred){
-      /* Save nickname + showRealName pref to Realtime DB */
-      return dbGlobal.ref('users/'+cred.user.uid).set({nick:nick,email:email,showRealName:false,createdAt:Date.now()});
+      /* Write nickname to DB in the background — if this fails the user
+         is still signed in; onAuthStateChanged falls back to email prefix. */
+      dbGlobal.ref('users/'+cred.user.uid).set({
+        nick:nick,email:email,showRealName:false,createdAt:Date.now()
+      }).catch(function(dbErr){
+        console.warn('[signUp] DB write failed (user still created):',dbErr.code,dbErr.message);
+      });
+      /* onAuthStateChanged handles showing the app — nothing else needed here */
     })
     .catch(function(err){
       console.error('[signUp]',err.code,err.message);
       setAuthLoading('btnSignUp',false);
+      if(err.code==='auth/internal-error'||err.code==='auth/operation-not-allowed'){
+        showErr('suGlobalErr','Sign-up is not enabled. In Firebase Console go to Authentication → Sign-in method → Email/Password and enable it.');
+        return;
+      }
       var msg=firebaseErrMsg(err.code,err.message);
       if(err.code==='auth/email-already-in-use'){showErr('suEmailErr',msg,'suEmail');}
       else if(err.code==='auth/weak-password'){showErr('suPassErr',msg,'suPassword');}
       else if(err.code==='auth/invalid-email'){showErr('suEmailErr',msg,'suEmail');}
-      else if(err.code==='auth/operation-not-allowed'){showErr('suGlobalErr',msg);}
       else{showErr('suGlobalErr',msg);}
     });
 }
@@ -1278,6 +1292,7 @@ function initApp(){
   document.addEventListener('mouseup',function(){if(isResizingV){isResizingV=false;document.body.style.cursor='';document.body.style.userSelect='';}if(isResizingH){isResizingH=false;document.body.style.cursor='';document.body.style.userSelect='';}});
 
 } // end initApp
+}); // end DOMContentLoaded
 </script>
 </body>
 </html>
