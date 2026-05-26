@@ -563,6 +563,13 @@ button,input,select,textarea{font-family:inherit;}
       </div>
       <div class="settings-section"><h3>Account</h3>
         <div class="settings-row"><label>Nickname</label><input class="settings-input" id="settingNickname" type="text" placeholder="Your nickname"/></div>
+        <div class="settings-row">
+          <div>
+            <label style="display:block;margin-bottom:0.2rem">Show real names in chat</label>
+            <span style="font-size:0.72rem;color:var(--muted)">Off = everyone appears as "Anonymous"</span>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" id="settingShowRealName"><span class="toggle-slider"></span></label>
+        </div>
         <button class="settings-save-btn" id="settingsSaveBtn">Save changes</button>
       </div>
     </div>
@@ -570,7 +577,7 @@ button,input,select,textarea{font-family:inherit;}
       <div style="margin-bottom:0.5rem"><h1 style="font-size:1.2rem;color:var(--hl);font-weight:800">Privacy</h1><p style="color:var(--muted);font-size:0.85rem;margin-top:0.3rem">Your privacy matters to us.</p></div>
       <div class="settings-section"><h3>Data &amp; Storage</h3>
         <div class="settings-row"><label>Posts are public</label><span>Visible to everyone</span></div>
-        <div class="settings-row"><label>Anonymous posting</label><span>Nickname shown, never real identity</span></div>
+        <div class="settings-row"><label>Posting as</label><span id="privacyPostingAs">Anonymous</span></div>
         <div class="settings-row"><label>Sensitive category warnings</label><label class="toggle-switch"><input type="checkbox" id="privacyWarnings" checked><span class="toggle-slider"></span></label></div>
         <div class="settings-row"><label>Reset all seen warnings</label><button class="btn-sm" id="resetWarningsBtn">Reset</button></div>
       </div>
@@ -641,23 +648,123 @@ button,input,select,textarea{font-family:inherit;}
   </div>
 </div>
 <script>
-/* ══ AUTH ══ */
-function hashPass(p){var h=0;for(var i=0;i<p.length;i++){h=((h<<5)-h)+p.charCodeAt(i);h|=0;}return'lt_'+Math.abs(h).toString(36)+'_'+p.length;}
-function getAccounts(){try{return JSON.parse(localStorage.getItem('lt_accounts')||'{}');}catch(e){return{};}}
-function saveAccounts(o){localStorage.setItem('lt_accounts',JSON.stringify(o));}
-function getSession(){try{return JSON.parse(localStorage.getItem('lt_session')||'null');}catch(e){return null;}}
-function saveSession(o){localStorage.setItem('lt_session',JSON.stringify(o));}
-function clearSession(){localStorage.removeItem('lt_session');}
+/* ══ FIREBASE INIT ══ */
+var firebaseConfig={apiKey:"AIzaSyCIVxdfzyomWgPTTzCdF4MvNvZEEempU0",authDomain:"group-chat-9f06f.firebaseapp.com",databaseURL:"https://group-chat-9f06f-default-rtdb.firebaseio.com/",projectId:"group-chat-9f06f",storageBucket:"group-chat-9f06f.appspot.com",messagingSenderId:"448025794493",appId:"1:448025794493:web:9a44237d247a63675724d4"};
+if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
+var auth=firebase.auth();
+var dbGlobal=firebase.database();
 
-var currentSession=getSession();
-var username=currentSession?currentSession.nick:null;
+/* ══ AUTH STATE ══ */
+var username=null;
 var authOverlay=document.getElementById('authOverlay');
+/* Persist session across page reloads */
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(function(){});
 
-function showApp(){authOverlay.classList.add('hidden');initApp();}
+/* Show a loading spinner while Firebase checks auth state */
+authOverlay.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;gap:1rem;color:var(--muted);font-size:0.9rem"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--hl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 0.9s linear infinite"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.07-5.38"/></svg>Loading...</div><style>@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}</style>';
+
+/* Cache nick locally so UI loads instantly on reload */
+function getCachedNick(){return localStorage.getItem('lt_cached_nick');}
+function setCachedNick(n){localStorage.setItem('lt_cached_nick',n);}
+function clearCachedNick(){localStorage.removeItem('lt_cached_nick');}
+
+auth.onAuthStateChanged(function(user){
+  if(user){
+    var cached=getCachedNick();
+    /* If we have a cached nick, show the app immediately — no waiting */
+    if(cached){
+      username=cached;
+      restoreAuthUI();
+      authOverlay.classList.add('hidden');
+      initApp();
+    }
+    /* Always fetch from DB in background to stay in sync across devices */
+    dbGlobal.ref('users/'+user.uid).once('value').then(function(snap){
+      var data=snap.val()||{};
+      var dbNick=data.nick||user.email.split('@')[0];
+      var showReal=data.showRealName||false;
+      setCachedNick(dbNick);
+      localStorage.setItem('lt_show_real_name', showReal?'1':'0');
+      if(dbNick!==username){
+        /* Nick changed elsewhere — patch live UI without reload */
+        username=dbNick;
+        var an=document.getElementById('acctName');
+        var av=document.getElementById('acctAvatar');
+        var dn=document.getElementById('ddName');
+        var dk=document.getElementById('ddNick');
+        var sn=document.getElementById('settingNickname');
+        if(an)an.textContent=username;
+        if(av)av.textContent=username.charAt(0).toUpperCase();
+        if(dn)dn.textContent=username.charAt(0).toUpperCase()+username.slice(1);
+        if(dk)dk.textContent='@'+username.toLowerCase();
+        if(sn)sn.value=username;
+      }
+      /* Sync toggle state if app is already running */
+      var tog=document.getElementById('settingShowRealName');
+      if(tog)tog.checked=showReal;
+      /* First load — no cache existed yet, show app now */
+      if(!cached){
+        restoreAuthUI();
+        authOverlay.classList.add('hidden');
+        initApp();
+      }
+    }).catch(function(){
+      /* Offline fallback — use email prefix if cache empty */
+      if(!cached){
+        username=user.email.split('@')[0];
+        setCachedNick(username);
+        restoreAuthUI();
+        authOverlay.classList.add('hidden');
+        initApp();
+      }
+    });
+  } else {
+    /* Signed out — wipe cache, show auth */
+    clearCachedNick();
+    restoreAuthUI();
+    showAuth();
+  }
+});
+
+function restoreAuthUI(){
+  authOverlay.innerHTML='<div class="auth-box">'
+    +'<div class="auth-logo"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="auth-logo-text">Let\'s Talk</span></div>'
+    +'<div class="auth-tab-row"><button class="auth-tab active" id="tabSignIn">Sign In</button><button class="auth-tab" id="tabSignUp">Create Account</button></div>'
+    +'<div id="formSignIn">'
+    +'<div class="auth-field"><label>Email</label><input type="email" id="siEmail" placeholder="you@example.com" autocomplete="email"/><div class="auth-err" id="siEmailErr"></div></div>'
+    +'<div class="auth-field"><label>Password</label><input type="password" id="siPassword" placeholder="••••••••" autocomplete="current-password"/><div class="auth-err" id="siPassErr"></div></div>'
+    +'<div class="auth-err" id="siGlobalErr"></div>'
+    +'<button class="auth-submit" id="btnSignIn">Sign In</button>'
+    +'<div class="auth-fine">No account? <a href="#" id="switchToSignUp">Create one</a></div>'
+    +'<div class="auth-fine" style="margin-top:0.5rem"><a href="#" id="forgotPassLink">Forgot password?</a></div>'
+    +'</div>'
+    +'<div id="formSignUp" style="display:none">'
+    +'<div class="auth-field"><label>Nickname <span style=\'font-size:0.7rem;color:var(--muted);font-weight:400\'>(optional — leave blank to stay anonymous)</span></label><input type="text" id="suNick" placeholder="Leave blank to post as Anonymous" maxlength="32"/><div class="auth-err" id="suNickErr"></div></div>'
+    +'<div class="auth-field"><label>Email</label><input type="email" id="suEmail" placeholder="you@example.com" autocomplete="email"/><div class="auth-err" id="suEmailErr"></div></div>'
+    +'<div class="auth-field"><label>Password</label><input type="password" id="suPassword" placeholder="Min 6 characters" autocomplete="new-password"/><div class="auth-err" id="suPassErr"></div></div>'
+    +'<div class="auth-field"><label>Confirm Password</label><input type="password" id="suPassword2" placeholder="Repeat password" autocomplete="new-password"/><div class="auth-err" id="suPass2Err"></div></div>'
+    +'<div class="auth-err" id="suGlobalErr"></div>'
+    +'<button class="auth-submit" id="btnSignUp">Create Account</button>'
+    +'<div class="auth-fine">Have an account? <a href="#" id="switchToSignIn">Sign in</a></div>'
+    +'</div>'
+    +'</div>';
+  wireAuthUI();
+}
+
+function wireAuthUI(){
+  document.getElementById('tabSignIn').addEventListener('click',function(){switchTab('in');});
+  document.getElementById('tabSignUp').addEventListener('click',function(){switchTab('up');});
+  document.getElementById('switchToSignUp').addEventListener('click',function(e){e.preventDefault();switchTab('up');});
+  document.getElementById('switchToSignIn').addEventListener('click',function(e){e.preventDefault();switchTab('in');});
+  document.getElementById('btnSignIn').addEventListener('click',doSignIn);
+  document.getElementById('siPassword').addEventListener('keydown',function(e){if(e.key==='Enter')doSignIn();});
+  document.getElementById('btnSignUp').addEventListener('click',doSignUp);
+  document.getElementById('suPassword2').addEventListener('keydown',function(e){if(e.key==='Enter')doSignUp();});
+  document.getElementById('forgotPassLink').addEventListener('click',function(e){e.preventDefault();doForgotPassword();});
+}
+
 function showAuth(){authOverlay.classList.remove('hidden');}
-if(currentSession&&currentSession.nick){showApp();}else{showAuth();}
 
-/* tab switching */
 function switchTab(t){
   var isIn=t==='in';
   document.getElementById('tabSignIn').classList.toggle('active',isIn);
@@ -666,68 +773,113 @@ function switchTab(t){
   document.getElementById('formSignUp').style.display=isIn?'none':'';
   clearAuthErr();
 }
-document.getElementById('tabSignIn').addEventListener('click',function(){switchTab('in');});
-document.getElementById('tabSignUp').addEventListener('click',function(){switchTab('up');});
-document.getElementById('switchToSignUp').addEventListener('click',function(e){e.preventDefault();switchTab('up');});
-document.getElementById('switchToSignIn').addEventListener('click',function(e){e.preventDefault();switchTab('in');});
 
 function clearAuthErr(){
   ['siEmailErr','siPassErr','siGlobalErr','suNickErr','suEmailErr','suPassErr','suPass2Err','suGlobalErr'].forEach(function(id){var el=document.getElementById(id);if(el){el.textContent='';el.classList.remove('show');}});
   ['siEmail','siPassword','suNick','suEmail','suPassword','suPassword2'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.remove('err');});
 }
 function showErr(errId,msg,inputId){var el=document.getElementById(errId);if(el){el.textContent=msg;el.classList.add('show');}if(inputId){var inp=document.getElementById(inputId);if(inp)inp.classList.add('err');}}
+function setAuthLoading(btnId,loading){var btn=document.getElementById(btnId);if(!btn)return;btn.disabled=loading;btn.textContent=loading?'Please wait…':(btnId==='btnSignIn'?'Sign In':'Create Account');}
 
-/* sign in */
-document.getElementById('btnSignIn').addEventListener('click',doSignIn);
-document.getElementById('siPassword').addEventListener('keydown',function(e){if(e.key==='Enter')doSignIn();});
+/* Firebase error code → human message */
+function firebaseErrMsg(code,raw){
+  var map={
+    /* sign-in */
+    'auth/user-not-found':'No account found with that email.',
+    'auth/wrong-password':'Incorrect password.',
+    'auth/invalid-credential':'Incorrect email or password.',
+    'auth/invalid-login-credentials':'Incorrect email or password.',
+    'auth/user-disabled':'This account has been disabled.',
+    /* sign-up */
+    'auth/email-already-in-use':'An account with this email already exists.',
+    'auth/weak-password':'Password must be at least 6 characters.',
+    /* shared */
+    'auth/invalid-email':'Enter a valid email address.',
+    'auth/too-many-requests':'Too many attempts — please wait a moment and try again.',
+    'auth/network-request-failed':'Network error. Check your connection and try again.',
+    'auth/operation-not-allowed':'Email/password sign-in is not enabled. Check Firebase console.',
+    'auth/requires-recent-login':'Please sign out and sign back in to do that.',
+    'auth/popup-closed-by-user':'Sign-in popup was closed.',
+    'auth/cancelled-popup-request':'Sign-in was cancelled.',
+    'auth/internal-error':'Firebase internal error. Please try again.',
+    'auth/timeout':'The request timed out. Check your connection.'
+  };
+  if(map[code])return map[code];
+  /* Show the raw code in dev so it's easy to add to the map */
+  console.error('[Auth error]',code,raw);
+  return 'Something went wrong ('+(code||'unknown')+')';
+}
+
 function doSignIn(){
   clearAuthErr();
-  var email=document.getElementById('siEmail').value.trim().toLowerCase();
+  var email=document.getElementById('siEmail').value.trim();
   var pass=document.getElementById('siPassword').value;
   if(!email||!email.includes('@')){showErr('siEmailErr','Enter a valid email','siEmail');return;}
   if(!pass){showErr('siPassErr','Enter your password','siPassword');return;}
-  var accounts=getAccounts();
-  if(!accounts[email]){showErr('siGlobalErr','No account found with that email');return;}
-  if(accounts[email].passHash!==hashPass(pass)){showErr('siPassErr','Incorrect password','siPassword');return;}
-  var sess={email:email,nick:accounts[email].nick};
-  saveSession(sess);currentSession=sess;username=sess.nick;showApp();
+  setAuthLoading('btnSignIn',true);
+  auth.signInWithEmailAndPassword(email,pass)
+    .then(function(){/* onAuthStateChanged handles the rest */})
+    .catch(function(err){
+      console.error('[signIn]',err.code,err.message);
+      setAuthLoading('btnSignIn',false);
+      var msg=firebaseErrMsg(err.code,err.message);
+      var emailCodes=['auth/invalid-email','auth/user-not-found'];
+      var passCodes=['auth/wrong-password','auth/invalid-credential','auth/invalid-login-credentials'];
+      if(emailCodes.indexOf(err.code)>-1){showErr('siEmailErr',msg,'siEmail');}
+      else if(passCodes.indexOf(err.code)>-1){showErr('siPassErr',msg,'siPassword');}
+      else{showErr('siGlobalErr',msg);}
+    });
 }
 
-/* sign up */
-document.getElementById('btnSignUp').addEventListener('click',doSignUp);
-document.getElementById('suPassword2').addEventListener('keydown',function(e){if(e.key==='Enter')doSignUp();});
 function doSignUp(){
   clearAuthErr();
-  var nick=document.getElementById('suNick').value.trim();
-  var email=document.getElementById('suEmail').value.trim().toLowerCase();
+  var rawNick=document.getElementById('suNick').value.trim();
+  /* Blank nick → default anonymous; otherwise enforce min length */
+  var nick=rawNick||'Anonymous';
+  if(rawNick&&rawNick.length<2){showErr('suNickErr','Nickname must be at least 2 characters','suNick');return;}
+  var email=document.getElementById('suEmail').value.trim();
   var pass=document.getElementById('suPassword').value;
   var pass2=document.getElementById('suPassword2').value;
   var ok=true;
-  if(!nick||nick.length<2){showErr('suNickErr','Nickname must be at least 2 characters','suNick');ok=false;}
   if(!email||!email.includes('@')){showErr('suEmailErr','Enter a valid email','suEmail');ok=false;}
-  if(!pass||pass.length<8){showErr('suPassErr','Password must be at least 8 characters','suPassword');ok=false;}
+  if(!pass||pass.length<6){showErr('suPassErr','Password must be at least 6 characters','suPassword');ok=false;}
   if(pass!==pass2){showErr('suPass2Err','Passwords do not match','suPassword2');ok=false;}
   if(!ok)return;
-  var accounts=getAccounts();
-  if(accounts[email]){showErr('suEmailErr','An account with this email already exists','suEmail');return;}
-  accounts[email]={nick:nick,passHash:hashPass(pass)};
-  saveAccounts(accounts);
-  var sess={email:email,nick:nick};
-  saveSession(sess);currentSession=sess;username=nick;showApp();
+  setAuthLoading('btnSignUp',true);
+  auth.createUserWithEmailAndPassword(email,pass)
+    .then(function(cred){
+      /* Save nickname + showRealName pref to Realtime DB */
+      return dbGlobal.ref('users/'+cred.user.uid).set({nick:nick,email:email,showRealName:false,createdAt:Date.now()});
+    })
+    .catch(function(err){
+      console.error('[signUp]',err.code,err.message);
+      setAuthLoading('btnSignUp',false);
+      var msg=firebaseErrMsg(err.code,err.message);
+      if(err.code==='auth/email-already-in-use'){showErr('suEmailErr',msg,'suEmail');}
+      else if(err.code==='auth/weak-password'){showErr('suPassErr',msg,'suPassword');}
+      else if(err.code==='auth/invalid-email'){showErr('suEmailErr',msg,'suEmail');}
+      else if(err.code==='auth/operation-not-allowed'){showErr('suGlobalErr',msg);}
+      else{showErr('suGlobalErr',msg);}
+    });
+}
+
+function doForgotPassword(){
+  var email=document.getElementById('siEmail')?document.getElementById('siEmail').value.trim():'';
+  if(!email){email=prompt('Enter your email address:');}
+  if(!email)return;
+  auth.sendPasswordResetEmail(email)
+    .then(function(){alert('Password reset email sent to '+email+'. Check your inbox.');})
+    .catch(function(err){alert(firebaseErrMsg(err.code));});
 }
 
 /* ══ MAIN APP ══ */
 function initApp(){
+  var db=dbGlobal;
   document.getElementById('acctName').textContent=username;
   document.getElementById('acctAvatar').textContent=username.charAt(0).toUpperCase();
   document.getElementById('ddName').textContent=username.charAt(0).toUpperCase()+username.slice(1);
   document.getElementById('ddNick').textContent='@'+username.toLowerCase();
   document.getElementById('settingNickname').value=username;
-
-  var firebaseConfig={apiKey:"AIzaSyCIVxdfzyomWgPTTzCdF4MvNvZEEempU0",authDomain:"group-chat-9f06f.firebaseapp.com",databaseURL:"https://group-chat-9f06f-default-rtdb.firebaseio.com/",projectId:"group-chat-9f06f",storageBucket:"group-chat-9f06f.appspot.com",messagingSenderId:"448025794493",appId:"1:448025794493:web:9a44237d247a63675724d4"};
-  if(!firebase.apps.length)firebase.initializeApp(firebaseConfig);
-  var db=firebase.database();
-  firebase.auth().signInAnonymously().catch(function(){});
 
   var CAT_SVGS={'Casual':'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>','Happy':'<circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>','Vibe':'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>','Lowkey':'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>','Rants':'<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>','Questions':'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>','Complaints':'<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>','School life':'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>','Identity':'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>','Games':'<line x1="6" y1="11" x2="10" y2="11"/><line x1="8" y1="9" x2="8" y2="13"/><line x1="15" y1="12" x2="15.01" y2="12"/><line x1="17" y1="10" x2="17.01" y2="10"/><rect x="2" y="6" width="20" height="12" rx="2"/>','Music':'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>','Creative':'<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>','Goals':'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>','Achievements':'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/>','Positivity':'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>','Sleep':'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>','Stress':'<path d="M8.56 2.9A7 7 0 0 1 19 9v4l2 2-10.62 6.14a2 2 0 0 1-2-.63L4 16V9a7 7 0 0 1 4.56-6.1z"/>','Burnout':'<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>','Perfectionism pressure':'<line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>','Social masking':'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>','Suggestions':'<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>','Emotional distress':'<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>','Getting Help':'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/>','Self-Harm':'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.4 2 2 0 0 1 3.91 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>','Suicidal Ideation':'<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>'};
 
@@ -740,6 +892,19 @@ function initApp(){
   var markWarningSeen=function(c){localStorage.setItem(warningSeenKey(c),'1');};
 
   var postsData=[],selectedCategory=null,savedRange=null,activePostId='',replyParentId=null,reportPayload={},currentView='chats';
+
+  /* ── DISPLAY NAME ──
+     showRealName toggle ON  → posts show the user's real nickname
+     showRealName toggle OFF → posts show "Anonymous" for everyone except yourself
+     Your own posts always show your real nick to YOU in the topbar/dropdown,
+     but in the chat feed they obey the toggle like everyone else.
+  */
+  function getShowRealName(){return localStorage.getItem('lt_show_real_name')==='1';}
+  function getDisplayName(postUser){
+    /* Always show real name for your own posts so you can identify them */
+    if(postUser===username)return postUser;
+    return getShowRealName()?postUser:'Anonymous';
+  }
 
   function getLastSeen(id){return parseInt(localStorage.getItem('lt_seen_cat_'+id)||'0');}
   function markCatRead(id){localStorage.setItem('lt_seen_cat_'+id,Date.now());}
@@ -845,8 +1010,12 @@ function initApp(){
     var snippet=stripHtml(post.html),col=avatarColor(post.user),initials=avatarInitials(post.user);
     var isFirst=gp==='first'||gp==='solo',isLast=gp==='last'||gp==='solo';
     var showAvatar=!isOwn&&isLast,showName=!isOwn&&isFirst;
-    var avHtml='<div class="msg-av" style="background:'+(showAvatar?col:'transparent')+';color:#fff">'+(showAvatar?escapeHtml(initials):'')+'</div>';
-    var nameHtml=showName?'<div class="msg-name" style="color:'+col+'">'+escapeHtml(post.user)+'</div>':'';
+    /* Use display name — respects the "show real names" toggle */
+    var displayUser=getDisplayName(post.user);
+    var displayCol=avatarColor(displayUser);
+    var displayInitials=avatarInitials(displayUser);
+    var avHtml='<div class="msg-av" style="background:'+(showAvatar?displayCol:'transparent')+';color:#fff">'+(showAvatar?escapeHtml(displayInitials):'')+'</div>';
+    var nameHtml=showName?'<div class="msg-name" style="color:'+displayCol+'">'+escapeHtml(displayUser)+'</div>':'';
     var divHtml='';var prev=arr[idx-1];
     if(!prev||new Date(post.time).toDateString()!==new Date(prev.time).toDateString()){
       var dL=new Date(post.time).toDateString()===new Date().toDateString()?'Today':new Date(post.time).toLocaleDateString([],{weekday:'long',month:'short',day:'numeric'});
@@ -862,7 +1031,7 @@ function initApp(){
         }).join('')+'<div style="font-size:0.68rem;color:var(--muted);margin-top:0.3rem">'+totalV+' vote'+(totalV!==1?'s':'')+'</div>';
     }else{bubbleContent=(post.title?'<div class="msg-title">'+escapeHtml(post.title)+'</div>':'')+'<div class="msg-text">'+escapeHtml(snippet.slice(0,320))+(snippet.length>320?'\u2026':'')+'</div>';}
     var threadHtml='';
-    if(replyCount>0){var repls=flattenReplies(post.replies);repls.sort(function(a,b){return a.time-b.time;});threadHtml='<div class="msg-thread-preview">'+repls.slice(0,2).map(function(r){return'<div class="msg-thread-row"><strong>'+escapeHtml(r.user)+'</strong>'+escapeHtml(stripHtml(r.html).slice(0,60))+'</div>';}).join('')+(replyCount>2?'<div class="msg-thread-more" data-open-post="'+post.id+'">'+replyCount+' replies \u2192</div>':'')+'</div>';}
+    if(replyCount>0){var repls=flattenReplies(post.replies);repls.sort(function(a,b){return a.time-b.time;});threadHtml='<div class="msg-thread-preview">'+repls.slice(0,2).map(function(r){return'<div class="msg-thread-row"><strong>'+escapeHtml(getDisplayName(r.user))+'</strong>'+escapeHtml(stripHtml(r.html).slice(0,60))+'</div>';}).join('')+(replyCount>2?'<div class="msg-thread-more" data-open-post="'+post.id+'">'+replyCount+' replies \u2192</div>':'')+'</div>';}
     var footHtml='<div class="msg-footer"><span class="msg-time">'+formatMsgTime(post.time)+'</span>'
       +(post.poll?'<span style="font-size:0.68rem;color:var(--muted)">Poll</span>':'<button class="msg-reply-btn" data-open-post="'+post.id+'"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'+(replyCount>0?replyCount+' repl'+(replyCount===1?'y':'ies'):'Reply')+'</button>')
       +'<button class="msg-report-btn" data-post-id="'+post.id+'"><svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M7 4h10l-2.8 3L17 10H7z"/></svg></button></div>';
@@ -931,9 +1100,9 @@ function initApp(){
   /* OVERLAY */
   function flattenReplies(obj){if(!obj)return[];return Object.entries(obj).map(function(e){var id=e[0],r=e[1];return{id:id,parentId:r.parentId||null,text:r.text||'',html:r.html||escapeHtml(r.text||''),user:r.user||'Anonymous',time:Number(r.time)||Date.now()};});}
   function buildReplyTree(replies){var map=new Map(),roots=[];replies.forEach(function(r){map.set(r.id,Object.assign({},r,{children:[]}));});map.forEach(function(r){if(r.parentId&&map.has(r.parentId))map.get(r.parentId).children.push(r);else roots.push(r);});function srt(a){a.sort(function(x,y){return x.time-y.time;});a.forEach(function(i){srt(i.children);});}srt(roots);return roots;}
-  function renderReplyNode(node){return'<div class="reply" data-reply-id="'+node.id+'"><div class="post-meta">'+escapeHtml(node.user)+' \u00b7 '+formatTime(node.time)+'</div><div class="reply-body">'+node.html+'</div><div class="reply-tools"><button class="btn-sm" data-reply-action="reply" data-reply-id="'+node.id+'">\u21a9 Reply</button><button class="report-flag" data-report-type="reply" data-reply-id="'+node.id+'"><svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M7 4h10l-2.8 3L17 10H7z"/></svg></button></div>'+(node.children.length?'<div class="reply-children">'+node.children.map(renderReplyNode).join('')+'</div>':'')+'</div>';}
+  function renderReplyNode(node){return'<div class="reply" data-reply-id="'+node.id+'"><div class="post-meta">'+escapeHtml(getDisplayName(node.user))+' \u00b7 '+formatTime(node.time)+'</div><div class="reply-body">'+node.html+'</div><div class="reply-tools"><button class="btn-sm" data-reply-action="reply" data-reply-id="'+node.id+'">\u21a9 Reply</button><button class="report-flag" data-report-type="reply" data-reply-id="'+node.id+'"><svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M7 4h10l-2.8 3L17 10H7z"/></svg></button></div>'+(node.children.length?'<div class="reply-children">'+node.children.map(renderReplyNode).join('')+'</div>':'')+'</div>';}
   function setReplyTarget(id,label){replyParentId=id;document.getElementById('replyContext').textContent=label;}
-  function openPostOverlay(postId){var post=postsData.find(function(p){return p.id===postId;});if(!post)return;activePostId=post.id;document.getElementById('overlayTitle').textContent=post.title;document.getElementById('overlayMeta').textContent='by '+post.user+' \u00b7 '+formatTime(post.time)+' \u00b7 '+post.category;document.getElementById('overlayBody').innerHTML=post.html||'';document.getElementById('overlayReportPost').dataset.postId=post.id;var tree=buildReplyTree(flattenReplies(post.replies));document.getElementById('replyList').innerHTML=tree.length?tree.map(renderReplyNode).join(''):'<div class="empty">No replies yet.</div>';setReplyTarget(null,'Replying to message');document.getElementById('replyInput').value='';document.getElementById('postOverlay').classList.add('open');}
+  function openPostOverlay(postId){var post=postsData.find(function(p){return p.id===postId;});if(!post)return;activePostId=post.id;document.getElementById('overlayTitle').textContent=post.title;document.getElementById('overlayMeta').textContent='by '+getDisplayName(post.user)+' \u00b7 '+formatTime(post.time)+' \u00b7 '+post.category;document.getElementById('overlayBody').innerHTML=post.html||'';document.getElementById('overlayReportPost').dataset.postId=post.id;var tree=buildReplyTree(flattenReplies(post.replies));document.getElementById('replyList').innerHTML=tree.length?tree.map(renderReplyNode).join(''):'<div class="empty">No replies yet.</div>';setReplyTarget(null,'Replying to message');document.getElementById('replyInput').value='';document.getElementById('postOverlay').classList.add('open');}
   document.getElementById('closePostOverlay').addEventListener('click',function(){document.getElementById('postOverlay').classList.remove('open');activePostId='';});
   document.getElementById('submitReply').addEventListener('click',function(){if(!activePostId)return;var text=document.getElementById('replyInput').value.trim();if(!text)return;db.ref('messages/'+activePostId+'/replies').push({parentId:replyParentId,text:text,html:text.replace(/\n/g,'<br>'),user:username,time:Date.now()});document.getElementById('replyInput').value='';setReplyTarget(null,'Replying to message');pushNotif('Reply posted');});
   document.getElementById('cancelReplyTarget').addEventListener('click',function(){setReplyTarget(null,'Replying to message');});
@@ -964,12 +1133,52 @@ function initApp(){
   document.addEventListener('click',function(e){if(!document.getElementById('acctDropdown').contains(e.target))document.getElementById('acctDropdown').classList.remove('open');if(!document.getElementById('notifPanel').contains(e.target)&&e.target.id!=='notifBtn')document.getElementById('notifPanel').classList.remove('open');});
   document.getElementById('ddSettings').addEventListener('click',function(){document.getElementById('acctDropdown').classList.remove('open');document.getElementById('navSettings').click();});
   document.getElementById('ddPrivacy').addEventListener('click',function(){document.getElementById('acctDropdown').classList.remove('open');document.getElementById('navPrivacy').click();});
-  document.getElementById('ddLogout').addEventListener('click',function(){if(confirm('Sign out of '+username+'?')){clearSession();location.reload();}document.getElementById('acctDropdown').classList.remove('open');});
+  document.getElementById('ddLogout').addEventListener('click',function(){
+    if(confirm('Sign out of '+username+'?')){
+      clearCachedNick();
+      auth.signOut().then(function(){location.reload();}).catch(function(){location.reload();});
+    }
+    document.getElementById('acctDropdown').classList.remove('open');
+  });
 
   /* SETTINGS */
+  /* Load saved showRealName pref into toggle on app start */
+  var initShowReal=localStorage.getItem('lt_show_real_name')==='1';
+  var showRealToggle=document.getElementById('settingShowRealName');
+  if(showRealToggle)showRealToggle.checked=initShowReal;
+  updatePrivacyRow();
+
+  function updatePrivacyRow(){
+    var el=document.getElementById('privacyPostingAs');
+    if(!el)return;
+    el.textContent=getShowRealName()?username:'Anonymous';
+  }
+
+  document.getElementById('settingShowRealName').addEventListener('change',function(){
+    var val=this.checked;
+    localStorage.setItem('lt_show_real_name',val?'1':'0');
+    var user=auth.currentUser;
+    if(user)dbGlobal.ref('users/'+user.uid+'/showRealName').set(val);
+    updatePrivacyRow();
+    filterAndRender(); /* re-render chat feed with new display names */
+    pushNotif(val?'Real names visible':'Posting as Anonymous');
+  });
+
   document.getElementById('settingsSaveBtn').addEventListener('click',function(){
-    var nick=document.getElementById('settingNickname').value.trim();
-    if(nick&&nick!==username){var sess=getSession();if(sess){var accts=getAccounts();if(accts[sess.email]){accts[sess.email].nick=nick;saveAccounts(accts);}sess.nick=nick;saveSession(sess);username=nick;document.getElementById('acctName').textContent=username;document.getElementById('acctAvatar').textContent=username.charAt(0).toUpperCase();document.getElementById('ddName').textContent=username.charAt(0).toUpperCase()+username.slice(1);document.getElementById('ddNick').textContent='@'+username.toLowerCase();}}
+    var nick=document.getElementById('settingNickname').value.trim()||'Anonymous';
+    if(nick!==username){
+      var user=auth.currentUser;
+      if(user){
+        dbGlobal.ref('users/'+user.uid+'/nick').set(nick);
+        setCachedNick(nick);
+        username=nick;
+        document.getElementById('acctName').textContent=username;
+        document.getElementById('acctAvatar').textContent=username.charAt(0).toUpperCase();
+        document.getElementById('ddName').textContent=username.charAt(0).toUpperCase()+username.slice(1);
+        document.getElementById('ddNick').textContent='@'+username.toLowerCase();
+        updatePrivacyRow();
+      }
+    }
     sortSelect.value=document.getElementById('settingSort').value;filterAndRender();pushNotif('Settings saved');
   });
   document.getElementById('resetWarningsBtn').addEventListener('click',function(){CATEGORIES.forEach(function(c){localStorage.removeItem(warningSeenKey(c.id));});pushNotif('Warning history reset');});
