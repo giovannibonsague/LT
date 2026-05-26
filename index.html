@@ -457,35 +457,11 @@ button,input,select,textarea{font-family:inherit;}
 </style>
 </head>
 <body>
-<!-- AUTH OVERLAY -->
+<!-- AUTH OVERLAY — content injected by restoreAuthUI() -->
 <div id="authOverlay">
-  <div class="auth-box">
-    <div class="auth-logo">
-      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      <span class="auth-logo-text">Let's Talk</span>
-    </div>
-    <div class="auth-tab-row">
-      <button class="auth-tab active" id="tabSignIn">Sign In</button>
-      <button class="auth-tab" id="tabSignUp">Create Account</button>
-    </div>
-    <!-- SIGN IN -->
-    <div id="formSignIn">
-      <div class="auth-field"><label>Email</label><input type="email" id="siEmail" placeholder="you@example.com" autocomplete="email"/><div class="auth-err" id="siEmailErr"></div></div>
-      <div class="auth-field"><label>Password</label><input type="password" id="siPassword" placeholder="••••••••" autocomplete="current-password"/><div class="auth-err" id="siPassErr"></div></div>
-      <div class="auth-err" id="siGlobalErr"></div>
-      <button class="auth-submit" id="btnSignIn">Sign In</button>
-      <div class="auth-fine">No account? <a href="#" id="switchToSignUp">Create one</a></div>
-    </div>
-    <!-- SIGN UP -->
-    <div id="formSignUp" style="display:none">
-      <div class="auth-field"><label>Nickname</label><input type="text" id="suNick" placeholder="CoolUser123" maxlength="32"/><div class="auth-err" id="suNickErr"></div></div>
-      <div class="auth-field"><label>Email</label><input type="email" id="suEmail" placeholder="you@example.com" autocomplete="email"/><div class="auth-err" id="suEmailErr"></div></div>
-      <div class="auth-field"><label>Password</label><input type="password" id="suPassword" placeholder="Min 8 characters" autocomplete="new-password"/><div class="auth-err" id="suPassErr"></div></div>
-      <div class="auth-field"><label>Confirm Password</label><input type="password" id="suPassword2" placeholder="Repeat password" autocomplete="new-password"/><div class="auth-err" id="suPass2Err"></div></div>
-      <div class="auth-err" id="suGlobalErr"></div>
-      <button class="auth-submit" id="btnSignUp">Create Account</button>
-      <div class="auth-fine">Have an account? <a href="#" id="switchToSignIn">Sign in</a></div>
-    </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;color:var(--muted);font-size:0.9rem">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--hl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 0.9s linear infinite"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.07-5.38"/></svg>
+    Loading...
   </div>
 </div>
 
