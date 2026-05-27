@@ -808,7 +808,6 @@ auth.onAuthStateChanged(function(user){
     /* If we have a cached nick, show the app immediately — no waiting */
     if(cached){
       username=cached;
-      restoreAuthUI();
       authOverlay.classList.add('hidden');
       initApp();
     }
@@ -844,7 +843,6 @@ auth.onAuthStateChanged(function(user){
       if(tog)tog.checked=showReal;
       /* First load — no cache existed yet, show app now */
       if(!cached){
-        restoreAuthUI();
         authOverlay.classList.add('hidden');
         initApp();
       }
@@ -853,7 +851,6 @@ auth.onAuthStateChanged(function(user){
       if(!cached){
         username=user.email.split('@')[0];
         setCachedNick(username);
-        restoreAuthUI();
         authOverlay.classList.add('hidden');
         initApp();
       }
@@ -1679,7 +1676,7 @@ function initApp(){
   document.addEventListener('mousemove',function(e){if(isResizingV){composerOverlay.style.height=Math.min(Math.max(rStartH+(rStartY-e.clientY),120),window.innerHeight*0.8)+'px';}if(isResizingH){var delta=rSide==='right'?e.clientX-rStartX:rStartX-e.clientX;composerOverlay.style.width=Math.min(Math.max(rStartW+delta,320),window.innerWidth*8/9)+'px';}});
   document.addEventListener('mouseup',function(){if(isResizingV){isResizingV=false;document.body.style.cursor='';document.body.style.userSelect='';}if(isResizingH){isResizingH=false;document.body.style.cursor='';document.body.style.userSelect='';}});
 
-  }catch(e){console.error("[initApp crash]",e);}
+  }catch(e){console.error("[initApp crash]",e);alert("App init error: "+e.message);}
 } // end initApp
 }); // end DOMContentLoaded
 </script>
