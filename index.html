@@ -414,7 +414,90 @@ button,input,select,textarea{font-family:inherit;}
 .notif-item .notif-sub{color:var(--muted);margin-top:2px;}
 #mpResizer{position:absolute;right:0;top:0;bottom:0;width:4px;cursor:ew-resize;z-index:10;background:transparent;transition:background 150ms;}
 #mpResizer:hover{background:rgba(255,222,89,0.25);}
-#viewChat,#viewPetition,#viewSettings,#viewPrivacy,#viewWelcome{animation:viewFade 220ms ease both;}
+#viewChat,#viewPetition,#viewSettings,#viewPrivacy,#viewWelcome,#viewDiary,#viewAnnouncements,#viewMood{animation:viewFade 220ms ease both;}
+
+/* ── SHARED VIEW SHELL ── */
+.content-view{flex:1;overflow-y:auto;padding:1.5rem;display:none;flex-direction:column;gap:1.2rem;}
+.content-view.show{display:flex;}
+.view-hero{margin-bottom:0.5rem;}
+.view-hero h1{font-size:1.2rem;font-weight:800;color:var(--hl);}
+.view-hero p{font-size:0.84rem;color:var(--muted);margin-top:0.2rem;line-height:1.6;}
+
+/* ── MOOD ── */
+.mood-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.4rem;}
+.mood-card h3{font-size:0.84rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;font-weight:700;}
+.mood-emojis{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+.mood-emoji-btn{font-size:1.8rem;background:var(--bg);border:2px solid var(--line);border-radius:12px;padding:0.5rem 0.7rem;cursor:pointer;transition:all 180ms;line-height:1;}
+.mood-emoji-btn:hover{border-color:var(--hl-border);transform:scale(1.12);}
+.mood-emoji-btn.selected{border-color:var(--hl);background:var(--hl-dim);transform:scale(1.12);}
+.mood-note{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:9px;color:var(--text);padding:0.55rem 0.75rem;font:inherit;font-size:0.84rem;outline:none;resize:none;min-height:64px;transition:border-color 150ms;margin-bottom:0.75rem;}
+.mood-note:focus{border-color:var(--hl-border);}
+.mood-history{display:flex;flex-direction:column;gap:0.5rem;}
+.mood-entry{background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:0.7rem 0.9rem;display:flex;align-items:flex-start;gap:0.75rem;}
+.mood-entry-emoji{font-size:1.4rem;flex-shrink:0;line-height:1;}
+.mood-entry-body{flex:1;min-width:0;}
+.mood-entry-date{font-size:0.7rem;color:var(--muted);margin-bottom:0.2rem;}
+.mood-entry-note{font-size:0.82rem;color:var(--text);line-height:1.5;}
+.mood-week{display:flex;gap:0.35rem;align-items:flex-end;height:48px;margin-bottom:0.5rem;}
+.mood-week-bar{flex:1;border-radius:4px 4px 0 0;background:var(--line);transition:height 400ms ease,background 400ms;}
+.mood-week-label{font-size:0.6rem;color:var(--muted);text-align:center;margin-top:3px;}
+.mood-week-wrap{display:flex;flex-direction:column;}
+
+/* ── DIARY ── */
+.diary-entry-list{display:flex;flex-direction:column;gap:0.6rem;}
+.diary-entry{background:var(--surface);border:1px solid var(--line2);border-radius:12px;padding:0.9rem 1rem;cursor:pointer;transition:border-color 150ms,background 150ms;}
+.diary-entry:hover{border-color:var(--hl-border);background:rgba(255,222,89,0.03);}
+.diary-entry-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;}
+.diary-entry-date{font-size:0.72rem;color:var(--muted);}
+.diary-entry-mood{font-size:1rem;}
+.diary-entry-title{font-size:0.88rem;font-weight:700;color:var(--text);margin-bottom:0.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.diary-entry-preview{font-size:0.78rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.diary-new-btn{display:flex;align-items:center;gap:0.5rem;background:var(--hl);color:#121212;border:none;border-radius:10px;padding:0.6rem 1.2rem;font:inherit;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 150ms;align-self:flex-start;}
+.diary-new-btn:hover{background:#ffe97a;transform:translateY(-1px);}
+.diary-new-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+.diary-empty{color:var(--muted);text-align:center;padding:2.5rem 1rem;font-size:0.86rem;line-height:1.7;}
+
+/* DIARY EDITOR OVERLAY */
+#diaryEditorOverlay{position:fixed;inset:0;background:var(--bg);z-index:3000;display:none;flex-direction:column;}
+#diaryEditorOverlay.open{display:flex;}
+.diary-editor-topbar{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1.2rem;border-bottom:1px solid var(--line);background:var(--surface);flex-shrink:0;}
+.diary-editor-back{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:0.35rem 0.75rem;font:inherit;font-size:0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.35rem;}
+.diary-editor-back svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.diary-editor-back:hover{background:#222;border-color:#555;}
+.diary-editor-title{flex:1;background:transparent;border:none;outline:none;font:inherit;font-size:1rem;font-weight:700;color:var(--text);}
+.diary-editor-title::placeholder{color:var(--muted);}
+.diary-editor-mood-row{display:flex;gap:0.4rem;padding:0.5rem 1.2rem;border-bottom:1px solid var(--line);background:var(--surface);flex-shrink:0;align-items:center;}
+.diary-editor-mood-label{font-size:0.74rem;color:var(--muted);margin-right:0.3rem;}
+.diary-mood-btn{font-size:1.2rem;background:transparent;border:2px solid transparent;border-radius:8px;padding:0.2rem 0.3rem;cursor:pointer;transition:all 150ms;line-height:1;}
+.diary-mood-btn:hover{border-color:var(--line2);transform:scale(1.15);}
+.diary-mood-btn.selected{border-color:var(--hl);background:var(--hl-dim);}
+.diary-editor-body{flex:1;padding:1.2rem;outline:none;font:inherit;font-size:0.92rem;line-height:1.75;color:var(--text);overflow-y:auto;background:var(--bg);}
+.diary-editor-body:empty::before{content:attr(data-placeholder);color:var(--muted);pointer-events:none;}
+.diary-editor-footer{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 1.2rem;border-top:1px solid var(--line);background:var(--surface);flex-shrink:0;}
+.diary-editor-date{font-size:0.72rem;color:var(--muted);}
+.diary-save-btn{background:var(--hl);color:#121212;border:none;border-radius:8px;padding:0.45rem 1.1rem;font:inherit;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 150ms;}
+.diary-save-btn:hover{background:#ffe97a;}
+.diary-delete-btn{background:transparent;border:1px solid var(--danger);color:var(--danger);border-radius:8px;padding:0.4rem 0.8rem;font:inherit;font-size:0.78rem;cursor:pointer;transition:all 150ms;}
+.diary-delete-btn:hover{background:rgba(192,57,43,0.1);}
+
+/* ── ANNOUNCEMENTS ── */
+.ann-item{background:var(--surface);border:1px solid var(--line2);border-radius:12px;padding:1rem 1.1rem;}
+.ann-item.pinned{border-color:var(--hl-border);background:var(--hl-dim);}
+.ann-item-top{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;}
+.ann-badge{font-size:0.62rem;font-weight:700;border-radius:999px;padding:2px 7px;background:var(--hl);color:#121212;}
+.ann-badge.info{background:#1a4a7a;color:#5bafd6;}
+.ann-badge.update{background:#0a5a38;color:#34d399;}
+.ann-badge.pinned{background:var(--hl);color:#121212;}
+.ann-title{font-size:0.9rem;font-weight:700;color:var(--text);}
+.ann-body{font-size:0.83rem;color:var(--muted);line-height:1.65;}
+.ann-footer{font-size:0.68rem;color:var(--muted);margin-top:0.5rem;}
+.ann-empty{color:var(--muted);text-align:center;padding:2.5rem 1rem;font-size:0.86rem;line-height:1.7;}
+/* Admin compose */
+.ann-compose{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;}
+.ann-compose h3{font-size:0.84rem;color:var(--hl);font-weight:700;margin-bottom:0.75rem;}
+.ann-compose input,.ann-compose textarea,.ann-compose select{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:0.5rem 0.7rem;font:inherit;font-size:0.84rem;outline:none;margin-bottom:0.5rem;transition:border-color 150ms;}
+.ann-compose input:focus,.ann-compose textarea:focus{border-color:var(--hl-border);}
+.ann-compose textarea{min-height:72px;resize:vertical;}
 
 /* ONBOARDING GUIDE */
 #guideOverlay{position:fixed;inset:0;background:rgba(10,10,10,0.92);z-index:8000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px);}
@@ -484,6 +567,19 @@ button,input,select,textarea{font-family:inherit;}
       <svg viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
       <span class="nav-btn-label">Messages</span>
       <span class="nav-badge" id="inboxBadge" style="display:none">0</span>
+    </button>
+    <button class="nav-btn" id="navDiary">
+      <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <span class="nav-btn-label">Diary</span>
+    </button>
+    <button class="nav-btn" id="navAnnouncements">
+      <svg viewBox="0 0 24 24"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg>
+      <span class="nav-btn-label">Announcements</span>
+      <span class="nav-badge" id="annBadge" style="display:none">0</span>
+    </button>
+    <button class="nav-btn" id="navMood">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+      <span class="nav-btn-label">Mood Check-in</span>
     </button>
   </div>
   <!-- Spacer -->
@@ -612,6 +708,52 @@ button,input,select,textarea{font-family:inherit;}
         </div>
       </div>
     </div>
+    <!-- ══ MOOD CHECK-IN VIEW ══ -->
+    <div class="content-view" id="viewMood">
+      <div class="view-hero"><h1>Mood Check-in</h1><p>How are you feeling today? Log your mood daily — only you can see this.</p></div>
+      <div class="mood-card">
+        <h3>Today's mood</h3>
+        <div class="mood-emojis" id="moodEmojiPicker"></div>
+        <textarea class="mood-note" id="moodNote" placeholder="Add a note (optional)..." rows="2"></textarea>
+        <button class="btn-sm primary" id="moodSaveBtn" style="width:100%;padding:0.55rem">Save today's mood</button>
+      </div>
+      <div class="mood-card" id="moodWeekCard" style="display:none">
+        <h3>This week</h3>
+        <div style="display:flex;gap:4px;align-items:flex-end;height:56px;" id="moodWeekChart"></div>
+        <div style="display:flex;gap:4px;margin-top:4px;" id="moodWeekLabels"></div>
+      </div>
+      <div class="mood-card">
+        <h3>Recent entries</h3>
+        <div class="mood-history" id="moodHistory"></div>
+      </div>
+    </div>
+
+    <!-- ══ DIARY VIEW ══ -->
+    <div class="content-view" id="viewDiary">
+      <div class="view-hero" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem">
+        <div><h1>My Diary</h1><p>Private entries — stored locally and in your account.</p></div>
+        <button class="diary-new-btn" id="diaryNewBtn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>New Entry</button>
+      </div>
+      <div class="diary-entry-list" id="diaryEntryList"></div>
+    </div>
+
+    <!-- ══ ANNOUNCEMENTS VIEW ══ -->
+    <div class="content-view" id="viewAnnouncements">
+      <div class="view-hero"><h1>Announcements</h1><p>Updates and news from the Let's Talk team.</p></div>
+      <div id="annAdminCompose" style="display:none">
+        <div class="ann-compose">
+          <h3>Post Announcement</h3>
+          <input type="text" id="annTitleInput" placeholder="Title..."/>
+          <textarea id="annBodyInput" placeholder="Message..."></textarea>
+          <div style="display:flex;gap:0.5rem;margin-bottom:0.5rem">
+            <select id="annTypeSelect" style="flex:1"><option value="info">Info</option><option value="update">Update</option><option value="pinned">Pinned</option></select>
+            <button class="btn-sm primary" id="annPostBtn">Post</button>
+          </div>
+        </div>
+      </div>
+      <div id="annList"></div>
+    </div>
+
     <div class="settings-view" id="viewPrivacy">
       <div style="margin-bottom:0.5rem"><h1 style="font-size:1.2rem;color:var(--hl);font-weight:800">Privacy</h1><p style="color:var(--muted);font-size:0.85rem;margin-top:0.3rem">Your privacy matters to us.</p></div>
       <div class="settings-section"><h3>Data &amp; Storage</h3>
@@ -686,6 +828,24 @@ button,input,select,textarea{font-family:inherit;}
     <div class="composer-right"><div class="preview-label">Live Preview</div><div id="previewContainer"></div></div>
   </div>
 </div>
+<!-- DIARY EDITOR OVERLAY -->
+<div id="diaryEditorOverlay">
+  <div class="diary-editor-topbar">
+    <button class="diary-editor-back" id="diaryEditorBack"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Back</button>
+    <input class="diary-editor-title" id="diaryEditorTitle" type="text" placeholder="Entry title..."/>
+    <button class="diary-delete-btn" id="diaryDeleteBtn" style="display:none">Delete</button>
+    <button class="diary-save-btn" id="diaryEditorSave">Save</button>
+  </div>
+  <div class="diary-editor-mood-row">
+    <span class="diary-editor-mood-label">Mood:</span>
+    <div id="diaryEditorMoods"></div>
+  </div>
+  <div class="diary-editor-body" id="diaryEditorBody" contenteditable="true" data-placeholder="Write anything — this is just for you..."></div>
+  <div class="diary-editor-footer">
+    <span class="diary-editor-date" id="diaryEditorDate"></span>
+  </div>
+</div>
+
 <!-- ONBOARDING GUIDE -->
 <div id="guideOverlay">
   <div class="guide-box">
@@ -1336,11 +1496,17 @@ function initApp(){
   }
 
   function showView(v){
-    ['viewWelcome','viewChat','viewPetition','viewSettings','viewPrivacy'].forEach(function(id){var el=document.getElementById(id);if(el){el.style.display='none';el.classList.remove('show');}});
+    ['viewWelcome','viewChat','viewPetition','viewSettings','viewPrivacy','viewMood','viewDiary','viewAnnouncements'].forEach(function(id){
+      var el=document.getElementById(id);if(el){el.style.display='none';el.classList.remove('show');}
+    });
+    var flexViews=['viewChat','viewMood','viewDiary','viewAnnouncements','viewPetition','viewSettings','viewPrivacy'];
     if(v==='chat'){document.getElementById('viewChat').style.display='flex';}
-    else if(v==='petition'){document.getElementById('viewPetition').classList.add('show');document.getElementById('viewPetition').style.display='flex';}
-    else if(v==='settings'){document.getElementById('viewSettings').classList.add('show');document.getElementById('viewSettings').style.display='flex';}
-    else if(v==='privacy'){document.getElementById('viewPrivacy').classList.add('show');document.getElementById('viewPrivacy').style.display='flex';}
+    else if(v==='petition'){document.getElementById('viewPetition').style.display='flex';document.getElementById('viewPetition').classList.add('show');}
+    else if(v==='settings'){document.getElementById('viewSettings').style.display='flex';document.getElementById('viewSettings').classList.add('show');updateSettingsAvatarMini&&updateSettingsAvatarMini();}
+    else if(v==='privacy'){document.getElementById('viewPrivacy').style.display='flex';document.getElementById('viewPrivacy').classList.add('show');}
+    else if(v==='mood'){document.getElementById('viewMood').style.display='flex';document.getElementById('viewMood').classList.add('show');}
+    else if(v==='diary'){document.getElementById('viewDiary').style.display='flex';document.getElementById('viewDiary').classList.add('show');}
+    else if(v==='announcements'){document.getElementById('viewAnnouncements').style.display='flex';document.getElementById('viewAnnouncements').classList.add('show');}
     else{document.getElementById('viewWelcome').style.display='flex';}
   }
 
@@ -1361,6 +1527,34 @@ function initApp(){
     filterAndRender._hasScrolled=false;filterAndRender();
   });
   document.getElementById('sbPetitionMini').addEventListener('click',openPetitionView);
+  document.getElementById('navDiary').addEventListener('click',function(){
+    document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});
+    this.classList.add('active');
+    document.getElementById('topbarTitle').textContent='My Diary';
+    document.getElementById('topbarSub').textContent='Private entries';
+    showView('diary');document.getElementById('middlePanel').style.display='none';
+    renderDiaryList();
+  });
+  document.getElementById('navAnnouncements').addEventListener('click',function(){
+    document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});
+    this.classList.add('active');
+    document.getElementById('topbarTitle').textContent='Announcements';
+    document.getElementById('topbarSub').textContent='Updates from the team';
+    showView('announcements');document.getElementById('middlePanel').style.display='none';
+    renderAnnouncements();
+    /* Clear badge */
+    var lastSeen=parseInt(localStorage.getItem('lt_ann_seen')||'0');
+    localStorage.setItem('lt_ann_seen',Date.now());
+    document.getElementById('annBadge').style.display='none';
+  });
+  document.getElementById('navMood').addEventListener('click',function(){
+    document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});
+    this.classList.add('active');
+    document.getElementById('topbarTitle').textContent='Mood Check-in';
+    document.getElementById('topbarSub').textContent='Daily mood tracker';
+    showView('mood');document.getElementById('middlePanel').style.display='none';
+    renderMoodView();
+  });
   function openPetitionView(){document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});document.getElementById('topbarTitle').textContent='Sign Petition';document.getElementById('topbarSub').textContent='Mental wellness awareness';showView('petition');document.getElementById('middlePanel').style.display='none';}
   document.getElementById('navSettings').addEventListener('click',function(){document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Settings';document.getElementById('topbarSub').textContent='Your preferences';showView('settings');document.getElementById('middlePanel').style.display='none';updateSettingsAvatarMini&&updateSettingsAvatarMini();});
   document.getElementById('navPrivacy').addEventListener('click',function(){document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Privacy';document.getElementById('topbarSub').textContent='Your data & safety';showView('privacy');document.getElementById('middlePanel').style.display='none';});
@@ -1677,6 +1871,330 @@ function initApp(){
   [cRL,cRR].forEach(function(h){h.addEventListener('mousedown',function(e){isResizingH=true;rSide=h===cRL?'left':'right';rStartX=e.clientX;rStartW=composerOverlay.offsetWidth;document.body.style.userSelect='none';document.body.style.cursor='ew-resize';e.stopPropagation();});});
   document.addEventListener('mousemove',function(e){if(isResizingV){composerOverlay.style.height=Math.min(Math.max(rStartH+(rStartY-e.clientY),120),window.innerHeight*0.8)+'px';}if(isResizingH){var delta=rSide==='right'?e.clientX-rStartX:rStartX-e.clientX;composerOverlay.style.width=Math.min(Math.max(rStartW+delta,320),window.innerWidth*8/9)+'px';}});
   document.addEventListener('mouseup',function(){if(isResizingV){isResizingV=false;document.body.style.cursor='';document.body.style.userSelect='';}if(isResizingH){isResizingH=false;document.body.style.cursor='';document.body.style.userSelect='';}});
+
+
+  /* ══════════════════════════════════════
+     MOOD CHECK-IN
+  ══════════════════════════════════════ */
+  var MOOD_EMOJIS=[
+    {e:'😄',label:'Great',score:5,color:'#4ade80'},
+    {e:'🙂',label:'Good',score:4,color:'#a3e635'},
+    {e:'😐',label:'Okay',score:3,color:'#facc15'},
+    {e:'😔',label:'Low',score:2,color:'#fb923c'},
+    {e:'😢',label:'Rough',score:1,color:'#f87171'},
+    {e:'😡',label:'Angry',score:1,color:'#ef4444'},
+    {e:'😰',label:'Anxious',score:2,color:'#a78bfa'},
+    {e:'🥱',label:'Tired',score:2,color:'#94a3b8'},
+    {e:'🤩',label:'Excited',score:5,color:'#fbbf24'},
+    {e:'🥰',label:'Loved',score:5,color:'#f472b6'},
+  ];
+  var selectedMoodIdx=null;
+
+  function getMoodLog(){try{return JSON.parse(localStorage.getItem('lt_mood_log')||'[]');}catch(e){return[];}}
+  function saveMoodLog(log){localStorage.setItem('lt_mood_log',JSON.stringify(log));/* also sync to Firebase */
+    var user=auth.currentUser;
+    if(user)db.ref('users/'+user.uid+'/moodLog').set(log).catch(function(){});
+  }
+  function getTodayKey(){return new Date().toISOString().slice(0,10);}
+
+  function renderMoodView(){
+    selectedMoodIdx=null;
+    /* Build emoji picker */
+    var picker=document.getElementById('moodEmojiPicker');
+    if(!picker)return;
+    picker.innerHTML='';
+    MOOD_EMOJIS.forEach(function(m,i){
+      var btn=document.createElement('button');
+      btn.className='mood-emoji-btn';
+      btn.textContent=m.e;btn.title=m.label;
+      btn.addEventListener('click',function(){
+        selectedMoodIdx=i;
+        document.querySelectorAll('.mood-emoji-btn').forEach(function(b){b.classList.remove('selected');});
+        btn.classList.add('selected');
+      });
+      picker.appendChild(btn);
+    });
+    /* Check if already logged today */
+    var log=getMoodLog();
+    var todayKey=getTodayKey();
+    var todayEntry=log.find(function(e){return e.date===todayKey;});
+    if(todayEntry){
+      var idx=MOOD_EMOJIS.findIndex(function(m){return m.e===todayEntry.emoji;});
+      if(idx>=0){
+        selectedMoodIdx=idx;
+        picker.children[idx]&&picker.children[idx].classList.add('selected');
+      }
+      var noteEl=document.getElementById('moodNote');
+      if(noteEl)noteEl.value=todayEntry.note||'';
+      var saveBtn=document.getElementById('moodSaveBtn');
+      if(saveBtn)saveBtn.textContent="Update today's mood";
+    }
+    renderMoodHistory();
+    renderMoodWeek();
+  }
+
+  document.getElementById('moodSaveBtn').addEventListener('click',function(){
+    if(selectedMoodIdx===null){alert('Pick a mood first!');return;}
+    var mood=MOOD_EMOJIS[selectedMoodIdx];
+    var note=document.getElementById('moodNote').value.trim();
+    var log=getMoodLog();
+    var todayKey=getTodayKey();
+    /* Replace today's entry if exists */
+    log=log.filter(function(e){return e.date!==todayKey;});
+    log.unshift({date:todayKey,emoji:mood.e,label:mood.label,score:mood.score,note:note,ts:Date.now()});
+    saveMoodLog(log);
+    renderMoodHistory();
+    renderMoodWeek();
+    pushNotif('Mood logged: '+mood.e+' '+mood.label);
+    document.getElementById('moodSaveBtn').textContent="Update today's mood";
+  });
+
+  function renderMoodHistory(){
+    var hist=document.getElementById('moodHistory');if(!hist)return;
+    var log=getMoodLog().slice(0,7);
+    if(!log.length){hist.innerHTML='<div style="color:var(--muted);font-size:0.82rem;text-align:center;padding:1rem">No entries yet. Log your first mood above!</div>';return;}
+    hist.innerHTML=log.map(function(e){
+      var d=new Date(e.ts||e.date);
+      var label=d.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});
+      return'<div class="mood-entry">'
+        +'<div class="mood-entry-emoji">'+e.emoji+'</div>'
+        +'<div class="mood-entry-body">'
+        +'<div class="mood-entry-date">'+label+' &middot; '+e.label+'</div>'
+        +(e.note?'<div class="mood-entry-note">'+escapeHtml(e.note)+'</div>':'')
+        +'</div></div>';
+    }).join('');
+  }
+
+  function renderMoodWeek(){
+    var chart=document.getElementById('moodWeekChart');
+    var labels=document.getElementById('moodWeekLabels');
+    var card=document.getElementById('moodWeekCard');
+    if(!chart||!labels||!card)return;
+    var log=getMoodLog();
+    if(log.length<2){card.style.display='none';return;}
+    card.style.display='';
+    var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var today=new Date();
+    chart.innerHTML='';labels.innerHTML='';
+    for(var i=6;i>=0;i--){
+      var d=new Date(today);d.setDate(today.getDate()-i);
+      var key=d.toISOString().slice(0,10);
+      var entry=log.find(function(e){return e.date===key;});
+      var score=entry?entry.score:0;
+      var color=entry?MOOD_EMOJIS.find(function(m){return m.e===entry.emoji;})&&MOOD_EMOJIS.find(function(m){return m.e===entry.emoji;}).color||'var(--hl)':'var(--line)';
+      var pct=score?Math.round(score/5*100):8;
+      var barWrap=document.createElement('div');barWrap.style.cssText='flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;';
+      var bar=document.createElement('div');
+      bar.style.cssText='width:100%;border-radius:4px 4px 0 0;background:'+color+';transition:height 400ms ease;';
+      bar.style.height=pct+'%';
+      bar.title=(entry?entry.emoji+' '+entry.label:'No entry');
+      barWrap.appendChild(bar);
+      chart.appendChild(barWrap);
+      var lbl=document.createElement('div');
+      lbl.style.cssText='flex:1;font-size:0.6rem;color:var(--muted);text-align:center;';
+      lbl.textContent=days[d.getDay()];
+      labels.appendChild(lbl);
+    }
+  }
+
+  /* ══════════════════════════════════════
+     DIARY
+  ══════════════════════════════════════ */
+  var DIARY_MOODS=['😄','🙂','😐','😔','😢','😡','😰','🥱','🤩','🥰'];
+  var currentDiaryId=null;
+
+  function getDiaryEntries(){try{return JSON.parse(localStorage.getItem('lt_diary')||'[]');}catch(e){return[];}}
+  function saveDiaryEntries(entries){
+    localStorage.setItem('lt_diary',JSON.stringify(entries));
+    var user=auth.currentUser;
+    if(user)db.ref('users/'+user.uid+'/diary').set(entries).catch(function(){});
+  }
+
+  function renderDiaryList(){
+    var list=document.getElementById('diaryEntryList');if(!list)return;
+    var entries=getDiaryEntries();
+    if(!entries.length){
+      list.innerHTML='<div class="diary-empty">No entries yet.<br><span style="font-size:0.78rem">Tap <strong style="color:var(--hl)">New Entry</strong> to write your first one.</span></div>';
+      return;
+    }
+    list.innerHTML=entries.map(function(e){
+      var d=new Date(e.ts);
+      var label=d.toLocaleDateString([],{weekday:'long',month:'short',day:'numeric',year:'numeric'});
+      var preview=e.body?e.body.replace(/<[^>]+>/g,'').slice(0,80):'';
+      return'<div class="diary-entry" data-diary-id="'+e.id+'">'
+        +'<div class="diary-entry-top"><span class="diary-entry-date">'+label+'</span><span class="diary-entry-mood">'+(e.mood||'')+'</span></div>'
+        +'<div class="diary-entry-title">'+(e.title?escapeHtml(e.title):'Untitled')+'</div>'
+        +(preview?'<div class="diary-entry-preview">'+escapeHtml(preview)+'</div>':'')
+        +'</div>';
+    }).join('');
+    list.querySelectorAll('.diary-entry').forEach(function(el){
+      el.addEventListener('click',function(){openDiaryEditor(el.dataset.diaryId);});
+    });
+  }
+
+  document.getElementById('diaryNewBtn').addEventListener('click',function(){openDiaryEditor(null);});
+
+  function openDiaryEditor(id){
+    currentDiaryId=id;
+    var overlay=document.getElementById('diaryEditorOverlay');
+    overlay.classList.add('open');
+    /* Build mood buttons */
+    var moodRow=document.getElementById('diaryEditorMoods');
+    moodRow.innerHTML='';
+    DIARY_MOODS.forEach(function(em){
+      var btn=document.createElement('button');
+      btn.className='diary-mood-btn';btn.textContent=em;btn.dataset.mood=em;
+      btn.addEventListener('click',function(){
+        moodRow.querySelectorAll('.diary-mood-btn').forEach(function(b){b.classList.remove('selected');});
+        btn.classList.add('selected');
+      });
+      moodRow.appendChild(btn);
+    });
+    if(id){
+      var entries=getDiaryEntries();
+      var entry=entries.find(function(e){return e.id===id;});
+      if(entry){
+        document.getElementById('diaryEditorTitle').value=entry.title||'';
+        document.getElementById('diaryEditorBody').innerHTML=entry.body||'';
+        document.getElementById('diaryEditorDate').textContent=new Date(entry.ts).toLocaleString([],{dateStyle:'medium',timeStyle:'short'});
+        document.getElementById('diaryDeleteBtn').style.display='';
+        /* Select mood */
+        if(entry.mood){
+          moodRow.querySelectorAll('.diary-mood-btn').forEach(function(b){
+            if(b.dataset.mood===entry.mood)b.classList.add('selected');
+          });
+        }
+      }
+    } else {
+      document.getElementById('diaryEditorTitle').value='';
+      document.getElementById('diaryEditorBody').innerHTML='';
+      document.getElementById('diaryEditorDate').textContent=new Date().toLocaleString([],{dateStyle:'medium',timeStyle:'short'});
+      document.getElementById('diaryDeleteBtn').style.display='none';
+    }
+  }
+
+  document.getElementById('diaryEditorBack').addEventListener('click',function(){
+    document.getElementById('diaryEditorOverlay').classList.remove('open');
+  });
+
+  document.getElementById('diaryEditorSave').addEventListener('click',function(){
+    var title=document.getElementById('diaryEditorTitle').value.trim();
+    var body=document.getElementById('diaryEditorBody').innerHTML.trim();
+    var moodBtn=document.querySelector('#diaryEditorMoods .diary-mood-btn.selected');
+    var mood=moodBtn?moodBtn.dataset.mood:'';
+    if(!title&&!body){alert('Write something first!');return;}
+    var entries=getDiaryEntries();
+    if(currentDiaryId){
+      entries=entries.map(function(e){
+        return e.id===currentDiaryId?Object.assign({},e,{title:title,body:body,mood:mood,updated:Date.now()}):e;
+      });
+    } else {
+      entries.unshift({id:'de_'+Date.now(),title:title,body:body,mood:mood,ts:Date.now()});
+    }
+    saveDiaryEntries(entries);
+    document.getElementById('diaryEditorOverlay').classList.remove('open');
+    renderDiaryList();
+    pushNotif('Diary entry saved');
+  });
+
+  document.getElementById('diaryDeleteBtn').addEventListener('click',function(){
+    if(!confirm('Delete this entry?'))return;
+    var entries=getDiaryEntries().filter(function(e){return e.id!==currentDiaryId;});
+    saveDiaryEntries(entries);
+    document.getElementById('diaryEditorOverlay').classList.remove('open');
+    renderDiaryList();
+    pushNotif('Entry deleted');
+  });
+
+  /* ══════════════════════════════════════
+     ANNOUNCEMENTS
+  ══════════════════════════════════════ */
+  var ADMIN_UIDS=['admin'];/* Add Firebase UIDs of admins here */
+
+  function isAdmin(){
+    var user=auth.currentUser;
+    return user&&ADMIN_UIDS.indexOf(user.uid)>=0;
+  }
+
+  function renderAnnouncements(){
+    /* Show admin compose if admin */
+    var adminCompose=document.getElementById('annAdminCompose');
+    if(adminCompose)adminCompose.style.display=isAdmin()?'':'none';
+
+    db.ref('announcements').orderByChild('ts').limitToLast(20).once('value',function(snap){
+      var list=document.getElementById('annList');if(!list)return;
+      var data=snap.val();
+      if(!data){list.innerHTML='<div class="ann-empty">No announcements yet.</div>';return;}
+      var items=Object.entries(data).map(function(e){return Object.assign({id:e[0]},e[1]);});
+      items.sort(function(a,b){
+        /* Pinned always first */
+        if(a.type==='pinned'&&b.type!=='pinned')return -1;
+        if(b.type==='pinned'&&a.type!=='pinned')return 1;
+        return b.ts-a.ts;
+      });
+      list.innerHTML=items.map(function(item){
+        var d=new Date(item.ts).toLocaleDateString([],{month:'short',day:'numeric',year:'numeric'});
+        var badgeClass=item.type==='update'?'update':item.type==='pinned'?'pinned':'info';
+        var badgeLabel=item.type==='pinned'?'📌 Pinned':item.type==='update'?'Update':'Info';
+        return'<div class="ann-item'+(item.type==='pinned'?' pinned':'')+'">'
+          +'<div class="ann-item-top"><span class="ann-badge '+badgeClass+'">'+badgeLabel+'</span></div>'
+          +'<div class="ann-title">'+escapeHtml(item.title)+'</div>'
+          +'<div class="ann-body" style="margin-top:0.35rem">'+escapeHtml(item.body)+'</div>'
+          +'<div class="ann-footer">'+d+(item.author?' &middot; '+escapeHtml(item.author):'')+'</div>'
+          +(isAdmin()?'<button class="btn-sm" style="margin-top:0.5rem;color:var(--danger);border-color:var(--danger)" data-del-ann="'+item.id+'">Delete</button>':'')
+          +'</div>';
+      }).join('');
+      /* Wire delete buttons for admins */
+      list.querySelectorAll('[data-del-ann]').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          if(!confirm('Delete announcement?'))return;
+          db.ref('announcements/'+btn.dataset.delAnn).remove();
+          renderAnnouncements();
+        });
+      });
+    });
+
+    /* Check for new announcements for badge */
+    db.ref('announcements').orderByChild('ts').once('value',function(snap){
+      var lastSeen=parseInt(localStorage.getItem('lt_ann_seen')||'0');
+      var data=snap.val();if(!data)return;
+      var newCount=Object.values(data).filter(function(a){return a.ts>lastSeen;}).length;
+      var badge=document.getElementById('annBadge');
+      if(badge){badge.style.display=newCount>0?'':'none';badge.textContent=newCount;}
+    });
+  }
+
+  document.getElementById('annPostBtn').addEventListener('click',function(){
+    var title=document.getElementById('annTitleInput').value.trim();
+    var body=document.getElementById('annBodyInput').value.trim();
+    var type=document.getElementById('annTypeSelect').value;
+    if(!title||!body)return;
+    db.ref('announcements').push({title:title,body:body,type:type,ts:Date.now(),author:username});
+    document.getElementById('annTitleInput').value='';
+    document.getElementById('annBodyInput').value='';
+    renderAnnouncements();
+    pushNotif('Announcement posted');
+  });
+
+  /* Check for new announcements on load */
+  db.ref('announcements').orderByChild('ts').limitToLast(5).once('value',function(snap){
+    var lastSeen=parseInt(localStorage.getItem('lt_ann_seen')||'0');
+    var data=snap.val();if(!data)return;
+    var newCount=Object.values(data).filter(function(a){return a.ts>lastSeen;}).length;
+    var badge=document.getElementById('annBadge');
+    if(badge&&newCount>0){badge.style.display='';badge.textContent=newCount;}
+  });
+
+  /* Sync mood/diary from Firebase on load */
+  (function syncUserData(){
+    var user=auth.currentUser;if(!user)return;
+    db.ref('users/'+user.uid+'/moodLog').once('value').then(function(snap){
+      if(snap.val()&&snap.val().length)localStorage.setItem('lt_mood_log',JSON.stringify(snap.val()));
+    }).catch(function(){});
+    db.ref('users/'+user.uid+'/diary').once('value').then(function(snap){
+      if(snap.val()&&snap.val().length)localStorage.setItem('lt_diary',JSON.stringify(snap.val()));
+    }).catch(function(){});
+  })();
 
   }catch(e){console.error("[initApp crash]",e);alert("App init error: "+e.message);}
 } // end initApp
