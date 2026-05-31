@@ -28,9 +28,6 @@ button,input,select,textarea{font-family:inherit;}
 @keyframes overlayIn{from{opacity:0;}to{opacity:1;}}
 @keyframes pageUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 @keyframes viewFade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.7;transform:scale(0.8);}}
-
-/* AUTH */
 #authOverlay{position:fixed;inset:0;background:#0d0d0d;z-index:9999;display:flex;align-items:center;justify-content:center;padding:1rem;}
 #authOverlay.hidden{display:none;}
 .auth-box{width:min(420px,100%);background:var(--surface);border:1px solid var(--line2);border-radius:18px;padding:2rem 2rem 1.8rem;box-shadow:0 32px 80px rgba(0,0,0,0.7);animation:authPop 280ms cubic-bezier(0.34,1.3,0.64,1) both;}
@@ -51,11 +48,9 @@ button,input,select,textarea{font-family:inherit;}
 .auth-submit:hover{background:#ffe97a;transform:translateY(-1px);}
 .auth-fine{font-size:0.72rem;color:var(--muted);text-align:center;margin-top:1rem;line-height:1.5;}
 .auth-fine a{color:var(--hl);text-decoration:none;}
-
-/* SIDEBAR */
 #sidebar{width:var(--sidebar-w);min-width:var(--sidebar-min);max-width:420px;height:100vh;background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column;position:relative;flex-shrink:0;overflow:hidden;transition:width 220ms ease;}
 #sidebar.collapsed{width:var(--sidebar-min);}
-#sidebarResizer{position:absolute;right:0;top:0;bottom:0;width:4px;cursor:ew-resize;z-index:10;background:transparent;transition:background 150ms;}
+#sidebarResizer{position:absolute;right:0;top:0;bottom:0;width:4px;cursor:ew-resize;z-index:10;background:transparent;}
 #sidebarResizer:hover{background:rgba(255,222,89,0.3);}
 .sb-logo{display:flex;align-items:center;gap:0.55rem;padding:0.9rem 0.75rem;border-bottom:1px solid var(--line);flex-shrink:0;min-height:52px;}
 .sb-logo svg{width:22px;height:22px;stroke:var(--hl);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
@@ -89,8 +84,6 @@ button,input,select,textarea{font-family:inherit;}
 .sb-petition-bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden;}
 .sb-petition-fill{height:100%;background:var(--hl);border-radius:2px;width:0%;transition:width 700ms ease;}
 .sb-petition-stat{font-size:0.62rem;color:var(--muted);margin-top:0.25rem;}
-
-/* MIDDLE PANEL */
 #middlePanel{width:280px;min-width:220px;flex-shrink:0;border-right:1px solid var(--line);background:var(--surface2);display:flex;flex-direction:column;overflow:hidden;position:relative;}
 .mp-header{padding:0.85rem 1rem 0.55rem;flex-shrink:0;border-bottom:1px solid var(--line);}
 .mp-title{font-size:1rem;font-weight:800;color:var(--text);}
@@ -114,10 +107,8 @@ button,input,select,textarea{font-family:inherit;}
 .chat-item-name{font-size:0.84rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .chat-item-preview{font-size:0.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
 .chat-item-badge{background:var(--hl);color:#121212;font-size:0.62rem;font-weight:700;border-radius:999px;padding:1px 6px;min-width:18px;text-align:center;flex-shrink:0;}
-#mpResizer{position:absolute;right:0;top:0;bottom:0;width:4px;cursor:ew-resize;z-index:10;background:transparent;transition:background 150ms;}
+#mpResizer{position:absolute;right:0;top:0;bottom:0;width:4px;cursor:ew-resize;z-index:10;background:transparent;}
 #mpResizer:hover{background:rgba(255,222,89,0.25);}
-
-/* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
 .topbar{display:flex;align-items:center;gap:0.75rem;padding:0 1rem;height:52px;flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--line);}
 .topbar-title{font-size:1rem;font-weight:800;color:var(--text);}
@@ -133,8 +124,6 @@ button,input,select,textarea{font-family:inherit;}
 .acct-avatar{width:26px;height:26px;border-radius:50%;background:var(--hl-dim);border:1px solid var(--hl-border);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--hl);}
 .acct-name{font-size:0.78rem;font-weight:600;}
 .content{flex:1;overflow:hidden;display:flex;flex-direction:column;}
-
-/* VIEWS */
 #viewWelcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);text-align:center;gap:0.6rem;padding:2rem;}
 #viewWelcome svg{width:48px;height:48px;stroke:var(--line2);fill:none;stroke-width:1.5;}
 #viewWelcome h3{color:var(--text);font-size:1.1rem;}
@@ -145,8 +134,6 @@ button,input,select,textarea{font-family:inherit;}
 .chat-header-info h3{font-size:0.92rem;font-weight:700;}
 .chat-header-info p{font-size:0.72rem;color:var(--muted);}
 .posts-scroll{flex:1;overflow-y:auto;padding:1rem 1.25rem 0.5rem;display:flex;flex-direction:column;gap:0;}
-.posts-scroll::-webkit-scrollbar{width:4px;}
-.posts-scroll::-webkit-scrollbar-thumb{background:var(--line2);border-radius:4px;}
 .msg-date-divider{text-align:center;margin:1rem 0 0.75rem;display:flex;align-items:center;gap:0.7rem;}
 .msg-date-divider span{font-size:0.7rem;color:var(--muted);white-space:nowrap;}
 .msg-date-divider::before,.msg-date-divider::after{content:'';flex:1;height:1px;background:var(--line);}
@@ -210,20 +197,17 @@ button,input,select,textarea{font-family:inherit;}
 .poll-modal,.send-later-modal{background:var(--surface);border:1px solid var(--line2);border-radius:16px;padding:1.4rem;width:min(440px,100%);box-shadow:0 20px 60px rgba(0,0,0,0.6);animation:popIn 200ms cubic-bezier(0.34,1.4,0.64,1) both;}
 .send-later-modal{width:min(380px,100%);}
 .poll-modal h3,.send-later-modal h3{font-size:1rem;font-weight:700;color:var(--hl);margin-bottom:1rem;}
-.send-later-modal p{font-size:0.8rem;color:var(--muted);margin-bottom:1rem;margin-top:-0.5rem;}
-.poll-question-input,.send-later-time{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:9px;color:var(--text);padding:0.55rem 0.75rem;font:inherit;font-size:0.88rem;outline:none;margin-bottom:0.75rem;transition:border-color 150ms;}
-.poll-question-input:focus,.send-later-time:focus{border-color:var(--hl-border);}
+.poll-question-input,.send-later-time{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:9px;color:var(--text);padding:0.55rem 0.75rem;font:inherit;font-size:0.88rem;outline:none;margin-bottom:0.75rem;}
 .poll-options{display:flex;flex-direction:column;gap:0.45rem;margin-bottom:0.75rem;}
 .poll-option-row{display:flex;gap:0.4rem;align-items:center;}
-.poll-option-input{flex:1;background:var(--bg);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:0.45rem 0.65rem;font:inherit;font-size:0.84rem;outline:none;transition:border-color 150ms;}
-.poll-option-input:focus{border-color:var(--hl-border);}
-.poll-option-del{background:transparent;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:6px;display:flex;align-items:center;transition:color 150ms;}
+.poll-option-input{flex:1;background:var(--bg);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:0.45rem 0.65rem;font:inherit;font-size:0.84rem;outline:none;}
+.poll-option-del{background:transparent;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:6px;display:flex;align-items:center;}
 .poll-option-del:hover{color:var(--danger);}
 .poll-option-del svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
-.poll-add-opt{background:transparent;border:1px dashed var(--line2);border-radius:8px;color:var(--muted);padding:0.4rem 0.65rem;font:inherit;font-size:0.8rem;cursor:pointer;width:100%;text-align:left;transition:border-color 150ms,color 150ms;}
+.poll-add-opt{background:transparent;border:1px dashed var(--line2);border-radius:8px;color:var(--muted);padding:0.4rem 0.65rem;font:inherit;font-size:0.8rem;cursor:pointer;width:100%;text-align:left;}
 .poll-add-opt:hover{border-color:var(--hl-border);color:var(--hl);}
 .poll-footer,.send-later-footer{display:flex;gap:0.5rem;justify-content:flex-end;margin-top:0.85rem;}
-.msg-poll-opt{display:flex;align-items:center;gap:0.5rem;padding:0.42rem 0.6rem;border-radius:8px;border:1px solid var(--line2);background:rgba(255,255,255,0.03);margin-bottom:0.35rem;cursor:pointer;transition:background 150ms,border-color 150ms;}
+.msg-poll-opt{display:flex;align-items:center;gap:0.5rem;padding:0.42rem 0.6rem;border-radius:8px;border:1px solid var(--line2);background:rgba(255,255,255,0.03);margin-bottom:0.35rem;cursor:pointer;}
 .msg-poll-opt:hover{background:rgba(255,222,89,0.07);border-color:var(--hl-border);}
 .msg-poll-opt.voted{background:rgba(255,222,89,0.1);border-color:var(--hl-border);}
 .msg-poll-opt .opt-label{flex:0 0 auto;max-width:120px;font-size:0.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -240,7 +224,7 @@ button,input,select,textarea{font-family:inherit;}
 .btn-sm.primary:hover{background:#ffe97a;}
 .overlay{position:fixed;inset:0;background:rgba(18,18,18,0.96);z-index:200;display:none;overflow:auto;}
 .overlay.open{display:block;animation:overlayIn 220ms ease both;}
-.overlay-page{width:min(860px,calc(100% - 2rem));margin:1.4rem auto 3rem;animation:pageUp 240ms cubic-bezier(0.4,0,0.2,1) both;}
+.overlay-page{width:min(860px,calc(100% - 2rem));margin:1.4rem auto 3rem;}
 .overlay-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
 .overlay-back{background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:0.38rem 0.75rem;font:inherit;font-size:0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.35rem;}
 .overlay-back svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
@@ -250,29 +234,22 @@ button,input,select,textarea{font-family:inherit;}
 .post-main{color:var(--text);line-height:1.7;margin-top:0.75rem;overflow-wrap:anywhere;}
 .post-main h1,.post-main h2{color:var(--hl);}
 .post-main a{color:var(--hl);}
-.post-main pre{background:#0a0a0a;border:1px solid var(--line2);border-radius:6px;padding:0.6rem 0.8rem;font-family:'Courier New',monospace;font-size:0.78rem;color:#e0e0e0;overflow-x:auto;white-space:pre-wrap;margin:0.5rem 0;}
-.post-main code{background:#1a1a1a;border:1px solid #333;border-radius:3px;padding:0 4px;font-family:'Courier New',monospace;font-size:0.82em;color:var(--hl);}
 .post-divider{border:none;border-top:1px solid var(--line);margin:1rem 0;}
 .post-actions{display:flex;justify-content:flex-end;margin-top:0.6rem;}
 .reply-composer{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:0.8rem;margin-top:1rem;}
 .reply-context{font-size:0.75rem;color:var(--hl);margin-bottom:0.4rem;}
 .reply-composer textarea{width:100%;min-height:72px;resize:vertical;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:0.55rem;font:inherit;font-size:0.84rem;outline:none;}
-.reply-composer textarea:focus{border-color:var(--hl);}
 .reply-actions{margin-top:0.55rem;display:flex;gap:0.5rem;justify-content:flex-end;}
 .reply-list{margin-top:1rem;display:grid;gap:0.6rem;}
 .reply{background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:0.7rem;}
 .reply-body{color:var(--text);margin-top:0.3rem;font-size:0.84rem;line-height:1.6;overflow-wrap:anywhere;}
-.reply-body h1,.reply-body h2{color:var(--hl);}
 .reply-body a{color:var(--hl);}
 .reply-tools{margin-top:0.45rem;display:flex;gap:0.4rem;}
 .reply-children{margin-top:0.6rem;margin-left:0.8rem;padding-left:0.7rem;border-left:2px solid var(--line2);display:grid;gap:0.6rem;}
 .content-view{flex:1;overflow-y:auto;padding:1.5rem;display:none;flex-direction:column;gap:1.2rem;}
 .content-view.show{display:flex;}
-.view-hero{margin-bottom:0.5rem;}
 .view-hero h1{font-size:1.2rem;font-weight:800;color:var(--hl);}
 .view-hero p{font-size:0.84rem;color:var(--muted);margin-top:0.2rem;line-height:1.6;}
-
-/* MOOD CHECK-IN */
 .mood-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.4rem;}
 .mood-card h3{font-size:0.84rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;font-weight:700;}
 .mood-emojis{display:flex;gap:0.45rem;flex-wrap:wrap;margin-bottom:1.5rem;}
@@ -284,46 +261,36 @@ button,input,select,textarea{font-family:inherit;}
 .mood-emoji-btn:hover .emoji-label{opacity:1;}
 .mood-emoji-btn.selected{border-color:var(--hl);background:var(--hl-dim);box-shadow:0 0 0 3px rgba(255,222,89,0.2);}
 .mood-emoji-btn.selected .emoji-inner{transform:translateY(-6px) scale(1.15);}
-.mood-note{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:9px;color:var(--text);padding:0.55rem 0.75rem;font:inherit;font-size:0.84rem;outline:none;resize:none;min-height:64px;transition:border-color 150ms;margin-bottom:0.75rem;}
-.mood-note:focus{border-color:var(--hl-border);}
+.mood-note{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:9px;color:var(--text);padding:0.55rem 0.75rem;font:inherit;font-size:0.84rem;outline:none;resize:none;min-height:64px;margin-bottom:0.75rem;}
 .mood-history{display:flex;flex-direction:column;gap:0.5rem;}
 .mood-entry{background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:0.7rem 0.9rem;display:flex;align-items:flex-start;gap:0.75rem;}
 .mood-entry-emoji{font-size:1.4rem;flex-shrink:0;line-height:1;}
 .mood-entry-body{flex:1;min-width:0;}
 .mood-entry-date{font-size:0.7rem;color:var(--muted);margin-bottom:0.2rem;}
 .mood-entry-note{font-size:0.82rem;color:var(--text);line-height:1.5;}
-
-/* DIARY */
 .diary-entry-list{display:flex;flex-direction:column;gap:0.6rem;}
-.diary-entry{background:var(--surface);border:1px solid var(--line2);border-radius:12px;padding:0.9rem 1rem;cursor:pointer;transition:border-color 150ms,background 150ms;position:relative;overflow:hidden;}
+.diary-entry{background:var(--surface);border:1px solid var(--line2);border-radius:12px;padding:0.9rem 1rem;cursor:pointer;transition:border-color 150ms,background 150ms;}
 .diary-entry:hover{border-color:var(--hl-border);background:rgba(255,222,89,0.03);}
 .diary-entry-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;}
 .diary-entry-date{font-size:0.72rem;color:var(--muted);}
 .diary-entry-mood{font-size:1rem;}
 .diary-entry-title{font-size:0.88rem;font-weight:700;color:var(--text);margin-bottom:0.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.diary-entry-preview{font-size:0.78rem;color:var(--muted);position:relative;max-height:2.8em;line-height:1.4;overflow:hidden;}
-.diary-entry-preview::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1.6em;background:linear-gradient(to bottom,transparent,var(--surface));pointer-events:none;}
-.diary-entry:hover .diary-entry-preview::after{background:linear-gradient(to bottom,transparent,rgba(30,28,22,0.9));}
+.diary-entry-preview{font-size:0.78rem;color:var(--muted);max-height:2.8em;line-height:1.4;overflow:hidden;}
 .diary-new-btn{display:flex;align-items:center;gap:0.5rem;background:var(--hl);color:#121212;border:none;border-radius:10px;padding:0.6rem 1.2rem;font:inherit;font-size:0.86rem;font-weight:700;cursor:pointer;transition:all 150ms;align-self:flex-start;}
 .diary-new-btn:hover{background:#ffe97a;transform:translateY(-1px);}
 .diary-new-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
 .diary-empty{color:var(--muted);text-align:center;padding:2.5rem 1rem;font-size:0.86rem;line-height:1.7;}
-
-/* DIARY EDITOR */
 #diaryEditorOverlay{position:fixed;inset:0;background:var(--bg);z-index:3000;display:none;flex-direction:column;}
 #diaryEditorOverlay.open{display:flex;}
 .diary-editor-topbar{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1.2rem;border-bottom:1px solid var(--line);background:var(--surface);flex-shrink:0;flex-wrap:wrap;}
 .diary-editor-back{background:transparent;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:0.35rem 0.75rem;font:inherit;font-size:0.8rem;cursor:pointer;display:flex;align-items:center;gap:0.35rem;}
-.diary-editor-back svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 .diary-editor-back:hover{background:#222;border-color:#555;}
 .diary-editor-title{flex:1;background:transparent;border:none;outline:none;font:inherit;font-size:1rem;font-weight:700;color:var(--text);min-width:120px;}
 .diary-editor-title::placeholder{color:var(--muted);}
-.diary-editor-mood-row{display:flex;align-items:center;border-bottom:1px solid var(--line);background:var(--surface);flex-shrink:0;overflow-x:auto;gap:0;}
-.diary-editor-mood-row::-webkit-scrollbar{height:3px;}
+.diary-editor-mood-row{display:flex;align-items:center;border-bottom:1px solid var(--line);background:var(--surface);flex-shrink:0;overflow-x:auto;}
 .diary-editor-mood-label{font-size:0.74rem;color:var(--muted);margin:0 0.5rem 0 0.9rem;white-space:nowrap;flex-shrink:0;}
 .diary-editor-mood-scroll{display:flex;gap:0.25rem;padding:0.4rem 0.9rem 0.4rem 0;overflow-x:auto;flex:1;}
-.diary-editor-mood-scroll::-webkit-scrollbar{height:3px;}
-.diary-mood-btn{position:relative;font-size:0;background:transparent;border:2px solid transparent;border-radius:10px;padding:0;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 150ms,background 150ms;}
+.diary-mood-btn{font-size:0;background:transparent;border:2px solid transparent;border-radius:10px;padding:0;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 150ms,background 150ms;}
 .diary-mood-btn .emoji-inner{font-size:1.3rem;line-height:1;display:block;transition:transform 250ms cubic-bezier(0.34,1.5,0.64,1);pointer-events:none;user-select:none;}
 .diary-mood-btn:hover{border-color:var(--hl-border);background:var(--hl-dim);}
 .diary-mood-btn:hover .emoji-inner{transform:translateY(-7px) scale(1.2);}
@@ -331,16 +298,14 @@ button,input,select,textarea{font-family:inherit;}
 .diary-mood-btn.selected .emoji-inner{transform:translateY(-4px) scale(1.1);}
 .diary-editor-content-wrap{flex:1;display:flex;align-items:center;justify-content:center;overflow:auto;background:var(--bg);padding:1.5rem;}
 .diary-editor-page{width:100%;max-width:800px;aspect-ratio:16/9;background:#1a1a1a;border:1px solid var(--line2);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.5);flex-shrink:0;}
-.diary-editor-body{flex:1;padding:1.8rem 2rem;outline:none;font:inherit;font-size:0.92rem;line-height:1.75;color:var(--text);overflow-y:auto;background:transparent;}
+.diary-editor-body{flex:1;padding:1.8rem 2rem;outline:none;font:inherit;font-size:0.92rem;line-height:1.75;color:var(--text);overflow-y:auto;}
 .diary-editor-body:empty::before{content:attr(data-placeholder);color:var(--muted);pointer-events:none;}
 .diary-editor-footer{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 1.2rem;border-top:1px solid var(--line);background:var(--surface);flex-shrink:0;}
 .diary-editor-date{font-size:0.72rem;color:var(--muted);}
-.diary-save-btn{background:var(--hl);color:#121212;border:none;border-radius:8px;padding:0.45rem 1.1rem;font:inherit;font-size:0.82rem;font-weight:700;cursor:pointer;transition:all 150ms;}
+.diary-save-btn{background:var(--hl);color:#121212;border:none;border-radius:8px;padding:0.45rem 1.1rem;font:inherit;font-size:0.82rem;font-weight:700;cursor:pointer;}
 .diary-save-btn:hover{background:#ffe97a;}
-.diary-delete-btn{background:transparent;border:1px solid var(--danger);color:var(--danger);border-radius:8px;padding:0.4rem 0.8rem;font:inherit;font-size:0.78rem;cursor:pointer;transition:all 150ms;}
+.diary-delete-btn{background:transparent;border:1px solid var(--danger);color:var(--danger);border-radius:8px;padding:0.4rem 0.8rem;font:inherit;font-size:0.78rem;cursor:pointer;}
 .diary-delete-btn:hover{background:rgba(192,57,43,0.1);}
-
-/* DIARY BOOK VIEW */
 #diaryBookOverlay{position:fixed;inset:0;background:rgba(10,10,10,0.97);z-index:3500;display:none;flex-direction:column;align-items:center;}
 #diaryBookOverlay.open{display:flex;}
 .book-topbar{width:100%;display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1.2rem;background:rgba(18,18,18,0.95);border-bottom:1px solid var(--line);flex-shrink:0;}
@@ -358,8 +323,7 @@ button,input,select,textarea{font-family:inherit;}
 .book-page-mood{font-size:1.4rem;margin-bottom:0.5rem;}
 .book-page-body{font-size:0.77rem;line-height:1.75;color:rgba(255,255,255,0.75);overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:18;}
 .book-page-fade{position:absolute;bottom:2.5rem;left:0;right:0;height:3rem;background:linear-gradient(to bottom,transparent,#1e1c16);pointer-events:none;}
-.book-spine{width:18px;background:linear-gradient(90deg,#2a2820,#1e1c16);flex-shrink:0;position:relative;}
-.book-spine::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(90deg,rgba(255,222,89,0.15),transparent);}
+.book-spine{width:18px;background:linear-gradient(90deg,#2a2820,#1e1c16);flex-shrink:0;}
 .book-nav{display:flex;align-items:center;gap:1rem;margin-top:1.2rem;}
 .book-nav-btn{background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 150ms;flex-shrink:0;}
 .book-nav-btn:hover{border-color:var(--hl-border);color:var(--hl);}
@@ -367,33 +331,27 @@ button,input,select,textarea{font-family:inherit;}
 .book-nav-btn:disabled{opacity:0.3;cursor:default;}
 .book-page-info{font-size:0.75rem;color:var(--muted);}
 .book-blank{display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.1);font-size:0.78rem;text-align:center;}
-
-/* ANNOUNCEMENTS */
 .ann-item{background:var(--surface);border:1px solid var(--line2);border-radius:12px;padding:1rem 1.1rem;margin-bottom:0.6rem;}
 .ann-item.pinned{border-color:var(--hl-border);background:var(--hl-dim);}
 .ann-item-top{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;}
 .ann-badge{font-size:0.62rem;font-weight:700;border-radius:999px;padding:2px 7px;background:var(--hl);color:#121212;}
 .ann-badge.info{background:#1a4a7a;color:#5bafd6;}
 .ann-badge.update{background:#0a5a38;color:#34d399;}
-.ann-badge.pinned{background:var(--hl);color:#121212;}
 .ann-title{font-size:0.9rem;font-weight:700;color:var(--text);}
 .ann-body{font-size:0.83rem;color:var(--muted);line-height:1.65;}
 .ann-footer{font-size:0.68rem;color:var(--muted);margin-top:0.5rem;}
 .ann-empty{color:var(--muted);text-align:center;padding:2.5rem 1rem;font-size:0.86rem;line-height:1.7;}
 .ann-compose{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;margin-bottom:0.6rem;}
 .ann-compose h3{font-size:0.84rem;color:var(--hl);font-weight:700;margin-bottom:0.75rem;}
-.ann-compose input,.ann-compose textarea,.ann-compose select{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:0.5rem 0.7rem;font:inherit;font-size:0.84rem;outline:none;margin-bottom:0.5rem;transition:border-color 150ms;}
-.ann-compose input:focus,.ann-compose textarea:focus{border-color:var(--hl-border);}
+.ann-compose input,.ann-compose textarea,.ann-compose select{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:0.5rem 0.7rem;font:inherit;font-size:0.84rem;outline:none;margin-bottom:0.5rem;}
 .ann-compose textarea{min-height:72px;resize:vertical;}
-
-/* PETITION */
 #viewPetition{flex:1;overflow-y:auto;padding:1.5rem;display:none;flex-direction:column;}
 #viewPetition.show{display:flex;}
 .petition-hero h1{font-size:1.5rem;color:var(--hl);margin-bottom:0.4rem;font-weight:800;}
 .petition-hero p{color:var(--muted);font-size:0.9rem;line-height:1.65;max-width:640px;}
 .petition-big-sign-btn{padding:0.65rem 1.8rem;background:var(--hl);color:#121212;border:none;border-radius:10px;font:inherit;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 150ms;}
-.petition-big-sign-btn:hover{background:#ffe97a;transform:translateY(-1px);box-shadow:0 4px 16px rgba(255,222,89,0.3);}
-.petition-big-sign-btn:disabled{background:#2a2a1a;color:#666;cursor:default;transform:none;box-shadow:none;}
+.petition-big-sign-btn:hover{background:#ffe97a;transform:translateY(-1px);}
+.petition-big-sign-btn:disabled{background:#2a2a1a;color:#666;cursor:default;transform:none;}
 .petition-count-big{font-size:2rem;font-weight:800;color:var(--hl);}
 .petition-count-label{color:var(--muted);font-size:0.82rem;}
 .petition-goal-track{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:1.4rem;}
@@ -403,18 +361,15 @@ button,input,select,textarea{font-family:inherit;}
 .petition-track-fill{position:absolute;top:0;left:0;height:100%;background:var(--hl);border-radius:3px;transition:width 700ms ease;}
 .petition-milestones-row{position:relative;height:36px;}
 .pm-node{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;}
-.pm-dot{width:12px;height:12px;border-radius:50%;background:var(--line2);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--line2);transition:all 300ms;flex-shrink:0;margin-top:-3px;}
-.pm-node.reached .pm-dot{background:var(--hl);box-shadow:0 0 0 1px var(--hl);}
+.pm-dot{width:12px;height:12px;border-radius:50%;background:var(--line2);border:2px solid var(--bg);transition:all 300ms;flex-shrink:0;margin-top:-3px;}
+.pm-node.reached .pm-dot{background:var(--hl);}
 .pm-node.current .pm-dot{background:var(--hl);box-shadow:0 0 0 3px rgba(255,222,89,0.35);width:16px;height:16px;margin-top:-5px;}
 .pm-label{font-size:0.6rem;color:var(--muted);margin-top:5px;white-space:nowrap;}
 .pm-node.reached .pm-label,.pm-node.current .pm-label{color:var(--hl);font-weight:700;}
-.petition-invite-section h3{font-size:0.84rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.55rem;}
 .invite-link-box{display:flex;gap:0.5rem;align-items:center;max-width:520px;}
 .invite-link-input{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:8px;color:var(--muted);font:inherit;font-size:0.8rem;padding:0.5rem 0.75rem;outline:none;}
-.invite-copy-btn{background:var(--surface);border:1px solid var(--line);border-radius:8px;color:var(--muted);padding:0.5rem 0.9rem;font:inherit;font-size:0.78rem;cursor:pointer;transition:all 150ms;white-space:nowrap;}
+.invite-copy-btn{background:var(--surface);border:1px solid var(--line);border-radius:8px;color:var(--muted);padding:0.5rem 0.9rem;font:inherit;font-size:0.78rem;cursor:pointer;white-space:nowrap;}
 .invite-copy-btn:hover{border-color:var(--hl-border);color:var(--hl);}
-
-/* SETTINGS & PRIVACY */
 .settings-view{flex:1;overflow-y:auto;padding:1.5rem;display:none;flex-direction:column;gap:1.2rem;}
 .settings-view.show{display:flex;}
 .settings-section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;}
@@ -430,25 +385,19 @@ button,input,select,textarea{font-family:inherit;}
 .toggle-switch input:checked+.toggle-slider{background:var(--hl);}
 .toggle-switch input:checked+.toggle-slider::before{transform:translateX(16px);}
 .settings-input{background:var(--surface2);border:1px solid var(--line);border-radius:7px;color:var(--text);padding:0.35rem 0.6rem;font:inherit;font-size:0.8rem;outline:none;min-width:140px;}
-.settings-input:focus{border-color:var(--hl);}
 .settings-save-btn{margin-top:0.75rem;background:var(--hl);color:#121212;border:none;border-radius:8px;padding:0.5rem 1.2rem;font:inherit;font-size:0.82rem;font-weight:700;cursor:pointer;}
-.settings-save-btn:hover{background:#ffe97a;}
-
-/* NOTIFICATIONS */
 .notif-panel{position:fixed;top:56px;right:3.5rem;background:var(--surface);border:1px solid var(--line2);border-radius:12px;width:300px;z-index:600;display:none;box-shadow:0 12px 30px rgba(0,0,0,0.4);overflow:hidden;}
 .notif-panel.open{display:block;animation:dropIn 160ms cubic-bezier(0.4,0,0.2,1) both;}
 .notif-panel-header{padding:0.65rem 0.85rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
 .notif-panel-header span{font-size:0.8rem;font-weight:700;color:var(--text);}
 .notif-empty{padding:1.2rem;text-align:center;color:var(--muted);font-size:0.8rem;}
-.notif-item{padding:0.65rem 0.85rem;border-bottom:1px solid var(--line);font-size:0.78rem;transition:background 150ms,transform 300ms ease,opacity 300ms ease,max-height 300ms ease,padding 300ms ease;position:relative;overflow:hidden;user-select:text;touch-action:pan-y;}
+.notif-item{padding:0.65rem 0.85rem;border-bottom:1px solid var(--line);font-size:0.78rem;position:relative;overflow:hidden;user-select:text;touch-action:pan-y;transition:transform 300ms ease,opacity 300ms ease,max-height 300ms ease,padding 300ms ease;}
 .notif-item:last-child{border-bottom:none;}
 .notif-item .notif-title{color:var(--text);font-weight:600;}
 .notif-item .notif-sub{color:var(--muted);margin-top:2px;}
 .notif-item .notif-dismiss-hint{position:absolute;right:0.6rem;top:50%;transform:translateY(-50%);font-size:0.62rem;color:var(--muted);opacity:0;transition:opacity 200ms;pointer-events:none;}
 .notif-item:hover .notif-dismiss-hint{opacity:0.5;}
 .notif-item.dismissed{transform:translateX(-110%)!important;opacity:0!important;max-height:0!important;padding-top:0!important;padding-bottom:0!important;pointer-events:none;}
-
-/* ACCOUNT DROPDOWN */
 .acct-dropdown{position:fixed;top:56px;right:1rem;background:var(--surface);border:1px solid var(--line2);border-radius:12px;width:200px;z-index:600;display:none;box-shadow:0 12px 30px rgba(0,0,0,0.4);padding:0.5rem;}
 .acct-dropdown.open{display:block;animation:dropIn 160ms cubic-bezier(0.4,0,0.2,1) both;}
 .acct-dd-header{padding:0.5rem 0.6rem 0.7rem;border-bottom:1px solid var(--line);margin-bottom:0.3rem;}
@@ -459,15 +408,13 @@ button,input,select,textarea{font-family:inherit;}
 .acct-dd-item svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 .acct-dd-sep{border:none;border-top:1px solid var(--line);margin:0.3rem 0;}
 .acct-dd-danger{color:var(--danger)!important;}
-
-/* MODALS */
 .modal-overlay{position:fixed;inset:0;background:rgba(18,18,18,0.85);z-index:500;display:none;align-items:center;justify-content:center;padding:1rem;}
 .modal-overlay.open{display:flex;}
 .dialog{background:var(--surface);border:1px solid var(--line2);border-radius:14px;padding:1.2rem;width:min(480px,100%);box-shadow:0 24px 60px rgba(0,0,0,0.6);animation:dialogPop 200ms cubic-bezier(0.34,1.4,0.64,1) both;}
 .dialog h3{color:var(--hl);margin-bottom:0.25rem;font-size:1rem;}
 .dialog p{color:var(--muted);font-size:0.82rem;margin-bottom:0.85rem;}
 .report-list{display:grid;gap:0.4rem;}
-.report-option{border:1px solid var(--line);border-radius:9px;background:var(--surface2);color:var(--text);text-align:left;padding:0.55rem 0.75rem;cursor:pointer;font:inherit;font-size:0.84rem;transition:border-color 150ms;}
+.report-option{border:1px solid var(--line);border-radius:9px;background:var(--surface2);color:var(--text);text-align:left;padding:0.55rem 0.75rem;cursor:pointer;font:inherit;font-size:0.84rem;}
 .report-option:hover{border-color:var(--danger);color:var(--danger);}
 .close-row{margin-top:0.75rem;text-align:right;}
 .close-btn{background:var(--surface);border:1px solid var(--line);color:var(--text);border-radius:8px;font:inherit;padding:0.35rem 0.75rem;cursor:pointer;font-size:0.8rem;}
@@ -477,22 +424,18 @@ button,input,select,textarea{font-family:inherit;}
 .cat-warning-box h3{color:var(--hl);font-size:1.05rem;margin-bottom:0.3rem;}
 .cat-warning-box p{color:var(--muted);font-size:0.86rem;line-height:1.6;margin-bottom:0.9rem;}
 .cat-warning-resources{display:grid;gap:0.4rem;margin-bottom:1rem;}
-.cat-resource{background:#1c1c1c;border:1px solid var(--line);border-radius:8px;padding:0.55rem 0.7rem;color:var(--text);font-size:0.82rem;text-decoration:none;display:block;transition:border-color 150ms;}
-.cat-resource:hover{border-color:#545454;}
+.cat-resource{background:#1c1c1c;border:1px solid var(--line);border-radius:8px;padding:0.55rem 0.7rem;color:var(--text);font-size:0.82rem;text-decoration:none;display:block;}
 .cat-resource strong{color:var(--hl);display:block;font-size:0.84rem;}
 .cat-resource span{color:var(--muted);font-size:0.75rem;}
 .cat-warning-actions{display:flex;gap:0.6rem;justify-content:flex-end;}
 .cat-warning-actions button{background:#1c1c1c;border:1px solid #545454;color:var(--hl);padding:0.4rem 0.9rem;border-radius:8px;cursor:pointer;font:inherit;font-size:0.84rem;}
 .cat-warning-actions .btn-continue{background:var(--hl);color:#121212;font-weight:700;border-color:var(--hl);}
-
-/* COMPOSER */
 #composerOverlay{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:calc(100%*8/9);height:calc(100vh/3);min-height:120px;max-height:80vh;background:#101010;border:1px solid var(--line2);border-bottom:none;border-radius:12px 12px 0 0;z-index:300;display:flex;flex-direction:column;transition:transform 260ms cubic-bezier(0.4,0,0.2,1);overflow:hidden;}
 #composerOverlay.open{transform:translateX(-50%) translateY(0);}
 .composer-resize-side{position:absolute;top:0;bottom:0;width:6px;cursor:ew-resize;z-index:10;}
 .composer-resize-side.left{left:0;}.composer-resize-side.right{right:0;}
 .composer-resize-handle{height:8px;cursor:ns-resize;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#141414;border-bottom:1px solid #2a2a2a;border-radius:12px 12px 0 0;}
 .composer-resize-handle::before{content:'';width:36px;height:3px;background:#3a3a3a;border-radius:2px;}
-.composer-resize-handle:hover::before{background:#666;}
 .composer-panel-inner{display:flex;flex:1;overflow:hidden;min-height:0;}
 .composer-left{flex:1;display:flex;flex-direction:column;overflow:hidden;border-right:1px solid #2a2a2a;}
 .composer-topbar{display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0.6rem;border-bottom:1px solid #2a2a2a;flex-shrink:0;background:#141414;}
@@ -504,12 +447,9 @@ button,input,select,textarea{font-family:inherit;}
 .toolbar-editor{display:flex;gap:4px;padding:0.25rem 0.6rem;border-bottom:1px solid #2a2a2a;flex-shrink:0;background:#141414;flex-wrap:nowrap;overflow-x:auto;}
 .toolbar-editor button{background:#1c1c1c;border:1px solid #3a3a3a;color:var(--hl);padding:0;border-radius:4px;cursor:pointer;font:inherit;font-size:0.75rem;flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center;width:26px;height:24px;}
 .toolbar-editor button.active{background:var(--hl);color:#101010;border-color:var(--hl);}
-.toolbar-editor button[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100%+5px);left:50%;transform:translateX(-50%);background:#2a2a2a;border:1px solid #444;color:var(--text);font-size:0.65rem;padding:2px 6px;border-radius:4px;white-space:nowrap;pointer-events:none;z-index:400;}
 #editor{flex:1;border:none;padding:0.5rem 0.65rem;background:#101010;outline:none;color:#fff;overflow-wrap:anywhere;word-break:break-word;overflow-y:auto;font:inherit;font-size:0.84rem;line-height:1.5;}
 #editor h1,#editor h2{color:var(--hl);}
 #editor a{color:var(--hl);}
-#editor pre{background:#0a0a0a;border:1px solid var(--line2);border-radius:6px;padding:0.5rem 0.7rem;font-family:'Courier New',monospace;font-size:0.78rem;color:#e0e0e0;overflow-x:auto;white-space:pre-wrap;margin:0.3rem 0;}
-#editor code{background:#1a1a1a;border:1px solid #333;border-radius:3px;padding:0 4px;font-family:'Courier New',monospace;font-size:0.82em;color:var(--hl);}
 .composer-actions{display:flex;gap:0.4rem;padding:0.3rem 0.6rem;border-top:1px solid #2a2a2a;background:#141414;flex-shrink:0;align-items:center;}
 .composer-actions button{background:#1c1c1c;border:1px solid #545454;color:var(--hl);padding:3px 10px;border-radius:5px;cursor:pointer;font:inherit;font-size:0.75rem;}
 #publishBtn{background:var(--hl)!important;color:#121212!important;font-weight:700!important;border-color:var(--hl)!important;}
@@ -528,19 +468,16 @@ button,input,select,textarea{font-family:inherit;}
 .emoji-tab{background:transparent;border:none;padding:3px 7px;border-radius:5px;cursor:pointer;font-size:0.72rem;color:var(--muted);}
 .emoji-tab.active{background:#2a2a2a;color:var(--hl);}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:2px;padding:0.4rem 0.5rem;overflow-y:auto;flex:1;}
-.emoji-btn{background:transparent;border:none;cursor:pointer;padding:3px;border-radius:4px;line-height:1;font-size:1.4rem;transition:background 100ms;}
+.emoji-btn{background:transparent;border:none;cursor:pointer;padding:3px;border-radius:4px;line-height:1;font-size:1.4rem;}
 .emoji-btn:hover{background:#2a2a2a;}
 #codePanel{display:none;position:fixed;background:#1a1a1a;border:1px solid var(--line2);border-radius:10px;z-index:2000;width:360px;padding:0.75rem;box-shadow:0 8px 30px rgba(0,0,0,0.5);flex-direction:column;gap:0.5rem;}
 #codePanel.open{display:flex;}
 #codePanel label{font-size:0.75rem;color:var(--muted);}
 #codeLangSelect{background:#111;border:1px solid #333;border-radius:5px;color:var(--text);padding:3px 6px;font:inherit;font-size:0.78rem;cursor:pointer;margin-left:0.4rem;}
 #codeTextarea{width:100%;min-height:80px;background:#0a0a0a;border:1px solid #333;border-radius:6px;color:#e0e0e0;font-family:'Courier New',monospace;font-size:0.8rem;padding:0.5rem;resize:vertical;outline:none;}
-#codeTextarea:focus{border-color:var(--hl);}
 .code-panel-actions{display:flex;gap:0.4rem;justify-content:flex-end;}
 .code-panel-actions button{background:#1c1c1c;border:1px solid #545454;color:var(--hl);padding:3px 10px;border-radius:5px;cursor:pointer;font:inherit;font-size:0.78rem;}
 .insert-code-btn{background:var(--hl)!important;color:#121212!important;font-weight:700!important;border-color:var(--hl)!important;}
-
-/* GUIDE */
 #guideOverlay{position:fixed;inset:0;background:rgba(10,10,10,0.92);z-index:8000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px);}
 #guideOverlay.open{display:flex;}
 .guide-box{width:min(520px,100%);background:var(--surface);border:1px solid var(--line2);border-radius:20px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.8);animation:dialogPop 300ms cubic-bezier(0.34,1.3,0.64,1) both;}
@@ -555,31 +492,24 @@ button,input,select,textarea{font-family:inherit;}
 .guide-dot.active{background:var(--hl);transform:scale(1.3);}
 .guide-footer{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-top:1px solid var(--line);background:var(--surface2);}
 .guide-btn-skip{background:transparent;border:none;color:var(--muted);font:inherit;font-size:0.8rem;cursor:pointer;padding:0.3rem 0.6rem;border-radius:6px;}
-.guide-btn-skip:hover{color:var(--text);}
-.guide-btn-next{background:var(--hl);color:#121212;border:none;font:inherit;font-size:0.86rem;font-weight:700;padding:0.55rem 1.4rem;border-radius:9px;cursor:pointer;transition:background 150ms,transform 150ms;}
-.guide-btn-next:hover{background:#ffe97a;transform:translateY(-1px);}
-
-/* AVATAR EDITOR */
+.guide-btn-next{background:var(--hl);color:#121212;border:none;font:inherit;font-size:0.86rem;font-weight:700;padding:0.55rem 1.4rem;border-radius:9px;cursor:pointer;}
 #avatarEditorOverlay{position:fixed;inset:0;background:rgba(10,10,10,0.88);z-index:7000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);}
 #avatarEditorOverlay.open{display:flex;}
 .avatar-editor-box{width:min(480px,100%);background:var(--surface);border:1px solid var(--line2);border-radius:18px;padding:1.6rem;box-shadow:0 32px 80px rgba(0,0,0,0.7);animation:dialogPop 260ms cubic-bezier(0.34,1.3,0.64,1) both;}
 .avatar-editor-box h3{font-size:1rem;font-weight:800;color:var(--hl);margin-bottom:1.2rem;}
 .avatar-preview-wrap{display:flex;justify-content:center;margin-bottom:1.4rem;}
-#avatarPreview{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;transition:all 200ms;box-shadow:0 0 0 3px var(--hl-border),0 8px 24px rgba(0,0,0,0.4);}
+#avatarPreview{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;box-shadow:0 0 0 3px var(--hl-border),0 8px 24px rgba(0,0,0,0.4);}
 .ae-row{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:1rem;}
 .ae-row label{font-size:0.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;}
 .ae-row-inline{display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;}
 .ae-color-btn{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform 150ms,border-color 150ms;flex-shrink:0;}
 .ae-color-btn:hover{transform:scale(1.15);}
 .ae-color-btn.selected{border-color:var(--hl);transform:scale(1.15);}
-.ae-input{background:var(--bg);border:1px solid var(--line2);border-radius:7px;color:var(--text);padding:0.4rem 0.6rem;font:inherit;font-size:0.84rem;outline:none;transition:border-color 150ms;}
-.ae-input:focus{border-color:var(--hl-border);}
+.ae-input{background:var(--bg);border:1px solid var(--line2);border-radius:7px;color:var(--text);padding:0.4rem 0.6rem;font:inherit;font-size:0.84rem;outline:none;}
 .ae-input-color{width:42px;height:32px;padding:2px;border-radius:7px;cursor:pointer;background:var(--bg);border:1px solid var(--line2);}
-.ae-dir-btn{background:var(--bg);border:1px solid var(--line2);border-radius:7px;color:var(--muted);padding:0.4rem 0.6rem;font:inherit;font-size:0.78rem;cursor:pointer;transition:all 150ms;white-space:nowrap;}
+.ae-dir-btn{background:var(--bg);border:1px solid var(--line2);border-radius:7px;color:var(--muted);padding:0.4rem 0.6rem;font:inherit;font-size:0.78rem;cursor:pointer;white-space:nowrap;}
 .ae-dir-btn:hover,.ae-dir-btn.selected{background:var(--hl-dim);border-color:var(--hl-border);color:var(--hl);}
 .ae-footer{display:flex;gap:0.5rem;justify-content:flex-end;margin-top:1.2rem;}
-
-#viewChat,#viewPetition,#viewSettings,#viewPrivacy,#viewWelcome,#viewDiary,#viewAnnouncements,#viewMood{animation:viewFade 220ms ease both;}
 </style>
 </head>
 <body>
@@ -589,14 +519,9 @@ button,input,select,textarea{font-family:inherit;}
     <span style="font-weight:600;letter-spacing:0.05em">Loading...</span>
   </div>
 </div>
-
 <aside id="sidebar">
   <div id="sidebarResizer"></div>
-  <div class="sb-logo">
-    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <span class="sb-logo-text">Let's Talk</span>
-    <button class="sb-toggle" id="sidebarToggle"><svg id="sbToggleIcon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-  </div>
+  <div class="sb-logo"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="sb-logo-text">Let's Talk</span><button class="sb-toggle" id="sidebarToggle"><svg id="sbToggleIcon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button></div>
   <div class="sb-top-nav">
     <span class="sb-section-label">Main</span>
     <button class="nav-btn active" id="navChats"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="nav-btn-label">Chats</span></button>
@@ -615,14 +540,12 @@ button,input,select,textarea{font-family:inherit;}
     </div>
   </div>
 </aside>
-
 <div id="middlePanel">
   <div id="mpResizer"></div>
   <div class="mp-header"><div class="mp-title" id="mpTitle">Chats &amp; Messages</div><div class="mp-sub" id="mpSubCount"></div></div>
   <div class="mp-search"><div class="mp-search-wrap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input class="mp-search-input" id="mpSearchInput" type="search" placeholder="Search categories..."/></div></div>
   <div class="mp-list" id="mpChatList"></div>
 </div>
-
 <div class="main">
   <div class="topbar">
     <div><div class="topbar-title" id="topbarTitle">Open a Chat</div><div class="topbar-sub" id="topbarSub">Select a chat to start reading</div></div>
@@ -666,294 +589,11 @@ button,input,select,textarea{font-family:inherit;}
       <div class="poll-modal-overlay" id="pollModal"><div class="poll-modal"><h3>Create a poll</h3><input class="poll-question-input" id="pollQuestion" type="text" placeholder="Ask a question..."/><div class="poll-options" id="pollOptions"><div class="poll-option-row"><input class="poll-option-input" type="text" placeholder="Option 1"/><button class="poll-option-del" tabindex="-1"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="poll-option-row"><input class="poll-option-input" type="text" placeholder="Option 2"/><button class="poll-option-del" tabindex="-1"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div><button class="poll-add-opt" id="pollAddOption">+ Add option</button><div class="poll-footer"><button class="btn-sm" id="pollCancel">Cancel</button><button class="btn-sm primary" id="pollSend">Send poll</button></div></div></div>
       <div class="send-later-overlay" id="sendLaterModal"><div class="send-later-modal"><h3>Send later</h3><p>Your message will be posted at the scheduled time.</p><input class="send-later-time" id="sendLaterTime" type="datetime-local"/><div class="send-later-footer"><button class="btn-sm" id="sendLaterCancel">Cancel</button><button class="btn-sm primary" id="sendLaterConfirm">Schedule</button></div></div></div>
     </div>
-
     <div id="viewPetition">
       <div class="petition-hero" style="margin-bottom:1.8rem"><h1>Sign the Petition</h1><p>Mental wellness deserves to be promoted, recognized, and taken seriously in our schools, workplaces, and communities.</p></div>
       <div style="display:flex;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:1.4rem"><div><div class="petition-count-big" id="petCountBig">0</div><div class="petition-count-label">people have signed</div></div><div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><button class="petition-big-sign-btn" id="petitionSignBtn">Sign Petition</button><span id="petSignedLabel" style="display:none;color:var(--hl);font-weight:700;font-size:0.88rem">You have signed!</span></div></div>
       <div class="petition-goal-track"><h3>Goal Progress</h3><div class="petition-timeline"><div class="petition-track-bar"><div class="petition-track-fill" id="petTrackFill"></div></div><div class="petition-milestones-row" id="petMilestonesRow"></div></div></div>
-      <div class="petition-invite-section" style="margin-top:1.2rem"><h3>Invite Others</h3><p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.55rem">Share this link:</p><div class="invite-link-box"><input class="invite-link-input" id="petInviteInput" type="text" readonly/><button class="invite-copy-btn" id="petCopyBtn">Copy link</button></div></div>
-    </div>
-
-    <div class="settings-view" id="viewSettings">
-      <div><h1 style="font-size:1.2rem;color:var(--hl);font-weight:800">Settings</h1></div>
-      <div class="settings-section"><h3>Display</h3>
-        <div class="settings-row"><label>Show post previews</label><label class="toggle-switch"><input type="checkbox" id="settingPreviews" checked><span class="toggle-slider"></span></label></div>
-        <div class="settings-row"><label>Compact sidebar</label><label class="toggle-switch"><input type="checkbox" id="settingCompact"><span class="toggle-slider"></span></label></div>
-        <div class="settings-row"><label>Default sort</label><select class="settings-input" id="settingSort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></div>
-      </div>
-      <div class="settings-section"><h3>Account</h3>
-        <div class="settings-row" id="settingsOpenAvatarBtn" style="cursor:pointer;transition:background 150ms;border-radius:8px;padding:0.6rem 0.45rem;margin:-0.1rem -0.45rem;">
-          <div style="display:flex;align-items:center;gap:0.75rem"><div id="settingsAvatarMini" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;box-shadow:0 0 0 2px var(--hl-border)"></div><div><div style="font-size:0.82rem;color:var(--text);font-weight:600">Profile Picture</div><div style="font-size:0.72rem;color:var(--muted);margin-top:1px">Tap to edit avatar</div></div></div>
-          <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><polyline points="9 18 15 12 9 6"/></svg>
-        </div>
-        <div class="settings-row"><label>Nickname</label><input class="settings-input" id="settingNickname" type="text" placeholder="Your nickname"/></div>
-        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">Show real names in chat</label><span style="font-size:0.72rem;color:var(--muted)">Off = everyone appears as "Anonymous"</span></div><label class="toggle-switch"><input type="checkbox" id="settingShowRealName"><span class="toggle-slider"></span></label></div>
-        <button class="settings-save-btn" id="settingsSaveBtn">Save changes</button>
-      </div>
-      <div class="settings-section"><h3>Help</h3>
-        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">App guide</label><span style="font-size:0.72rem;color:var(--muted)">Replay the onboarding tutorial</span></div><button class="btn-sm" id="playTutorialBtn" style="display:flex;align-items:center;gap:0.4rem;white-space:nowrap"><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play Tutorial</button></div>
-      </div>
-    </div>
-
-    <div class="content-view" id="viewMood">
-      <div class="view-hero"><h1>Mood Check-in</h1><p>How are you feeling today? Log your mood daily — only you can see this.</p></div>
-      <div class="mood-card"><h3>Today's mood</h3><div class="mood-emojis" id="moodEmojiPicker"></div><textarea class="mood-note" id="moodNote" placeholder="Add a note (optional)..." rows="2"></textarea><button class="btn-sm primary" id="moodSaveBtn" style="width:100%;padding:0.55rem">Save today's mood</button></div>
-      <div class="mood-card" id="moodWeekCard" style="display:none"><h3>This week</h3><div style="display:flex;gap:4px;align-items:flex-end;height:56px;" id="moodWeekChart"></div><div style="display:flex;gap:4px;margin-top:4px;" id="moodWeekLabels"></div></div>
-      <div class="mood-card"><h3>Recent entries</h3><div class="mood-history" id="moodHistory"></div></div>
-    </div>
-
-    <div class="content-view" id="viewDiary">
-      <div class="view-hero" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem">
-        <div><h1>My Diary</h1><p>Private entries — stored locally or in the cloud per your privacy settings.</p></div>
-        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
-          <button class="btn-sm" id="diaryBookBtn" style="display:flex;align-items:center;gap:0.4rem"><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Book View</button>
-          <button class="btn-sm primary" id="diaryExportBtn" style="display:flex;align-items:center;gap:0.4rem"><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export PDF</button>
-          <button class="diary-new-btn" id="diaryNewBtn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>New Entry</button>
-        </div>
-      </div>
-      <div class="diary-entry-list" id="diaryEntryList"></div>
-    </div>
-
-    <div class="content-view" id="viewAnnouncements">
-      <div class="view-hero"><h1>Announcements</h1><p>Updates and news from the Let's Talk team.</p></div>
-      <div id="annAdminCompose" style="display:none"><div class="ann-compose"><h3>Post Announcement</h3><input type="text" id="annTitleInput" placeholder="Title..."/><textarea id="annBodyInput" placeholder="Message..."></textarea><div style="display:flex;gap:0.5rem;margin-bottom:0.5rem"><select id="annTypeSelect" style="flex:1"><option value="info">Info</option><option value="update">Update</option><option value="pinned">Pinned</option></select><button class="btn-sm primary" id="annPostBtn">Post</button></div></div></div>
-      <div id="annList"></div>
-    </div>
-
-    <div class="settings-view" id="viewPrivacy">
-      <div><h1 style="font-size:1.2rem;color:var(--hl);font-weight:800">Privacy</h1><p style="color:var(--muted);font-size:0.85rem;margin-top:0.3rem">Your privacy matters to us.</p></div>
-      <div class="settings-section"><h3>Data &amp; Storage</h3>
-        <div class="settings-row"><label>Posts are public</label><span>Visible to everyone</span></div>
-        <div class="settings-row"><label>Posting as</label><span id="privacyPostingAs">Anonymous</span></div>
-        <div class="settings-row"><label>Sensitive category warnings</label><label class="toggle-switch"><input type="checkbox" id="privacyWarnings" checked><span class="toggle-slider"></span></label></div>
-        <div class="settings-row"><label>Reset all seen warnings</label><button class="btn-sm" id="resetWarningsBtn">Reset</button></div>
-      </div>
-      <div class="settings-section"><h3>Diary Storage</h3>
-        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">Store diary on cloud</label><span style="font-size:0.72rem;color:var(--muted)">Off = local device only (more private)</span></div><label class="toggle-switch"><input type="checkbox" id="privacyDiaryCloud" checked><span class="toggle-slider"></span></label></div>
-        <div class="settings-row"><span style="font-size:0.72rem;color:var(--muted);line-height:1.5">When off, diary entries are stored only in your browser and won't sync across devices.</span></div>
-      </div>
-      <div class="settings-section"><h3>Your Data</h3>
-        <div class="settings-row"><label>Clear local draft</label><button class="btn-sm" id="clearDraftBtn">Clear</button></div>
-        <div class="settings-row"><label>Remove petition signature</label><button class="btn-sm" id="removeSigBtn">Remove</button></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- POST OVERLAY -->
-<div class="overlay" id="postOverlay">
-  <div class="overlay-page">
-    <div class="overlay-header"><button class="overlay-back" id="closePostOverlay"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Back</button></div>
-    <article class="post-shell">
-      <h2 id="overlayTitle"></h2><div class="post-meta" id="overlayMeta"></div><div class="post-main" id="overlayBody"></div>
-      <div class="post-actions"><button class="report-flag" id="overlayReportPost"><svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M7 4h10l-2.8 3L17 10H7z"/></svg></button></div>
-      <hr class="post-divider"/>
-      <section class="reply-composer"><div class="reply-context" id="replyContext">Replying to message</div><textarea id="replyInput" placeholder="Write a reply..."></textarea><div class="reply-actions"><button class="btn-sm" id="cancelReplyTarget">Cancel target</button><button class="btn-sm primary" id="submitReply">Reply</button></div></section>
-      <section class="reply-list" id="replyList"></section>
-    </article>
-  </div>
-</div>
-
-<!-- REPORT MODAL -->
-<div class="modal-overlay" id="reportModal"><div class="dialog"><h3>Report content</h3><p id="reportContextEl">Choose a reason:</p><div class="report-list"><button class="report-option">Suicidal</button><button class="report-option">Inappropriate</button><button class="report-option">Bullying</button><button class="report-option">Mocking</button><button class="report-option">Spam</button></div><div class="close-row"><button class="close-btn" id="closeModal">Cancel</button></div></div></div>
-
-<!-- CAT WARNING -->
-<div class="cat-warning-overlay" id="catWarning"><div class="cat-warning-box"><h3 id="catWarningTitle"></h3><p id="catWarningDesc"></p><div class="cat-warning-resources" id="catWarningResources"></div><div class="cat-warning-actions"><button id="catWarningCancel">Go back</button><button class="btn-continue" id="catWarningContinue">Continue</button></div></div></div>
-
-<!-- COMPOSER -->
-<div id="composerOverlay">
-  <div class="composer-resize-side left" id="composerResizeLeft"></div><div class="composer-resize-side right" id="composerResizeRight"></div>
-  <div class="composer-resize-handle" id="composerResizeHandle"></div>
-  <div class="composer-panel-inner">
-    <div class="composer-left">
-      <div class="composer-topbar">
-        <input id="editorTitle" type="text" placeholder="Title..."/>
-        <div class="composer-selects">
-          <select id="formatSelect"><option value="p">Normal</option><option value="h1">H1</option><option value="h2">H2</option></select>
-          <select id="categoryInput"><option>Casual</option><option>Happy</option><option>Vibe</option><option>Lowkey</option><option>Rants</option><option>Questions</option><option>Complaints</option><option>School life</option><option>Identity</option><option>Games</option><option>Music</option><option>Creative</option><option>Goals</option><option>Achievements</option><option>Positivity</option><option>Sleep</option><option>Stress</option><option>Burnout</option><option>Perfectionism pressure</option><option>Social masking</option><option>Suggestions</option><option>Emotional distress</option><option>Getting Help</option><option>Self-Harm</option><option>Suicidal Ideation</option></select>
-        </div>
-        <button class="composer-close-btn" id="closeComposer">&#x2715;</button>
-      </div>
-      <div class="toolbar-editor">
-        <button id="boldBtn" data-tip="Bold"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg></button>
-        <button id="italicBtn" data-tip="Italic"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg></button>
-        <button id="underlineBtn" data-tip="Underline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/><line x1="4" y1="21" x2="20" y2="21"/></svg></button>
-        <button id="strikeBtn" data-tip="Strike"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17.3 4.9c-2.3-.6-4.4-1-6.2-.9-2.7 0-5.3.7-5.3 3.6 0 1.5 1.8 3.3 6 3.9h.2m6.7 3.2c.3.4.5.8.5 1.3 0 3-2.7 3.6-6.2 3.6-2.3 0-4.4-.3-6.2-.9M4 11.5h16"/></svg></button>
-        <span style="width:1px;background:#3a3a3a;margin:0 2px;align-self:stretch"></span>
-        <button id="h1Btn" data-tip="H1"><b style="font-size:9px">H1</b></button>
-        <button id="h2Btn" data-tip="H2"><b style="font-size:9px">H2</b></button>
-        <button id="quoteBtn" data-tip="Quote"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg></button>
-        <button id="ulBtn" data-tip="Bullets"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
-        <button id="olBtn" data-tip="Numbered"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></button>
-        <span style="width:1px;background:#3a3a3a;margin:0 2px;align-self:stretch"></span>
-        <button id="linkBtn" data-tip="Link"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
-        <button id="codeInlineBtn" data-tip="Code"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></button>
-        <button id="codeBlockBtn" data-tip="Code block"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></button>
-        <button id="emojiBtn" data-tip="Emoji"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></button>
-        <button id="hrBtn" data-tip="Divider"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/></svg></button>
-        <button id="clearBtn" data-tip="Clear"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/><line x1="2" y1="2" x2="22" y2="22"/></svg></button>
-      </div>
-      <div id="emojiPanel"><div class="emoji-search-wrap"><input id="emojiSearch" type="text" placeholder="Search emoji..."/></div><div class="emoji-tabs" id="emojiTabs"></div><div class="emoji-grid" id="emojiGrid"></div></div>
-      <div id="codePanel"><label>Language:<select id="codeLangSelect"><option value="">Plain</option><option value="html">HTML</option><option value="css">CSS</option><option value="javascript">JS</option><option value="python">Python</option><option value="json">JSON</option><option value="bash">Bash</option><option value="sql">SQL</option></select></label><textarea id="codeTextarea" placeholder="Paste code here..."></textarea><div class="code-panel-actions"><button id="cancelCodeBtn">Cancel</button><button class="insert-code-btn" id="insertCodeBtn">Insert</button></div></div>
-      <div id="linkPanel"><div id="linkHeader">Insert Link</div><input id="linkNameInput" type="text" placeholder="Link Text"/><input id="linkInput" type="text" placeholder="URL"/><button id="insertLinkBtn">Insert</button></div>
-      <div id="editor" contenteditable="true"></div>
-      <div class="composer-actions"><button id="saveDraftBtn">Save Draft</button><button id="publishBtn">Publish</button></div>
-    </div>
-    <div class="composer-right"><div class="preview-label">Live Preview</div><div id="previewContainer"></div></div>
-  </div>
-</div>
-
-<!-- DIARY EDITOR -->
-<div id="diaryEditorOverlay">
-  <div class="diary-editor-topbar">
-    <button class="diary-editor-back" id="diaryEditorBack"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Back</button>
-    <input class="diary-editor-title" id="diaryEditorTitle" type="text" placeholder="Entry title..."/>
-    <button class="diary-delete-btn" id="diaryDeleteBtn" style="display:none">Delete</button>
-    <button class="diary-save-btn" id="diaryEditorSave">Save</button>
-  </div>
-  <div class="diary-editor-mood-row">
-    <span class="diary-editor-mood-label">Mood:</span>
-    <div class="diary-editor-mood-scroll" id="diaryEditorMoods"></div>
-  </div>
-  <div class="diary-editor-content-wrap">
-    <div class="diary-editor-page">
-      <div class="diary-editor-body" id="diaryEditorBody" contenteditable="true" data-placeholder="Write anything — this is just for you..."></div>
-    </div>
-  </div>
-  <div class="diary-editor-footer"><span class="diary-editor-date" id="diaryEditorDate"></span></div>
-</div>
-
-<!-- DIARY BOOK VIEW -->
-<div id="diaryBookOverlay">
-  <div class="book-topbar"><h3>📖 My Diary — Book View</h3><button class="btn-sm" id="diaryBookClose">Close</button></div>
-  <div class="book-container">
-    <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:960px;">
-      <div class="book-spread" id="bookSpread">
-        <div class="book-page left" id="bookPageLeft"><div class="book-blank">—</div><span class="book-page-number" id="bookPageNumLeft"></span></div>
-        <div class="book-spine"></div>
-        <div class="book-page right" id="bookPageRight"><div class="book-blank">No entries yet.</div><span class="book-page-number" id="bookPageNumRight"></span></div>
-      </div>
-      <div class="book-nav">
-        <button class="book-nav-btn" id="bookPrevBtn" disabled><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-        <span class="book-page-info" id="bookPageInfo">Page 1</span>
-        <button class="book-nav-btn" id="bookNextBtn"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- GUIDE -->
-<div id="guideOverlay">
-  <div class="guide-box">
-    <div style="overflow:hidden"><div class="guide-steps" id="guideSteps">
-      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h2>Welcome to Let's Talk 👋</h2><p>A safe space to share thoughts, ask questions, vent, and connect — completely anonymous by default.</p></div>
-      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h2>Customize your avatar</h2><p>Pick a gradient, color, and initials that feel like you.</p><button class="guide-btn-next" id="guideOpenAvatarBtn" style="margin-top:0.3rem">Customize Avatar →</button></div>
-      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h2>You're anonymous by default</h2><p>All messages show as <strong style="color:var(--hl)">"Anonymous"</strong> unless you turn on Show real names in Settings.</p></div>
-      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div><h2>Pick a chat category</h2><p>Browse categories like Casual, Rants, Goals, and more.</p></div>
-      <div class="guide-step"><div class="guide-icon" style="background:rgba(255,222,89,0.15);border-color:var(--hl)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="var(--hl)"/></svg></div><h2>You're all set!</h2><p>Start reading, posting, and connecting. Be kind to others and yourself. 💛</p></div>
-    </div></div>
-    <div class="guide-footer"><button class="guide-btn-skip" id="guideBtnSkip">Skip guide</button><div style="display:flex;align-items:center;gap:1rem"><div class="guide-dots" id="guideDots"></div><button class="guide-btn-next" id="guideBtnNext">Next →</button></div></div>
-  </div>
-</div>
-
-<!-- AVATAR EDITOR -->
-<div id="avatarEditorOverlay">
-  <div class="avatar-editor-box">
-    <h3>Customize Avatar</h3>
-    <div class="avatar-preview-wrap"><div id="avatarPreview">AB</div></div>
-    <div class="ae-row"><label>Initials (1–2 letters)</label><input class="ae-input" id="aeInitials" type="text" maxlength="2" placeholder="AB" style="width:80px"/></div>
-    <div class="ae-row"><label>Letter color</label><div class="ae-row-inline" id="aeLetterColors"></div></div>
-    <div class="ae-row"><label>Gradient color 1</label><div class="ae-row-inline" id="aeColor1Swatches"><input class="ae-input-color" id="aeColor1Custom" type="color"/></div></div>
-    <div class="ae-row"><label>Gradient color 2</label><div class="ae-row-inline" id="aeColor2Swatches"><input class="ae-input-color" id="aeColor2Custom" type="color"/></div></div>
-    <div class="ae-row"><label>Gradient direction</label><div class="ae-row-inline" id="aeDirBtns"></div></div>
-    <div class="ae-footer"><button class="btn-sm" id="aeCancel">Cancel</button><button class="btn-sm primary" id="aeSave">Save Avatar</button></div>
-  </div>
-</div>
-</head>
-<body>
-<div id="authOverlay">
-  <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;color:var(--muted);font-size:0.9rem">
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--hl)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 0.9s linear infinite"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.07-5.38"/></svg>
-    <span style="font-weight:600;letter-spacing:0.05em">Loading...</span>
-  </div>
-</div>
-<aside id="sidebar">
-  <div id="sidebarResizer"></div>
-  <div class="sb-logo"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="sb-logo-text">Let's Talk</span><button class="sb-toggle" id="sidebarToggle"><svg id="sbToggleIcon" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button></div>
-  <div class="sb-top-nav">
-    <span class="sb-section-label">Main</span>
-    <button class="nav-btn active" id="navChats"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="nav-btn-label">Chats</span></button>
-    <button class="nav-btn" id="navMessages"><svg viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><span class="nav-btn-label">Messages</span><span class="nav-badge" id="inboxBadge" style="display:none">0</span></button>
-    <button class="nav-btn" id="navDiary"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg><span class="nav-btn-label">Diary</span></button>
-    <button class="nav-btn" id="navAnnouncements"><svg viewBox="0 0 24 24"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg><span class="nav-btn-label">Announcements</span><span class="nav-badge" id="annBadge" style="display:none">0</span></button>
-    <button class="nav-btn" id="navMood"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg><span class="nav-btn-label">Mood Check-in</span></button>
-  </div>
-  <div class="sb-spacer"></div>
-  <div class="sb-bottom-section">
-    <button class="nav-btn" id="navPrivacy"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-btn-label">Privacy</span></button>
-    <button class="nav-btn" id="navSettings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-btn-label">Settings</span></button>
-    <div class="sb-petition-mini" id="sbPetitionMini">
-      <div class="sb-petition-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-      <div class="sb-petition-body"><h5>Sign Petition</h5><p>Mental wellness deserves to be promoted and recognized.</p><div class="sb-petition-bar"><div class="sb-petition-fill" id="sbPetFill"></div></div><div class="sb-petition-stat"><span id="sbPetCount">0</span> signed</div></div>
-    </div>
-  </div>
-</aside>
-<div id="middlePanel">
-  <div id="mpResizer"></div>
-  <div class="mp-header"><div class="mp-title" id="mpTitle">Chats &amp; Messages</div><div class="mp-sub" id="mpSubCount"></div></div>
-  <div class="mp-search"><div class="mp-search-wrap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input class="mp-search-input" id="mpSearchInput" type="search" placeholder="Search categories..."/></div></div>
-  <div class="mp-list" id="mpChatList"></div>
-</div>
-<div class="main">
-  <div class="topbar">
-    <div><div class="topbar-title" id="topbarTitle">Open a Chat</div><div class="topbar-sub" id="topbarSub">Select a chat to start reading</div></div>
-    <div class="topbar-spacer"></div>
-    <div class="topbar-icon" id="notifBtn"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="notif-dot" id="notifDot"></span></div>
-    <button class="acct-btn" id="acctBtn"><div class="acct-avatar" id="acctAvatar">?</div><span class="acct-name" id="acctName">User</span><svg viewBox="0 0 24 24" style="width:11px;height:11px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-left:2px"><polyline points="6 9 12 15 18 9"/></svg></button>
-  </div>
-  <div class="notif-panel" id="notifPanel"><div class="notif-panel-header"><span>Notifications</span><button class="close-btn" style="padding:2px 8px;font-size:0.72rem" id="closeNotif">&#x2715;</button></div><div id="notifList"><div class="notif-empty">No notifications yet</div></div></div>
-  <div class="acct-dropdown" id="acctDropdown">
-    <div class="acct-dd-header"><div class="acct-dd-name" id="ddName">&#8212;</div><div class="acct-dd-nick" id="ddNick">&#8212;</div></div>
-    <button class="acct-dd-item" id="ddSettings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</button>
-    <button class="acct-dd-item" id="ddPrivacy"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Privacy</button>
-    <hr class="acct-dd-sep"/>
-    <button class="acct-dd-item acct-dd-danger" id="ddLogout"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
-  </div>
-  <div class="content" id="contentArea">
-    <div id="viewWelcome"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><h3>Open a Chat</h3><p>Select a category from the sidebar to see posts and join the conversation.</p></div>
-    <div id="viewChat" style="display:none">
-      <div class="chat-header">
-        <div class="chat-header-avatar" id="chatHeaderAvatar"></div>
-        <div class="chat-header-info"><h3 id="chatHeaderName">&#8212;</h3><p id="chatHeaderSub">&#8212;</p></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:0.5rem">
-          <input id="searchInput" type="search" placeholder="Search..." style="background:var(--surface2);border:1px solid var(--line);border-radius:999px;color:var(--text);padding:0.3rem 0.7rem;font:inherit;font-size:0.78rem;outline:none;width:140px;"/>
-          <select id="sortSelect" style="background:var(--surface2);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:0.3rem 0.5rem;font:inherit;font-size:0.75rem;cursor:pointer;outline:none;"><option value="newest">Newest</option><option value="oldest">Oldest</option></select>
-        </div>
-      </div>
-      <div class="posts-scroll" id="postList"></div>
-      <div class="msg-input-bar">
-        <div class="msg-input-outer">
-          <div class="msg-plus-wrap">
-            <button class="msg-action-btn" id="msgPlusBtn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-            <div class="msg-plus-menu" id="msgPlusMenu">
-              <button class="msg-plus-item" id="msgPollBtn"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Create poll</button>
-              <button class="msg-plus-item" id="msgSendLaterBtn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Send later</button>
-            </div>
-          </div>
-          <textarea class="msg-input" id="msgInput" rows="1" placeholder="Send a message..."></textarea>
-          <div style="display:flex;align-items:center;gap:0.3rem;flex-shrink:0;align-self:flex-end;padding-bottom:0.05rem">
-            <button class="msg-send-btn" id="msgSendBtn" disabled><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
-          </div>
-        </div>
-      </div>
-      <div class="poll-modal-overlay" id="pollModal"><div class="poll-modal"><h3>Create a poll</h3><input class="poll-question-input" id="pollQuestion" type="text" placeholder="Ask a question..."/><div class="poll-options" id="pollOptions"><div class="poll-option-row"><input class="poll-option-input" type="text" placeholder="Option 1"/><button class="poll-option-del" tabindex="-1"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="poll-option-row"><input class="poll-option-input" type="text" placeholder="Option 2"/><button class="poll-option-del" tabindex="-1"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div><button class="poll-add-opt" id="pollAddOption">+ Add option</button><div class="poll-footer"><button class="btn-sm" id="pollCancel">Cancel</button><button class="btn-sm primary" id="pollSend">Send poll</button></div></div></div>
-      <div class="send-later-overlay" id="sendLaterModal"><div class="send-later-modal"><h3>Send later</h3><p>Your message will be posted at the scheduled time.</p><input class="send-later-time" id="sendLaterTime" type="datetime-local"/><div class="send-later-footer"><button class="btn-sm" id="sendLaterCancel">Cancel</button><button class="btn-sm primary" id="sendLaterConfirm">Schedule</button></div></div></div>
-    </div>
-    <div id="viewPetition">
-      <div class="petition-hero" style="margin-bottom:1.8rem"><h1>Sign the Petition</h1><p>Mental wellness deserves to be promoted, recognized, and taken seriously in our schools, workplaces, and communities.</p></div>
-      <div style="display:flex;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:1.4rem"><div><div class="petition-count-big" id="petCountBig">0</div><div class="petition-count-label">people have signed</div></div><div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><button class="petition-big-sign-btn" id="petitionSignBtn">Sign Petition</button><span id="petSignedLabel" style="display:none;color:var(--hl);font-weight:700;font-size:0.88rem">You have signed!</span></div></div>
-      <div class="petition-goal-track"><h3>Goal Progress</h3><div class="petition-timeline"><div class="petition-track-bar"><div class="petition-track-fill" id="petTrackFill"></div></div><div class="petition-milestones-row" id="petMilestonesRow"></div></div></div>
-      <div class="petition-invite-section" style="margin-top:1.2rem"><h3>Invite Others</h3><p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.55rem">Share this link:</p><div class="invite-link-box"><input class="invite-link-input" id="petInviteInput" type="text" readonly/><button class="invite-copy-btn" id="petCopyBtn">Copy link</button></div></div>
+      <div style="margin-top:1.2rem"><h3 style="font-size:0.84rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.55rem">Invite Others</h3><p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.55rem">Share this link:</p><div class="invite-link-box"><input class="invite-link-input" id="petInviteInput" type="text" readonly/><button class="invite-copy-btn" id="petCopyBtn">Copy link</button></div></div>
     </div>
     <div class="settings-view" id="viewSettings">
       <div style="margin-bottom:0.5rem"><h1 style="font-size:1.2rem;color:var(--hl);font-weight:800">Settings</h1></div>
@@ -964,45 +604,41 @@ button,input,select,textarea{font-family:inherit;}
       </div>
       <div class="settings-section"><h3>Account</h3>
         <div class="settings-row" id="settingsOpenAvatarBtn" style="cursor:pointer;border-radius:8px;padding:0.6rem 0.45rem;margin:-0.1rem -0.45rem;transition:background 150ms;">
-          <div style="display:flex;align-items:center;gap:0.75rem"><div id="settingsAvatarMini" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;box-shadow:0 0 0 2px var(--hl-border)"></div><div><div style="font-size:0.82rem;color:var(--text);font-weight:600">Profile Picture</div><div style="font-size:0.72rem;color:var(--muted);margin-top:1px">Tap to edit avatar, colors &amp; initials</div></div></div>
+          <div style="display:flex;align-items:center;gap:0.75rem"><div id="settingsAvatarMini" style="width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;font-weight:700;flex-shrink:0;box-shadow:0 0 0 2px var(--hl-border)"></div><div><div style="font-size:0.82rem;color:var(--text);font-weight:600">Profile Picture</div><div style="font-size:0.72rem;color:var(--muted);margin-top:1px">Tap to edit avatar</div></div></div>
           <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0"><polyline points="9 18 15 12 9 6"/></svg>
         </div>
         <div class="settings-row"><label>Nickname</label><input class="settings-input" id="settingNickname" type="text" placeholder="Your nickname"/></div>
-        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">Show real names in chat</label><span style="font-size:0.72rem;color:var(--muted)">Off = everyone appears as "Anonymous"</span></div><label class="toggle-switch"><input type="checkbox" id="settingShowRealName"><span class="toggle-slider"></span></label></div>
+        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">Show real names in chat</label><span style="font-size:0.72rem;color:var(--muted)">Off = everyone appears as Anonymous</span></div><label class="toggle-switch"><input type="checkbox" id="settingShowRealName"><span class="toggle-slider"></span></label></div>
         <button class="settings-save-btn" id="settingsSaveBtn">Save changes</button>
       </div>
       <div class="settings-section"><h3>Help</h3>
-        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">App guide</label><span style="font-size:0.72rem;color:var(--muted)">Replay the onboarding tutorial</span></div><button class="btn-sm" id="playTutorialBtn" style="display:flex;align-items:center;gap:0.4rem;white-space:nowrap"><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polygon points="5 3 19 12 5 21 5 3"/></svg>Play Tutorial</button></div>
+        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">App guide</label><span style="font-size:0.72rem;color:var(--muted)">Replay the onboarding tutorial</span></div><button class="btn-sm" id="playTutorialBtn">Play Tutorial</button></div>
       </div>
     </div>
-    <!-- MOOD -->
     <div class="content-view" id="viewMood">
-      <div class="view-hero"><h1>Mood Check-in</h1><p>How are you feeling today? Log your mood daily — only you can see this.</p></div>
+      <div class="view-hero"><h1>Mood Check-in</h1><p>How are you feeling today? Log your mood daily.</p></div>
       <div class="mood-card"><h3>Today's mood</h3><div class="mood-emojis" id="moodEmojiPicker"></div><textarea class="mood-note" id="moodNote" placeholder="Add a note (optional)..." rows="2"></textarea><button class="btn-sm primary" id="moodSaveBtn" style="width:100%;padding:0.55rem">Save today's mood</button></div>
       <div class="mood-card" id="moodWeekCard" style="display:none"><h3>This week</h3><div style="display:flex;gap:4px;align-items:flex-end;height:56px;" id="moodWeekChart"></div><div style="display:flex;gap:4px;margin-top:4px;" id="moodWeekLabels"></div></div>
       <div class="mood-card"><h3>Recent entries</h3><div class="mood-history" id="moodHistory"></div></div>
     </div>
-    <!-- DIARY -->
     <div class="content-view" id="viewDiary">
       <div class="view-hero" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem">
-        <div><h1>My Diary</h1><p>Private entries — stored locally or in the cloud per your privacy settings.</p></div>
+        <div><h1>My Diary</h1><p>Private entries.</p></div>
         <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
-          <button class="btn-sm" id="diaryBookBtn" style="display:flex;align-items:center;gap:0.4rem"><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Book View</button>
-          <button class="btn-sm primary" id="diaryExportBtn" style="display:flex;align-items:center;gap:0.4rem"><svg viewBox="0 0 24 24" style="width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Export PDF</button>
+          <button class="btn-sm" id="diaryBookBtn">Book View</button>
+          <button class="btn-sm primary" id="diaryExportBtn">Export PDF</button>
           <button class="diary-new-btn" id="diaryNewBtn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>New Entry</button>
         </div>
       </div>
       <div class="diary-entry-list" id="diaryEntryList"></div>
     </div>
-    <!-- ANNOUNCEMENTS -->
     <div class="content-view" id="viewAnnouncements">
-      <div class="view-hero"><h1>Announcements</h1><p>Updates and news from the Let's Talk team.</p></div>
+      <div class="view-hero"><h1>Announcements</h1><p>Updates from the team.</p></div>
       <div id="annAdminCompose" style="display:none"><div class="ann-compose"><h3>Post Announcement</h3><input type="text" id="annTitleInput" placeholder="Title..."/><textarea id="annBodyInput" placeholder="Message..."></textarea><div style="display:flex;gap:0.5rem;margin-bottom:0.5rem"><select id="annTypeSelect" style="flex:1"><option value="info">Info</option><option value="update">Update</option><option value="pinned">Pinned</option></select><button class="btn-sm primary" id="annPostBtn">Post</button></div></div></div>
       <div id="annList"></div>
     </div>
-    <!-- PRIVACY -->
     <div class="settings-view" id="viewPrivacy">
-      <div style="margin-bottom:0.5rem"><h1 style="font-size:1.2rem;color:var(--hl);font-weight:800">Privacy</h1><p style="color:var(--muted);font-size:0.85rem;margin-top:0.3rem">Your privacy matters to us.</p></div>
+      <div style="margin-bottom:0.5rem"><h1 style="font-size:1.2rem;color:var(--hl);font-weight:800">Privacy</h1><p style="color:var(--muted);font-size:0.85rem;margin-top:0.3rem">Your privacy matters.</p></div>
       <div class="settings-section"><h3>Data &amp; Storage</h3>
         <div class="settings-row"><label>Posts are public</label><span>Visible to everyone</span></div>
         <div class="settings-row"><label>Posting as</label><span id="privacyPostingAs">Anonymous</span></div>
@@ -1010,8 +646,7 @@ button,input,select,textarea{font-family:inherit;}
         <div class="settings-row"><label>Reset all seen warnings</label><button class="btn-sm" id="resetWarningsBtn">Reset</button></div>
       </div>
       <div class="settings-section"><h3>Diary Storage</h3>
-        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">Store diary on cloud</label><span style="font-size:0.72rem;color:var(--muted)">Off = local device only (more private)</span></div><label class="toggle-switch"><input type="checkbox" id="privacyDiaryCloud" checked><span class="toggle-slider"></span></label></div>
-        <div class="settings-row"><span style="font-size:0.72rem;color:var(--muted);line-height:1.5">When off, diary entries are stored only in your browser and won't sync across devices.</span></div>
+        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">Store diary on cloud</label><span style="font-size:0.72rem;color:var(--muted)">Off = local device only</span></div><label class="toggle-switch"><input type="checkbox" id="privacyDiaryCloud" checked><span class="toggle-slider"></span></label></div>
       </div>
       <div class="settings-section"><h3>Your Data</h3>
         <div class="settings-row"><label>Clear local draft</label><button class="btn-sm" id="clearDraftBtn">Clear</button></div>
@@ -1020,8 +655,6 @@ button,input,select,textarea{font-family:inherit;}
     </div>
   </div>
 </div>
-
-<!-- POST OVERLAY -->
 <div class="overlay" id="postOverlay">
   <div class="overlay-page">
     <div class="overlay-header"><button class="overlay-back" id="closePostOverlay"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Back</button></div>
@@ -1034,11 +667,8 @@ button,input,select,textarea{font-family:inherit;}
     </article>
   </div>
 </div>
-<!-- REPORT MODAL -->
 <div class="modal-overlay" id="reportModal"><div class="dialog"><h3>Report content</h3><p id="reportContextEl">Choose a reason:</p><div class="report-list"><button class="report-option">Suicidal</button><button class="report-option">Inappropriate</button><button class="report-option">Bullying</button><button class="report-option">Mocking</button><button class="report-option">Spam</button></div><div class="close-row"><button class="close-btn" id="closeModal">Cancel</button></div></div></div>
-<!-- CAT WARNING -->
 <div class="cat-warning-overlay" id="catWarning"><div class="cat-warning-box"><h3 id="catWarningTitle"></h3><p id="catWarningDesc"></p><div class="cat-warning-resources" id="catWarningResources"></div><div class="cat-warning-actions"><button id="catWarningCancel">Go back</button><button class="btn-continue" id="catWarningContinue">Continue</button></div></div></div>
-<!-- COMPOSER -->
 <div id="composerOverlay">
   <div class="composer-resize-side left" id="composerResizeLeft"></div><div class="composer-resize-side right" id="composerResizeRight"></div>
   <div class="composer-resize-handle" id="composerResizeHandle"></div>
@@ -1046,22 +676,23 @@ button,input,select,textarea{font-family:inherit;}
     <div class="composer-left">
       <div class="composer-topbar"><input id="editorTitle" type="text" placeholder="Title..."/><div class="composer-selects"><select id="formatSelect"><option value="p">Normal</option><option value="h1">H1</option><option value="h2">H2</option></select><select id="categoryInput"><option>Casual</option><option>Happy</option><option>Vibe</option><option>Lowkey</option><option>Rants</option><option>Questions</option><option>Complaints</option><option>School life</option><option>Identity</option><option>Games</option><option>Music</option><option>Creative</option><option>Goals</option><option>Achievements</option><option>Positivity</option><option>Sleep</option><option>Stress</option><option>Burnout</option><option>Perfectionism pressure</option><option>Social masking</option><option>Suggestions</option><option>Emotional distress</option><option>Getting Help</option><option>Self-Harm</option><option>Suicidal Ideation</option></select></div><button class="composer-close-btn" id="closeComposer">&#x2715;</button></div>
       <div class="toolbar-editor">
-        <button id="boldBtn" data-tip="Bold"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg></button>
-        <button id="italicBtn" data-tip="Italic"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg></button>
-        <button id="underlineBtn" data-tip="Underline"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/><line x1="4" y1="21" x2="20" y2="21"/></svg></button>
-        <button id="strikeBtn" data-tip="Strike"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.3 4.9c-2.3-.6-4.4-1-6.2-.9-2.7 0-5.3.7-5.3 3.6 0 1.5 1.8 3.3 6 3.9h.2m6.7 3.2c.3.4.5.8.5 1.3 0 3-2.7 3.6-6.2 3.6-2.3 0-4.4-.3-6.2-.9M4 11.5h16"/></svg></button>
+        <button id="boldBtn" data-tip="Bold"><b style="font-size:9px">B</b></button>
+        <button id="italicBtn" data-tip="Italic"><i style="font-size:9px">I</i></button>
+        <button id="underlineBtn" data-tip="Underline"><u style="font-size:9px">U</u></button>
+        <button id="strikeBtn" data-tip="Strike"><s style="font-size:9px">S</s></button>
         <span style="width:1px;background:#3a3a3a;margin:0 2px;align-self:stretch"></span>
-        <button id="h1Btn" data-tip="H1"><b style="font-size:9px">H1</b></button><button id="h2Btn" data-tip="H2"><b style="font-size:9px">H2</b></button>
-        <button id="quoteBtn" data-tip="Quote"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg></button>
-        <button id="ulBtn" data-tip="Bullets"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
-        <button id="olBtn" data-tip="Numbered"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h1v4M4 10h2M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></button>
+        <button id="h1Btn" data-tip="H1"><b style="font-size:9px">H1</b></button>
+        <button id="h2Btn" data-tip="H2"><b style="font-size:9px">H2</b></button>
+        <button id="quoteBtn" data-tip="Quote"><b style="font-size:9px">"</b></button>
+        <button id="ulBtn" data-tip="Bullets"><b style="font-size:9px">•</b></button>
+        <button id="olBtn" data-tip="Numbered"><b style="font-size:9px">1.</b></button>
         <span style="width:1px;background:#3a3a3a;margin:0 2px;align-self:stretch"></span>
-        <button id="linkBtn" data-tip="Link"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
-        <button id="codeInlineBtn" data-tip="Inline code"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></button>
-        <button id="codeBlockBtn" data-tip="Code block"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></button>
-        <button id="emojiBtn" data-tip="Emoji"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></button>
-        <button id="hrBtn" data-tip="Divider"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="12" x2="22" y2="12"/></svg></button>
-        <button id="clearBtn" data-tip="Clear"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/><line x1="2" y1="2" x2="22" y2="22"/></svg></button>
+        <button id="linkBtn" data-tip="Link"><b style="font-size:9px">URL</b></button>
+        <button id="codeInlineBtn" data-tip="Code"><b style="font-size:9px">&lt;&gt;</b></button>
+        <button id="codeBlockBtn" data-tip="Code block"><b style="font-size:9px">[/]</b></button>
+        <button id="emojiBtn" data-tip="Emoji"><b style="font-size:9px">:)</b></button>
+        <button id="hrBtn" data-tip="Divider"><b style="font-size:9px">&#8213;</b></button>
+        <button id="clearBtn" data-tip="Clear"><b style="font-size:9px">&#10005;</b></button>
       </div>
       <div id="emojiPanel"><div class="emoji-search-wrap"><input id="emojiSearch" type="text" placeholder="Search emoji..."/></div><div class="emoji-tabs" id="emojiTabs"></div><div class="emoji-grid" id="emojiGrid"></div></div>
       <div id="codePanel"><label>Language:<select id="codeLangSelect"><option value="">Plain</option><option value="html">HTML</option><option value="css">CSS</option><option value="javascript">JS</option><option value="python">Python</option><option value="json">JSON</option><option value="bash">Bash</option><option value="sql">SQL</option></select></label><textarea id="codeTextarea" placeholder="Paste code here..."></textarea><div class="code-panel-actions"><button id="cancelCodeBtn">Cancel</button><button class="insert-code-btn" id="insertCodeBtn">Insert</button></div></div>
@@ -1072,7 +703,6 @@ button,input,select,textarea{font-family:inherit;}
     <div class="composer-right"><div class="preview-label">Live Preview</div><div id="previewContainer"></div></div>
   </div>
 </div>
-<!-- DIARY EDITOR -->
 <div id="diaryEditorOverlay">
   <div class="diary-editor-topbar">
     <button class="diary-editor-back" id="diaryEditorBack"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Back</button>
@@ -1080,52 +710,44 @@ button,input,select,textarea{font-family:inherit;}
     <button class="diary-delete-btn" id="diaryDeleteBtn" style="display:none">Delete</button>
     <button class="diary-save-btn" id="diaryEditorSave">Save</button>
   </div>
-  <div class="diary-editor-mood-row">
-    <span class="diary-editor-mood-label">Mood:</span>
-    <div class="diary-editor-mood-scroll" id="diaryEditorMoods"></div>
-  </div>
-  <div class="diary-editor-content-wrap">
-    <div class="diary-editor-page">
-      <div class="diary-editor-body" id="diaryEditorBody" contenteditable="true" data-placeholder="Write anything — this is just for you..."></div>
-    </div>
-  </div>
+  <div class="diary-editor-mood-row"><span class="diary-editor-mood-label">Mood:</span><div class="diary-editor-mood-scroll" id="diaryEditorMoods"></div></div>
+  <div class="diary-editor-content-wrap"><div class="diary-editor-page"><div class="diary-editor-body" id="diaryEditorBody" contenteditable="true" data-placeholder="Write anything..."></div></div></div>
   <div class="diary-editor-footer"><span class="diary-editor-date" id="diaryEditorDate"></span></div>
 </div>
-<!-- DIARY BOOK VIEW -->
 <div id="diaryBookOverlay">
-  <div class="book-topbar"><h3>📖 My Diary — Book View</h3><button class="btn-sm" id="diaryBookClose">Close</button></div>
+  <div class="book-topbar"><h3>&#128218; My Diary &#8212; Book View</h3><button class="btn-sm" id="diaryBookClose">Close</button></div>
   <div class="book-container">
-    <div class="book-spread" id="bookSpread">
-      <div class="book-page left" id="bookPageLeft"><div class="book-blank">—</div><span class="book-page-number" id="bookPageNumLeft"></span></div>
-      <div class="book-spine"></div>
-      <div class="book-page right" id="bookPageRight"><div class="book-blank">No entries yet.</div><span class="book-page-number" id="bookPageNumRight"></span></div>
-    </div>
-    <div class="book-nav">
-      <button class="book-nav-btn" id="bookPrevBtn" disabled><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <span class="book-page-info" id="bookPageInfo">—</span>
-      <button class="book-nav-btn" id="bookNextBtn"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:960px;">
+      <div class="book-spread" id="bookSpread">
+        <div class="book-page left" id="bookPageLeft"><div class="book-blank">&#8212;</div><span class="book-page-number" id="bookPageNumLeft"></span></div>
+        <div class="book-spine"></div>
+        <div class="book-page right" id="bookPageRight"><div class="book-blank">No entries yet.</div><span class="book-page-number" id="bookPageNumRight"></span></div>
+      </div>
+      <div class="book-nav">
+        <button class="book-nav-btn" id="bookPrevBtn" disabled><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <span class="book-page-info" id="bookPageInfo">&#8212;</span>
+        <button class="book-nav-btn" id="bookNextBtn"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
     </div>
   </div>
 </div>
-<!-- GUIDE -->
 <div id="guideOverlay">
   <div class="guide-box">
     <div style="overflow:hidden"><div class="guide-steps" id="guideSteps">
-      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h2>Welcome to Let's Talk 👋</h2><p>A safe space to share thoughts, ask questions, vent, and connect — completely anonymous by default.</p></div>
-      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h2>Customize your avatar</h2><p>Pick a gradient and initials that feel like you.</p><button class="guide-btn-next" id="guideOpenAvatarBtn" style="margin-top:0.3rem">Customize Avatar →</button></div>
-      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h2>You're anonymous by default</h2><p>All messages show as <strong style="color:var(--hl)">"Anonymous"</strong> unless you turn on Show real names in Settings.</p></div>
+      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h2>Welcome to Let's Talk &#128075;</h2><p>A safe space to share thoughts, ask questions, vent, and connect.</p></div>
+      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h2>Customize your avatar</h2><p>Pick a gradient and initials that feel like you.</p><button class="guide-btn-next" id="guideOpenAvatarBtn" style="margin-top:0.3rem">Customize Avatar &#8594;</button></div>
+      <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h2>You're anonymous by default</h2><p>All messages show as Anonymous unless you change it in Settings.</p></div>
       <div class="guide-step"><div class="guide-icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div><h2>Pick a chat category</h2><p>Browse categories like Casual, Rants, Goals, and more.</p></div>
-      <div class="guide-step"><div class="guide-icon" style="background:rgba(255,222,89,0.15);border-color:var(--hl)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="var(--hl)"/></svg></div><h2>You're all set!</h2><p>Start reading, posting, and connecting. Be kind to others and yourself. 💛</p></div>
+      <div class="guide-step"><div class="guide-icon" style="background:rgba(255,222,89,0.15);border-color:var(--hl)"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="var(--hl)"/></svg></div><h2>You're all set!</h2><p>Start reading, posting, and connecting. &#128155;</p></div>
     </div></div>
-    <div class="guide-footer"><button class="guide-btn-skip" id="guideBtnSkip">Skip guide</button><div style="display:flex;align-items:center;gap:1rem"><div class="guide-dots" id="guideDots"></div><button class="guide-btn-next" id="guideBtnNext">Next →</button></div></div>
+    <div class="guide-footer"><button class="guide-btn-skip" id="guideBtnSkip">Skip guide</button><div style="display:flex;align-items:center;gap:1rem"><div class="guide-dots" id="guideDots"></div><button class="guide-btn-next" id="guideBtnNext">Next &#8594;</button></div></div>
   </div>
 </div>
-<!-- AVATAR EDITOR -->
 <div id="avatarEditorOverlay">
   <div class="avatar-editor-box">
     <h3>Customize Avatar</h3>
     <div class="avatar-preview-wrap"><div id="avatarPreview">AB</div></div>
-    <div class="ae-row"><label>Initials (1–2 letters)</label><input class="ae-input" id="aeInitials" type="text" maxlength="2" placeholder="AB" style="width:80px"/></div>
+    <div class="ae-row"><label>Initials (1-2 letters)</label><input class="ae-input" id="aeInitials" type="text" maxlength="2" placeholder="AB" style="width:80px"/></div>
     <div class="ae-row"><label>Letter color</label><div class="ae-row-inline" id="aeLetterColors"></div></div>
     <div class="ae-row"><label>Gradient color 1</label><div class="ae-row-inline" id="aeColor1Swatches"><input class="ae-input-color" id="aeColor1Custom" type="color"/></div></div>
     <div class="ae-row"><label>Gradient color 2</label><div class="ae-row-inline" id="aeColor2Swatches"><input class="ae-input-color" id="aeColor2Custom" type="color"/></div></div>
@@ -1144,7 +766,10 @@ authOverlay.innerHTML='<div style="display:flex;flex-direction:column;align-item
 function getCachedNick(){return localStorage.getItem('lt_cached_nick');}
 function setCachedNick(n){localStorage.setItem('lt_cached_nick',n);}
 function clearCachedNick(){localStorage.removeItem('lt_cached_nick');}
+var _appInitialized=false;
+var authTimeout=setTimeout(function(){if(!_appInitialized&&!auth.currentUser){clearCachedNick();restoreAuthUI();showAuth();}},6000);
 auth.onAuthStateChanged(function(user){
+  clearTimeout(authTimeout);
   if(user){
     var cached=getCachedNick();
     if(cached){username=cached;authOverlay.classList.add('hidden');initApp();}
@@ -1161,7 +786,7 @@ auth.onAuthStateChanged(function(user){
 function restoreAuthUI(){
   authOverlay.innerHTML='<div class="auth-box"><div class="auth-logo"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="auth-logo-text">Let\'s Talk</span></div>'
     +'<div class="auth-tab-row"><button class="auth-tab active" id="tabSignIn">Sign In</button><button class="auth-tab" id="tabSignUp">Create Account</button></div>'
-    +'<div id="formSignIn"><div class="auth-field"><label>Email</label><input type="email" id="siEmail" placeholder="you@example.com" autocomplete="email"/><div class="auth-err" id="siEmailErr"></div></div><div class="auth-field"><label>Password</label><input type="password" id="siPassword" placeholder="••••••••" autocomplete="current-password"/><div class="auth-err" id="siPassErr"></div></div><div class="auth-err" id="siGlobalErr"></div><button class="auth-submit" id="btnSignIn">Sign In</button><div class="auth-fine">No account? <a href="#" id="switchToSignUp">Create one</a></div><div class="auth-fine" style="margin-top:0.5rem"><a href="#" id="forgotPassLink">Forgot password?</a></div></div>'
+    +'<div id="formSignIn"><div class="auth-field"><label>Email</label><input type="email" id="siEmail" placeholder="you@example.com" autocomplete="email"/><div class="auth-err" id="siEmailErr"></div></div><div class="auth-field"><label>Password</label><input type="password" id="siPassword" placeholder="Password" autocomplete="current-password"/><div class="auth-err" id="siPassErr"></div></div><div class="auth-err" id="siGlobalErr"></div><button class="auth-submit" id="btnSignIn">Sign In</button><div class="auth-fine">No account? <a href="#" id="switchToSignUp">Create one</a></div><div class="auth-fine" style="margin-top:0.5rem"><a href="#" id="forgotPassLink">Forgot password?</a></div></div>'
     +'<div id="formSignUp" style="display:none"><div class="auth-field"><label>Nickname <span style="font-size:0.7rem;color:var(--muted);font-weight:400">(optional)</span></label><input type="text" id="suNick" placeholder="Leave blank to post as Anonymous" maxlength="32"/><div class="auth-err" id="suNickErr"></div></div><div class="auth-field"><label>Email</label><input type="email" id="suEmail" placeholder="you@example.com" autocomplete="email"/><div class="auth-err" id="suEmailErr"></div></div><div class="auth-field"><label>Password</label><input type="password" id="suPassword" placeholder="Min 6 characters" autocomplete="new-password"/><div class="auth-err" id="suPassErr"></div></div><div class="auth-field"><label>Confirm Password</label><input type="password" id="suPassword2" placeholder="Repeat password" autocomplete="new-password"/><div class="auth-err" id="suPass2Err"></div></div><div class="auth-err" id="suGlobalErr"></div><button class="auth-submit" id="btnSignUp">Create Account</button><div class="auth-fine">Have an account? <a href="#" id="switchToSignIn">Sign in</a></div></div></div>';
   wireAuthUI();
 }
@@ -1180,13 +805,11 @@ function showAuth(){authOverlay.classList.remove('hidden');}
 function switchTab(t){var isIn=t==='in';document.getElementById('tabSignIn').classList.toggle('active',isIn);document.getElementById('tabSignUp').classList.toggle('active',!isIn);document.getElementById('formSignIn').style.display=isIn?'':'none';document.getElementById('formSignUp').style.display=isIn?'none':'';}
 function showErr(id,msg,inp){var el=document.getElementById(id);if(el){el.textContent=msg;el.classList.add('show');}if(inp){var i=document.getElementById(inp);if(i)i.classList.add('err');}}
 function clearAuthErr(){['siEmailErr','siPassErr','siGlobalErr','suNickErr','suEmailErr','suPassErr','suPass2Err','suGlobalErr'].forEach(function(id){var el=document.getElementById(id);if(el){el.textContent='';el.classList.remove('show');}});['siEmail','siPassword','suNick','suEmail','suPassword','suPassword2'].forEach(function(id){var el=document.getElementById(id);if(el)el.classList.remove('err');});}
-function setAuthLoading(btnId,loading){var btn=document.getElementById(btnId);if(!btn)return;btn.disabled=loading;btn.textContent=loading?'Please wait…':(btnId==='btnSignIn'?'Sign In':'Create Account');}
-function fbErr(code){var map={'auth/user-not-found':'No account with that email.','auth/wrong-password':'Incorrect password.','auth/invalid-credential':'Incorrect email or password.','auth/invalid-login-credentials':'Incorrect email or password.','auth/email-already-in-use':'Email already in use.','auth/weak-password':'Password must be at least 6 characters.','auth/invalid-email':'Enter a valid email.','auth/too-many-requests':'Too many attempts — wait and try again.','auth/network-request-failed':'Network error. Check your connection.'};return map[code]||'Something went wrong ('+code+')';}
+function setAuthLoading(btnId,loading){var btn=document.getElementById(btnId);if(!btn)return;btn.disabled=loading;btn.textContent=loading?'Please wait...':(btnId==='btnSignIn'?'Sign In':'Create Account');}
+function fbErr(code){var map={'auth/user-not-found':'No account with that email.','auth/wrong-password':'Incorrect password.','auth/invalid-credential':'Incorrect email or password.','auth/invalid-login-credentials':'Incorrect email or password.','auth/email-already-in-use':'Email already in use.','auth/weak-password':'Password must be at least 6 characters.','auth/invalid-email':'Enter a valid email.','auth/too-many-requests':'Too many attempts - wait and try again.','auth/network-request-failed':'Network error. Check your connection.'};return map[code]||'Something went wrong ('+code+')';}
 function doSignIn(){clearAuthErr();var email=document.getElementById('siEmail').value.trim(),pass=document.getElementById('siPassword').value;if(!email||!email.includes('@')){showErr('siEmailErr','Enter a valid email','siEmail');return;}if(!pass){showErr('siPassErr','Enter your password','siPassword');return;}setAuthLoading('btnSignIn',true);auth.signInWithEmailAndPassword(email,pass).catch(function(err){setAuthLoading('btnSignIn',false);var msg=fbErr(err.code);if(['auth/invalid-email','auth/user-not-found'].indexOf(err.code)>-1)showErr('siEmailErr',msg,'siEmail');else if(['auth/wrong-password','auth/invalid-credential','auth/invalid-login-credentials'].indexOf(err.code)>-1)showErr('siPassErr',msg,'siPassword');else showErr('siGlobalErr',msg);});}
 function doSignUp(){clearAuthErr();var rawNick=document.getElementById('suNick').value.trim(),nick=rawNick||'Anonymous';if(rawNick&&rawNick.length<2){showErr('suNickErr','Nickname must be at least 2 characters','suNick');return;}var email=document.getElementById('suEmail').value.trim(),pass=document.getElementById('suPassword').value,pass2=document.getElementById('suPassword2').value,ok=true;if(!email||!email.includes('@')){showErr('suEmailErr','Enter a valid email','suEmail');ok=false;}if(!pass||pass.length<6){showErr('suPassErr','Password must be at least 6 characters','suPassword');ok=false;}if(pass!==pass2){showErr('suPass2Err','Passwords do not match','suPassword2');ok=false;}if(!ok)return;setAuthLoading('btnSignUp',true);auth.createUserWithEmailAndPassword(email,pass).then(function(cred){dbGlobal.ref('users/'+cred.user.uid).set({nick:nick,email:email,showRealName:false,createdAt:Date.now()}).catch(function(){});}).catch(function(err){setAuthLoading('btnSignUp',false);var msg=fbErr(err.code);if(err.code==='auth/email-already-in-use')showErr('suEmailErr',msg,'suEmail');else if(err.code==='auth/weak-password')showErr('suPassErr',msg,'suPassword');else if(err.code==='auth/invalid-email')showErr('suEmailErr',msg,'suEmail');else showErr('suGlobalErr',msg);});}
 function doForgotPassword(){var email=document.getElementById('siEmail')?document.getElementById('siEmail').value.trim():'';if(!email)email=prompt('Enter your email address:');if(!email)return;auth.sendPasswordResetEmail(email).then(function(){alert('Password reset email sent to '+email);}).catch(function(err){alert(fbErr(err.code));});}
-
-var _appInitialized=false;
 function initApp(){
   if(_appInitialized)return;_appInitialized=true;
   try{
@@ -1196,35 +819,9 @@ function initApp(){
   document.getElementById('ddNick').textContent='@'+username.toLowerCase();
   document.getElementById('settingNickname').value=username;
   var CAT_SVGS={'Casual':'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>','Happy':'<circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>','Vibe':'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>','Lowkey':'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>','Rants':'<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>','Questions':'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>','Complaints':'<path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>','School life':'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>','Identity':'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>','Games':'<line x1="6" y1="11" x2="10" y2="11"/><line x1="8" y1="9" x2="8" y2="13"/><line x1="15" y1="12" x2="15.01" y2="12"/><line x1="17" y1="10" x2="17.01" y2="10"/><rect x="2" y="6" width="20" height="12" rx="2"/>','Music':'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>','Creative':'<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>','Goals':'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>','Achievements':'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/>','Positivity':'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>','Sleep':'<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>','Stress':'<path d="M8.56 2.9A7 7 0 0 1 19 9v4l2 2-10.62 6.14a2 2 0 0 1-2-.63L4 16V9a7 7 0 0 1 4.56-6.1z"/>','Burnout':'<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>','Perfectionism pressure':'<line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>','Social masking':'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>','Suggestions':'<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>','Emotional distress':'<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>','Getting Help':'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/><line x1="20" y1="8" x2="20" y2="14"/>','Self-Harm':'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.93 3.4 2 2 0 0 1 3.91 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>','Suicidal Ideation':'<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>'};
-  var CATEGORIES=[
-    {id:'Emotional distress',g1:'#0a3a6a',g2:'#040e20',color:'#60a5fa',desc:'Heavy feelings',sensitive:true},
-    {id:'Getting Help',g1:'#0a4a2a',g2:'#041408',color:'#34d399',desc:'Seeking support',sensitive:true},
-    {id:'Suicidal Ideation',g1:'#0a2a4a',g2:'#040a14',color:'#38bdf8',desc:'You are not alone',sensitive:true},
-    {id:'Self-Harm',g1:'#6a1a1a',g2:'#200808',color:'#f87171',desc:'Support space',sensitive:true},
-    {id:'Stress',g1:'#6a2a00',g2:'#200e00',color:'#f97316',desc:'Pressure & anxiety',sensitive:true},
-    {id:'Burnout',g1:'#6a1a1a',g2:'#200808',color:'#f87171',desc:'Exhaustion & overwhelm',sensitive:true},
-    {id:'Perfectionism pressure',g1:'#5a1a6a',g2:'#1a0820',color:'#e879f9',desc:'High standards & pressure',sensitive:true},
-    {id:'Social masking',g1:'#2a2e38',g2:'#0c0e14',color:'#94a3b8',desc:'Hiding & fitting in',sensitive:true},
-    {id:'Rants',g1:'#7a1a1a',g2:'#2a0808',color:'#f87171',desc:'Let it out'},
-    {id:'Questions',g1:'#0a4a6a',g2:'#041822',color:'#38bdf8',desc:'Ask anything'},
-    {id:'Casual',g1:'#1a4a7a',g2:'#0d1f2d',color:'#5bafd6',desc:'Everyday conversations'},
-    {id:'Happy',g1:'#7a5a00',g2:'#2a1f00',color:'#f0c040',desc:'Good vibes only'},
-    {id:'Vibe',g1:'#4a2a8a',g2:'#1a0a30',color:'#a78bfa',desc:"What's the mood?"},
-    {id:'Lowkey',g1:'#303038',g2:'#141418',color:'#8a8a9a',desc:'Quiet thoughts'},
-    {id:'Complaints',g1:'#7a3a0a',g2:'#2a1205',color:'#fb923c',desc:"What's bothering you?"},
-    {id:'School life',g1:'#0a5a38',g2:'#04201a',color:'#34d399',desc:'Academics & school'},
-    {id:'Identity',g1:'#7a1a4a',g2:'#2a0818',color:'#f472b6',desc:'Who are you?'},
-    {id:'Games',g1:'#1a3a7a',g2:'#080e28',color:'#60a5fa',desc:'Game talk'},
-    {id:'Music',g1:'#4a1a7a',g2:'#150828',color:'#c084fc',desc:'Tracks & artists'},
-    {id:'Creative',g1:'#7a1a2a',g2:'#2a0810',color:'#fb7185',desc:'Art, writing & more'},
-    {id:'Goals',g1:'#6a4a00',g2:'#201500',color:'#fbbf24',desc:'What are you working toward?'},
-    {id:'Achievements',g1:'#6a5a00',g2:'#1e1800',color:'#fde68a',desc:'Wins big and small'},
-    {id:'Positivity',g1:'#0a5a1a',g2:'#041a08',color:'#4ade80',desc:'Uplifting posts'},
-    {id:'Sleep',g1:'#1a1a6a',g2:'#080828',color:'#818cf8',desc:'Rest & sleep talk'},
-    {id:'Suggestions',g1:'#5a4a00',g2:'#1a1400',color:'#facc15',desc:"Ideas for Let's Talk"}
-  ];
+  var CATEGORIES=[{id:'Emotional distress',g1:'#0a3a6a',g2:'#040e20',color:'#60a5fa',desc:'Heavy feelings',sensitive:true},{id:'Getting Help',g1:'#0a4a2a',g2:'#041408',color:'#34d399',desc:'Seeking support',sensitive:true},{id:'Suicidal Ideation',g1:'#0a2a4a',g2:'#040a14',color:'#38bdf8',desc:'You are not alone',sensitive:true},{id:'Self-Harm',g1:'#6a1a1a',g2:'#200808',color:'#f87171',desc:'Support space',sensitive:true},{id:'Stress',g1:'#6a2a00',g2:'#200e00',color:'#f97316',desc:'Pressure & anxiety',sensitive:true},{id:'Burnout',g1:'#6a1a1a',g2:'#200808',color:'#f87171',desc:'Exhaustion & overwhelm',sensitive:true},{id:'Perfectionism pressure',g1:'#5a1a6a',g2:'#1a0820',color:'#e879f9',desc:'High standards',sensitive:true},{id:'Social masking',g1:'#2a2e38',g2:'#0c0e14',color:'#94a3b8',desc:'Hiding & fitting in',sensitive:true},{id:'Rants',g1:'#7a1a1a',g2:'#2a0808',color:'#f87171',desc:'Let it out'},{id:'Questions',g1:'#0a4a6a',g2:'#041822',color:'#38bdf8',desc:'Ask anything'},{id:'Casual',g1:'#1a4a7a',g2:'#0d1f2d',color:'#5bafd6',desc:'Everyday conversations'},{id:'Happy',g1:'#7a5a00',g2:'#2a1f00',color:'#f0c040',desc:'Good vibes only'},{id:'Vibe',g1:'#4a2a8a',g2:'#1a0a30',color:'#a78bfa',desc:"What's the mood?"},{id:'Lowkey',g1:'#303038',g2:'#141418',color:'#8a8a9a',desc:'Quiet thoughts'},{id:'Complaints',g1:'#7a3a0a',g2:'#2a1205',color:'#fb923c',desc:"What's bothering you?"},{id:'School life',g1:'#0a5a38',g2:'#04201a',color:'#34d399',desc:'Academics & school'},{id:'Identity',g1:'#7a1a4a',g2:'#2a0818',color:'#f472b6',desc:'Who are you?'},{id:'Games',g1:'#1a3a7a',g2:'#080e28',color:'#60a5fa',desc:'Game talk'},{id:'Music',g1:'#4a1a7a',g2:'#150828',color:'#c084fc',desc:'Tracks & artists'},{id:'Creative',g1:'#7a1a2a',g2:'#2a0810',color:'#fb7185',desc:'Art, writing & more'},{id:'Goals',g1:'#6a4a00',g2:'#201500',color:'#fbbf24',desc:'What are you working toward?'},{id:'Achievements',g1:'#6a5a00',g2:'#1e1800',color:'#fde68a',desc:'Wins big and small'},{id:'Positivity',g1:'#0a5a1a',g2:'#041a08',color:'#4ade80',desc:'Uplifting posts'},{id:'Sleep',g1:'#1a1a6a',g2:'#080828',color:'#818cf8',desc:'Rest & sleep talk'},{id:'Suggestions',g1:'#5a4a00',g2:'#1a1400',color:'#facc15',desc:"Ideas for Let's Talk"}];
   var CAT_MAP={};CATEGORIES.forEach(function(c){CAT_MAP[c.id]=c;});
-  var sensitiveCategories={'Suicidal Ideation':{title:'Heads up before you enter',desc:"This category may contain posts about suicidal thoughts. You are not alone.",resources:[{label:'988 Suicide & Crisis Lifeline',sub:'Call or text 988 (US, 24/7)',href:'https://988lifeline.org'},{label:'Crisis Text Line',sub:'Text HOME to 741741',href:'https://www.crisistextline.org'}]},'Self-Harm':{title:'Heads up before you enter',desc:'This category may contain posts about self-harm.',resources:[{label:'Crisis Text Line',sub:'Text HOME to 741741',href:'https://www.crisistextline.org'},{label:'To Write Love on Her Arms',sub:'twloha.com',href:'https://twloha.com/find-help/'}]},'Emotional distress':{title:'A note before you continue',desc:'This category may contain posts about emotional pain.',resources:[{label:'Crisis Text Line',sub:'Text HOME to 741741',href:'https://www.crisistextline.org'}]},'Getting Help':{title:'Looking for support?',desc:"This category is for people seeking support.",resources:[{label:'SAMHSA Helpline',sub:'1-800-662-4357 free 24/7',href:'https://www.samhsa.gov/find-help/national-helpline'}]},'Stress':{title:'A note before you continue',desc:'This category may contain posts about stress and anxiety.',resources:[]},'Burnout':{title:'A note before you continue',desc:'This category may contain posts about exhaustion.',resources:[]},'Perfectionism pressure':{title:'A note before you continue',desc:'This category may contain posts about mental health pressure.',resources:[]},'Social masking':{title:'A note before you continue',desc:'This category may contain posts about hiding feelings.',resources:[]}};
+  var sensitiveCategories={'Suicidal Ideation':{title:'Heads up before you enter',desc:'This category may contain posts about suicidal thoughts. You are not alone.',resources:[{label:'988 Suicide & Crisis Lifeline',sub:'Call or text 988 (US, 24/7)',href:'https://988lifeline.org'},{label:'Crisis Text Line',sub:'Text HOME to 741741',href:'https://www.crisistextline.org'}]},'Self-Harm':{title:'Heads up before you enter',desc:'This category may contain posts about self-harm.',resources:[{label:'Crisis Text Line',sub:'Text HOME to 741741',href:'https://www.crisistextline.org'}]},'Emotional distress':{title:'A note before you continue',desc:'This category may contain posts about emotional pain.',resources:[{label:'Crisis Text Line',sub:'Text HOME to 741741',href:'https://www.crisistextline.org'}]},'Getting Help':{title:'Looking for support?',desc:'This category is for people seeking support.',resources:[{label:'SAMHSA Helpline',sub:'1-800-662-4357 free 24/7',href:'https://www.samhsa.gov/find-help/national-helpline'}]},'Stress':{title:'A note before you continue',desc:'This category may contain posts about stress and anxiety.',resources:[]},'Burnout':{title:'A note before you continue',desc:'This category may contain posts about exhaustion.',resources:[]},'Perfectionism pressure':{title:'A note before you continue',desc:'This category may contain posts about mental health pressure.',resources:[]},'Social masking':{title:'A note before you continue',desc:'This category may contain posts about hiding feelings.',resources:[]}};
   var warningSeenKey=function(c){return'lt_seen_'+c.toLowerCase().replace(/\s+/g,'_');};
   var hasSeenWarning=function(c){return localStorage.getItem(warningSeenKey(c))==='1';};
   var markWarningSeen=function(c){localStorage.setItem(warningSeenKey(c),'1');};
@@ -1240,23 +837,21 @@ function initApp(){
   applyAvatarToUI();
   var _fbUser=auth.currentUser;if(_fbUser)syncAvatarFromDB(_fbUser.uid);
   if(!hasSeenGuide())setTimeout(showGuide,600);
-  /* GUIDE */
   var guideStep=0,GUIDE_TOTAL=5;
   function hasSeenGuide(){return localStorage.getItem('lt_guide_seen')==='1';}
   function markGuideSeen(){localStorage.setItem('lt_guide_seen','1');}
   function showGuide(){guideStep=0;var o=document.getElementById('guideOverlay');if(o)o.classList.add('open');renderGuideDots();updateGuideStep();}
   function renderGuideDots(){var el=document.getElementById('guideDots');if(!el)return;el.innerHTML='';for(var i=0;i<GUIDE_TOTAL;i++){var d=document.createElement('div');d.className='guide-dot'+(i===guideStep?' active':'');el.appendChild(d);}}
-  function updateGuideStep(){var steps=document.getElementById('guideSteps');if(steps)steps.style.transform='translateX(-'+guideStep*100+'%)';renderGuideDots();var nb=document.getElementById('guideBtnNext');if(nb){nb.textContent=guideStep===GUIDE_TOTAL-1?'Get Started 🎉':'Next →';nb.style.display=guideStep===1?'none':'';}}
+  function updateGuideStep(){var steps=document.getElementById('guideSteps');if(steps)steps.style.transform='translateX(-'+guideStep*100+'%)';renderGuideDots();var nb=document.getElementById('guideBtnNext');if(nb){nb.textContent=guideStep===GUIDE_TOTAL-1?'Get Started!':'Next';nb.style.display=guideStep===1?'none':'';}}
   function guideNext(){if(guideStep===GUIDE_TOTAL-1){closeGuide();return;}guideStep++;updateGuideStep();}
   function closeGuide(){var o=document.getElementById('guideOverlay');if(o)o.classList.remove('open');markGuideSeen();}
   document.getElementById('guideBtnNext').addEventListener('click',guideNext);
   document.getElementById('guideBtnSkip').addEventListener('click',closeGuide);
   document.getElementById('guideOpenAvatarBtn').addEventListener('click',function(){openAvatarEditor(function(){guideStep=2;updateGuideStep();});});
-  /* AVATAR EDITOR */
   var aeCallback=null;
   var SWATCHES=['#ffffff','#ffde59','#f87171','#fb923c','#4ade80','#38bdf8','#a78bfa','#f472b6','#e2e8f0','#121212'];
   var GRAD_SWATCHES=['#1a4a7a','#7a1a1a','#4a2a8a','#0a5a38','#6a4a00','#1a1a6a','#303038','#0a3a6a','#7a1a4a','#6a1a1a','#2a2e38','#0a4a2a'];
-  var DIRECTIONS=[{label:'↘',val:'135deg'},{label:'↓',val:'180deg'},{label:'→',val:'90deg'},{label:'↗',val:'45deg'},{label:'↙',val:'225deg'}];
+  var DIRECTIONS=[{label:'SE',val:'135deg'},{label:'S',val:'180deg'},{label:'E',val:'90deg'},{label:'NE',val:'45deg'},{label:'SW',val:'225deg'}];
   function openAvatarEditor(cb){
     aeCallback=cb||null;var p=getAvatarPrefs();document.getElementById('avatarEditorOverlay').classList.add('open');
     var aeIn=document.getElementById('aeInitials');aeIn.value=p.initials||avatarInitials(username);aeIn.addEventListener('input',updateAEPreview);
@@ -1275,7 +870,6 @@ function initApp(){
   document.getElementById('aeSave').addEventListener('click',function(){var v=getAEValues();setAvatarPrefs(v);applyAvatarToUI();updateSettingsAvatarMini&&updateSettingsAvatarMini();filterAndRender();document.getElementById('avatarEditorOverlay').classList.remove('open');if(aeCallback){aeCallback();aeCallback=null;}});
   document.getElementById('aeCancel').addEventListener('click',function(){document.getElementById('avatarEditorOverlay').classList.remove('open');aeCallback=null;});
   document.getElementById('avatarEditorOverlay').addEventListener('click',function(e){if(e.target===this){this.classList.remove('open');aeCallback=null;}});
-  /* HELPERS */
   function getShowRealName(){return localStorage.getItem('lt_show_real_name')==='1';}
   function getDisplayName(u){if(u===username)return u;return getShowRealName()?u:'Anonymous';}
   function getDiaryCloudEnabled(){return localStorage.getItem('lt_diary_cloud')!=='0';}
@@ -1288,7 +882,6 @@ function initApp(){
   function avatarColor(n){var c=['#3a8fd4','#f0c040','#a78bfa','#f472b6','#34d399','#fb923c','#60a5fa','#f87171','#c084fc','#4ade80'],i=0;for(var j=0;j<n.length;j++)i=(i+n.charCodeAt(j))%c.length;return c[i];}
   function formatMsgTime(ts){if(!ts)return'';return new Date(ts).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});}
   function groupPosts(posts){return posts.map(function(p,i){var prev=posts[i-1],next=posts[i+1],sP=prev&&prev.user===p.user,sN=next&&next.user===p.user;if(!sP&&!sN)return Object.assign({},p,{groupPos:'solo'});if(!sP&&sN)return Object.assign({},p,{groupPos:'first'});if(sP&&sN)return Object.assign({},p,{groupPos:'mid'});return Object.assign({},p,{groupPos:'last'});});}
-  /* CHAT LIST */
   var mpChatList=document.getElementById('mpChatList'),mpSearchInput=document.getElementById('mpSearchInput'),lastChatRestored=false;
   function buildChatList(q){
     q=q||'';mpChatList.innerHTML='';
@@ -1335,7 +928,6 @@ function initApp(){
     else if(v==='announcements'){document.getElementById('viewAnnouncements').style.display='flex';document.getElementById('viewAnnouncements').classList.add('show');}
     else{document.getElementById('viewWelcome').style.display='flex';}
   }
-  /* NAV */
   document.getElementById('navChats').addEventListener('click',function(){document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');currentView='chats';document.getElementById('middlePanel').style.display='';document.getElementById('mpTitle').textContent='Chats & Messages';if(selectedCategory)showView('chat');else showView('welcome');document.getElementById('topbarTitle').textContent='Chats & Messages';document.getElementById('topbarSub').textContent='Select a chat to start reading';buildChatList();});
   document.getElementById('navMessages').addEventListener('click',function(){
     document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');currentView='messages';selectedCategory=null;showView('chat');
@@ -1352,7 +944,6 @@ function initApp(){
   function openPetitionView(){document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});document.getElementById('topbarTitle').textContent='Sign Petition';document.getElementById('topbarSub').textContent='Mental wellness awareness';showView('petition');document.getElementById('middlePanel').style.display='none';}
   document.getElementById('navSettings').addEventListener('click',function(){document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Settings';document.getElementById('topbarSub').textContent='Your preferences';showView('settings');document.getElementById('middlePanel').style.display='none';updateSettingsAvatarMini&&updateSettingsAvatarMini();});
   document.getElementById('navPrivacy').addEventListener('click',function(){document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Privacy';document.getElementById('topbarSub').textContent='Your data & safety';showView('privacy');document.getElementById('middlePanel').style.display='none';});
-  /* SIDEBAR */
   var sidebar=document.getElementById('sidebar'),sbToggleIcon=document.getElementById('sbToggleIcon');
   function setSidebarCollapsed(c){sidebar.classList.toggle('collapsed',c);localStorage.setItem('lt_sb_collapsed',c?'1':'0');sbToggleIcon.innerHTML=c?'<polyline points="9 18 15 12 9 6"/>':'<polyline points="15 18 9 12 15 6"/>';}
   if(localStorage.getItem('lt_sb_collapsed')==='1')setSidebarCollapsed(true);
@@ -1362,7 +953,6 @@ function initApp(){
   document.getElementById('sidebarResizer').addEventListener('mousedown',function(e){sbR=true;sbX=e.clientX;sbW=sidebar.offsetWidth;document.body.style.userSelect='none';document.body.style.cursor='ew-resize';e.preventDefault();});
   document.addEventListener('mousemove',function(e){if(!sbR)return;var nw=Math.min(Math.max(sbW+e.clientX-sbX,52),420);sidebar.style.width=nw+'px';setSidebarCollapsed(nw<80);});
   document.addEventListener('mouseup',function(){if(!sbR)return;sbR=false;document.body.style.userSelect='';document.body.style.cursor='';});
-  /* POST MARKUP */
   function postMarkup(post,idx,arr){
     var isOwn=post.user===username,gp=post.groupPos||'solo',replyCount=Object.keys(post.replies||{}).length;
     var snippet=stripHtml(post.html),isFirst=gp==='first'||gp==='solo',isLast=gp==='last'||gp==='solo';
@@ -1377,41 +967,31 @@ function initApp(){
     var rowCls='msg-row'+(isOwn?' own':'')+(showAvatar?'':' hide-av')+(isFirst&&gp!=='solo'?' first':'')+(gp==='mid'?' mid':'')+(isLast&&gp!=='solo'?' last':'');
     var bubbleContent='';
     if(post.poll&&post.poll.question){var pp=post.poll,totalV=pp.options.reduce(function(s,o){return s+(o.votes||0);},0),myVote=localStorage.getItem('lt_poll_'+post.id);bubbleContent='<div style="font-size:0.84rem;font-weight:700;color:var(--hl);margin-bottom:0.5rem">'+escapeHtml(pp.question)+'</div>'+pp.options.map(function(o,oi){var pct=totalV>0?Math.round((o.votes||0)/totalV*100):0,voted=myVote===String(oi);return'<div class="msg-poll-opt'+(voted?' voted':'')+'" data-poll-vote="'+post.id+'" data-poll-opt="'+oi+'"><span class="opt-label">'+escapeHtml(o.label)+'</span><div class="msg-poll-bar-wrap"><div class="msg-poll-bar" style="width:'+pct+'%"></div></div><span class="msg-poll-pct">'+pct+'%</span></div>';}).join('')+'<div style="font-size:0.68rem;color:var(--muted);margin-top:0.3rem">'+totalV+' vote'+(totalV!==1?'s':'')+'</div>';}
-    else{bubbleContent=(post.title?'<div class="msg-title">'+escapeHtml(post.title)+'</div>':'')+'<div class="msg-text">'+escapeHtml(snippet.slice(0,320))+(snippet.length>320?'\u2026':'')+'</div>';}
+    else{bubbleContent=(post.title?'<div class="msg-title">'+escapeHtml(post.title)+'</div>':'')+'<div class="msg-text">'+escapeHtml(snippet.slice(0,320))+(snippet.length>320?'...':'')+'</div>';}
     var threadHtml='';
-    if(replyCount>0){var repls=flattenReplies(post.replies);repls.sort(function(a,b){return a.time-b.time;});threadHtml='<div class="msg-thread-preview">'+repls.slice(0,2).map(function(r){return'<div class="msg-thread-row"><strong>'+escapeHtml(getDisplayName(r.user))+'</strong>'+escapeHtml(stripHtml(r.html).slice(0,60))+'</div>';}).join('')+(replyCount>2?'<div class="msg-thread-more" data-open-post="'+post.id+'">'+replyCount+' replies \u2192</div>':'')+'</div>';}
+    if(replyCount>0){var repls=flattenReplies(post.replies);repls.sort(function(a,b){return a.time-b.time;});threadHtml='<div class="msg-thread-preview">'+repls.slice(0,2).map(function(r){return'<div class="msg-thread-row"><strong>'+escapeHtml(getDisplayName(r.user))+'</strong>'+escapeHtml(stripHtml(r.html).slice(0,60))+'</div>';}).join('')+(replyCount>2?'<div class="msg-thread-more" data-open-post="'+post.id+'">'+replyCount+' replies</div>':'')+'</div>';}
     var footHtml='<div class="msg-footer"><span class="msg-time">'+formatMsgTime(post.time)+'</span>'+(post.poll?'<span style="font-size:0.68rem;color:var(--muted)">Poll</span>':'<button class="msg-reply-btn" data-open-post="'+post.id+'"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>'+(replyCount>0?replyCount+' repl'+(replyCount===1?'y':'ies'):'Reply')+'</button>')+'<button class="msg-report-btn" data-post-id="'+post.id+'"><svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M7 4h10l-2.8 3L17 10H7z"/></svg></button></div>';
     return divHtml+'<div class="'+rowCls+'" data-id="'+post.id+'" style="animation-delay:'+(idx*18)+'ms">'+avHtml+'<div class="msg-group">'+nameHtml+'<div class="msg-bubble"'+(post.poll?'':' data-open-post="'+post.id+'"')+'>'+bubbleContent+'</div>'+threadHtml+footHtml+'</div></div>';
   }
   var postList=document.getElementById('postList'),searchInput=document.getElementById('searchInput'),sortSelect=document.getElementById('sortSelect'),msgInput=document.getElementById('msgInput'),msgSendBtn=document.getElementById('msgSendBtn');
   function filterAndRender(){
     var q=searchInput.value.trim().toLowerCase(),sort=sortSelect.value;
-    var visible=postsData.filter(function(p){
-      if(currentView==='messages')return p.user===username;
-      if(selectedCategory)return p.category.toLowerCase()===selectedCategory.toLowerCase();
-      return true;
-    }).filter(function(p){return!q||(p.title.toLowerCase()+' '+p.plainText).includes(q);});
+    var visible=postsData.filter(function(p){if(currentView==='messages')return p.user===username;if(selectedCategory)return p.category.toLowerCase()===selectedCategory.toLowerCase();return true;}).filter(function(p){return!q||(p.title.toLowerCase()+' '+p.plainText).includes(q);});
     var isMessages=currentView==='messages';
     visible.sort(function(a,b){return isMessages?(b.time-a.time):(sort==='oldest'?a.time-b.time:b.time-a.time);});
     if(!visible.length){postList.innerHTML='<div class="empty">No messages yet.<br><span style="font-size:0.78rem">Be the first to post.</span></div>';return;}
     var grouped=isMessages?visible:groupPosts(visible);
     postList.innerHTML=grouped.map(function(p,i){return postMarkup(p,i,grouped);}).join('');
-    if(!filterAndRender._hasScrolled){
-      filterAndRender._hasScrolled=true;
-      if(!isMessages){setTimeout(function(){postList.scrollTop=postList.scrollHeight;},50);}
-      else{postList.scrollTop=0;}
-    }
+    if(!filterAndRender._hasScrolled){filterAndRender._hasScrolled=true;if(!isMessages){setTimeout(function(){postList.scrollTop=postList.scrollHeight;},50);}else{postList.scrollTop=0;}}
     if(selectedCategory){var cat=CAT_MAP[selectedCategory]||{};document.getElementById('chatHeaderSub').textContent=visible.length+' post'+(visible.length!==1?'s':'')+' \u00b7 '+(cat.desc||'');}
   }
   searchInput.addEventListener('input',filterAndRender);sortSelect.addEventListener('change',filterAndRender);
   if(msgInput){msgInput.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px';msgSendBtn.disabled=!this.value.trim();});msgInput.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});}
   function sendMsg(){if(!selectedCategory||!msgInput.value.trim())return;var text=msgInput.value.trim();db.ref('messages').push({title:'',html:escapeHtml(text).replace(/\n/g,'<br>'),text:text,user:username,category:selectedCategory,time:Date.now(),likes:0});msgInput.value='';msgInput.style.height='auto';msgSendBtn.disabled=true;filterAndRender._hasScrolled=false;setTimeout(function(){postList.scrollTop=postList.scrollHeight;},100);}
   if(msgSendBtn)msgSendBtn.addEventListener('click',sendMsg);
-  /* PLUS MENU */
   var msgPlusBtn=document.getElementById('msgPlusBtn'),msgPlusMenu=document.getElementById('msgPlusMenu');
   if(msgPlusBtn)msgPlusBtn.addEventListener('click',function(e){e.stopPropagation();msgPlusMenu.classList.toggle('open');});
   document.addEventListener('click',function(e){if(!msgPlusMenu.contains(e.target)&&e.target!==msgPlusBtn)msgPlusMenu.classList.remove('open');});
-  /* POLL */
   var pollModal=document.getElementById('pollModal'),pollOptions=document.getElementById('pollOptions'),pollQuestion=document.getElementById('pollQuestion');
   function addPollRow(ph){var row=document.createElement('div');row.className='poll-option-row';row.innerHTML='<input class="poll-option-input" type="text" placeholder="'+ph+'"/><button class="poll-option-del" tabindex="-1"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>';row.querySelector('.poll-option-del').addEventListener('click',function(){if(pollOptions.children.length>2)row.remove();});pollOptions.appendChild(row);}
   Array.from(pollOptions.querySelectorAll('.poll-option-del')).forEach(function(b){b.addEventListener('click',function(){var r=b.closest('.poll-option-row');if(pollOptions.children.length>2)r.remove();});});
@@ -1420,20 +1000,17 @@ function initApp(){
   document.getElementById('pollCancel').addEventListener('click',function(){pollModal.classList.remove('open');});
   if(pollModal)pollModal.addEventListener('click',function(e){if(e.target===pollModal)pollModal.classList.remove('open');});
   document.getElementById('pollSend').addEventListener('click',function(){if(!selectedCategory)return;var q=pollQuestion.value.trim(),opts=Array.from(pollOptions.querySelectorAll('.poll-option-input')).map(function(i){return i.value.trim();}).filter(Boolean);if(!q||opts.length<2)return;db.ref('messages').push({title:'',html:'',text:'[POLL] '+q,user:username,category:selectedCategory,time:Date.now(),likes:0,poll:{question:q,options:opts.map(function(o){return{label:o,votes:0};})}});pollQuestion.value='';Array.from(pollOptions.querySelectorAll('.poll-option-input')).forEach(function(i){i.value='';});pollModal.classList.remove('open');setTimeout(function(){postList.scrollTop=postList.scrollHeight;},200);});
-  /* SEND LATER */
   var sendLaterModal=document.getElementById('sendLaterModal'),sendLaterTimeInput=document.getElementById('sendLaterTime');
   function setSLDefault(){var d=new Date(Date.now()+3600000),pad=function(n){return n<10?'0'+n:n;};sendLaterTimeInput.value=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes());}
   document.getElementById('msgSendLaterBtn').addEventListener('click',function(){if(!msgInput.value.trim())return;msgPlusMenu.classList.remove('open');setSLDefault();sendLaterModal.classList.add('open');});
   document.getElementById('sendLaterCancel').addEventListener('click',function(){sendLaterModal.classList.remove('open');});
   if(sendLaterModal)sendLaterModal.addEventListener('click',function(e){if(e.target===sendLaterModal)sendLaterModal.classList.remove('open');});
   document.getElementById('sendLaterConfirm').addEventListener('click',function(){if(!selectedCategory)return;var text=msgInput.value.trim();if(!text)return;var st=new Date(sendLaterTimeInput.value).getTime();if(!st||st<=Date.now()){pushNotif('Please choose a future time');return;}pushNotif('Scheduled for '+new Date(st).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}));setTimeout(function(){db.ref('messages').push({title:'',html:escapeHtml(text).replace(/\n/g,'<br>'),text:text,user:username,category:selectedCategory,time:Date.now(),likes:0});pushNotif('Scheduled message sent');setTimeout(function(){postList.scrollTop=postList.scrollHeight;},150);},st-Date.now());msgInput.value='';msgInput.style.height='auto';msgSendBtn.disabled=true;sendLaterModal.classList.remove('open');});
-  /* POST LIST CLICKS */
   if(postList)postList.addEventListener('click',function(e){
     var pv=e.target.closest('[data-poll-vote]');if(pv){var pid=pv.dataset.pollVote,oi=parseInt(pv.dataset.pollOpt);if(localStorage.getItem('lt_poll_'+pid)!==null)return;localStorage.setItem('lt_poll_'+pid,String(oi));db.ref('messages/'+pid+'/poll/options/'+oi+'/votes').transaction(function(v){return(v||0)+1;});return;}
     var rf=e.target.closest('.msg-report-btn');if(rf){e.stopPropagation();var post=postsData.find(function(p){return p.id===rf.dataset.postId;});if(post)openReportModal({type:'post',postId:post.id,replyId:'',title:post.title});return;}
     var op=e.target.closest('[data-open-post]');if(op)openPostOverlay(op.dataset.openPost);
   });
-  /* OVERLAY */
   function flattenReplies(obj){if(!obj)return[];return Object.entries(obj).map(function(e){var id=e[0],r=e[1];return{id:id,parentId:r.parentId||null,text:r.text||'',html:r.html||escapeHtml(r.text||''),user:r.user||'Anonymous',time:Number(r.time)||Date.now()};});}
   function buildReplyTree(replies){var map=new Map(),roots=[];replies.forEach(function(r){map.set(r.id,Object.assign({},r,{children:[]}));});map.forEach(function(r){if(r.parentId&&map.has(r.parentId))map.get(r.parentId).children.push(r);else roots.push(r);});function srt(a){a.sort(function(x,y){return x.time-y.time;});a.forEach(function(i){srt(i.children);});}srt(roots);return roots;}
   function renderReplyNode(node){return'<div class="reply" data-reply-id="'+node.id+'"><div class="post-meta">'+escapeHtml(getDisplayName(node.user))+' \u00b7 '+formatTime(node.time)+'</div><div class="reply-body">'+node.html+'</div><div class="reply-tools"><button class="btn-sm" data-reply-action="reply" data-reply-id="'+node.id+'">\u21a9 Reply</button><button class="report-flag" data-report-type="reply" data-reply-id="'+node.id+'"><svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M7 4h10l-2.8 3L17 10H7z"/></svg></button></div>'+(node.children.length?'<div class="reply-children">'+node.children.map(renderReplyNode).join('')+'</div>':'')+'</div>';}
@@ -1444,23 +1021,20 @@ function initApp(){
   document.getElementById('cancelReplyTarget').addEventListener('click',function(){setReplyTarget(null,'Replying to message');});
   document.getElementById('overlayReportPost').addEventListener('click',function(){var post=postsData.find(function(p){return p.id===activePostId;});if(post)openReportModal({type:'post',postId:post.id,replyId:'',title:post.title});});
   document.getElementById('replyList').addEventListener('click',function(e){var rb=e.target.closest('[data-reply-action="reply"]');if(rb){setReplyTarget(rb.dataset.replyId,'Replying to a reply');document.getElementById('replyInput').focus();return;}var rf=e.target.closest('.report-flag');if(rf&&rf.dataset.reportType==='reply')openReportModal({type:'reply',postId:activePostId,replyId:rf.dataset.replyId,title:'reply'});});
-  /* REPORT */
   function openReportModal(payload){reportPayload=payload;document.getElementById('reportContextEl').textContent=payload.type==='reply'?'Report this reply:':'Report: "'+(payload.title||'post')+'"';document.getElementById('reportModal').classList.add('open');}
   document.getElementById('closeModal').addEventListener('click',function(){document.getElementById('reportModal').classList.remove('open');});
   document.getElementById('reportModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
   document.querySelectorAll('.report-option').forEach(function(opt){opt.addEventListener('click',function(){db.ref('reports').push(Object.assign({},reportPayload,{reason:opt.textContent.trim(),reportedBy:username,time:Date.now()}));document.getElementById('reportModal').classList.remove('open');});});
-  /* CAT WARNING */
   var pendingCat=null;
   function showCatWarning(cat,cb){var cfg=sensitiveCategories[cat];pendingCat=cb;document.getElementById('catWarningTitle').textContent=cfg.title;document.getElementById('catWarningDesc').textContent=cfg.desc;var res=document.getElementById('catWarningResources');if(cfg.resources.length){res.style.display='';res.innerHTML=cfg.resources.map(function(r){return'<a class="cat-resource" href="'+r.href+'" target="_blank" rel="noopener"><strong>'+escapeHtml(r.label)+'</strong><span>'+escapeHtml(r.sub)+'</span></a>';}).join('');}else{res.style.display='none';}document.getElementById('catWarning').classList.add('open');}
   document.getElementById('catWarningCancel').addEventListener('click',function(){document.getElementById('catWarning').classList.remove('open');pendingCat=null;});
   document.getElementById('catWarningContinue').addEventListener('click',function(){document.getElementById('catWarning').classList.remove('open');if(pendingCat){pendingCat();pendingCat=null;}});
-  /* NOTIFICATIONS with swipe-to-dismiss */
   var notifList=[];
   function pushNotif(msg){notifList.unshift({id:Date.now()+'_'+Math.random(),msg:msg,time:Date.now()});document.getElementById('notifDot').classList.add('show');renderNotifs();}
   function renderNotifs(){
     var el=document.getElementById('notifList');
     if(!notifList.length){el.innerHTML='<div class="notif-empty">No notifications yet</div>';return;}
-    el.innerHTML=notifList.slice(0,10).map(function(n){return'<div class="notif-item" data-nid="'+n.id+'"><div class="notif-title">'+escapeHtml(n.msg)+'</div><div class="notif-sub">'+formatTime(n.time)+'</div><span class="notif-dismiss-hint">\u2190 swipe to dismiss</span></div>';}).join('');
+    el.innerHTML=notifList.slice(0,10).map(function(n){return'<div class="notif-item" data-nid="'+n.id+'"><div class="notif-title">'+escapeHtml(n.msg)+'</div><div class="notif-sub">'+formatTime(n.time)+'</div><span class="notif-dismiss-hint">swipe to dismiss</span></div>';}).join('');
     el.querySelectorAll('.notif-item').forEach(function(item){
       var sx=0,dragging=false;
       function onMove(clientX){var dx=clientX-sx;if(!dragging&&Math.abs(dx)>8)dragging=true;if(dragging&&dx<0){item.style.transform='translateX('+Math.min(0,dx)+'px)';item.style.opacity=String(Math.max(0,1+dx/130));}}
@@ -1473,13 +1047,11 @@ function initApp(){
   }
   document.getElementById('notifBtn').addEventListener('click',function(e){e.stopPropagation();var p=document.getElementById('notifPanel');p.classList.toggle('open');document.getElementById('acctDropdown').classList.remove('open');if(p.classList.contains('open')){document.getElementById('notifDot').classList.remove('show');renderNotifs();}});
   document.getElementById('closeNotif').addEventListener('click',function(){document.getElementById('notifPanel').classList.remove('open');});
-  /* ACCOUNT DROPDOWN */
   document.getElementById('acctBtn').addEventListener('click',function(e){e.stopPropagation();document.getElementById('acctDropdown').classList.toggle('open');document.getElementById('notifPanel').classList.remove('open');});
   document.addEventListener('click',function(e){if(!document.getElementById('acctDropdown').contains(e.target))document.getElementById('acctDropdown').classList.remove('open');if(!document.getElementById('notifPanel').contains(e.target)&&e.target.id!=='notifBtn')document.getElementById('notifPanel').classList.remove('open');});
   document.getElementById('ddSettings').addEventListener('click',function(){document.getElementById('acctDropdown').classList.remove('open');document.getElementById('navSettings').click();});
   document.getElementById('ddPrivacy').addEventListener('click',function(){document.getElementById('acctDropdown').classList.remove('open');document.getElementById('navPrivacy').click();});
   document.getElementById('ddLogout').addEventListener('click',function(){if(confirm('Sign out of '+username+'?')){clearCachedNick();auth.signOut().then(function(){location.reload();}).catch(function(){location.reload();});}document.getElementById('acctDropdown').classList.remove('open');});
-  /* SETTINGS */
   var settingsAvatarRow=document.getElementById('settingsOpenAvatarBtn');
   settingsAvatarRow.addEventListener('click',function(){openAvatarEditor(null);});
   settingsAvatarRow.addEventListener('mouseenter',function(){this.style.background='rgba(255,255,255,0.04)';});
@@ -1495,11 +1067,9 @@ function initApp(){
   document.getElementById('resetWarningsBtn').addEventListener('click',function(){CATEGORIES.forEach(function(c){localStorage.removeItem(warningSeenKey(c.id));});pushNotif('Warning history reset');});
   document.getElementById('clearDraftBtn').addEventListener('click',function(){localStorage.removeItem('lt_draft_content');localStorage.removeItem('lt_draft_title');document.getElementById('editorTitle').value='';document.getElementById('editor').innerHTML='';pushNotif('Draft cleared');});
   document.getElementById('removeSigBtn').addEventListener('click',function(){localStorage.removeItem('lt_petition_signed');document.getElementById('petitionSignBtn').disabled=false;document.getElementById('petitionSignBtn').textContent='Sign Petition';document.getElementById('petSignedLabel').style.display='none';pushNotif('Petition signature removed');});
-  /* Diary cloud toggle */
   var privDiaryCloud=document.getElementById('privacyDiaryCloud');
   privDiaryCloud.checked=getDiaryCloudEnabled();
   privDiaryCloud.addEventListener('change',function(){localStorage.setItem('lt_diary_cloud',this.checked?'1':'0');pushNotif(this.checked?'Diary syncing to cloud':'Diary saved locally only');});
-  /* PETITION */
   var PETITION_GOALS=[5,10,20,50,75,100,150,200];
   var petRef=db.ref('petition/count');
   function updatePetitionUI(count){document.getElementById('petCountBig').textContent=count;document.getElementById('sbPetCount').textContent=count;var maxGoal=PETITION_GOALS[PETITION_GOALS.length-1],currentGoal=PETITION_GOALS.find(function(g){return g>count;})||maxGoal;document.getElementById('petTrackFill').style.width=Math.min(count/maxGoal*100,100)+'%';document.getElementById('sbPetFill').style.width=Math.min(count/PETITION_GOALS[0]*100,100)+'%';document.getElementById('petMilestonesRow').innerHTML=PETITION_GOALS.map(function(g){var reached=count>=g,current=g===currentGoal,left=(g/maxGoal*100).toFixed(2);return'<div class="pm-node'+(reached?' reached':'')+(current?' current':'')+'" style="left:'+left+'%"><div class="pm-dot"></div><div class="pm-label">'+g+'</div></div>';}).join('');var hs=localStorage.getItem('lt_petition_signed')==='1';document.getElementById('petitionSignBtn').disabled=hs;document.getElementById('petitionSignBtn').textContent=hs?'Signed!':'Sign Petition';document.getElementById('petSignedLabel').style.display=hs?'':'none';}
@@ -1507,14 +1077,12 @@ function initApp(){
   document.getElementById('petitionSignBtn').addEventListener('click',function(){if(localStorage.getItem('lt_petition_signed')==='1')return;localStorage.setItem('lt_petition_signed','1');petRef.transaction(function(c){return(c||0)+1;});pushNotif('You signed the petition!');});
   document.getElementById('petInviteInput').value=window.location.href.split('?')[0]+'?ref=petition';
   document.getElementById('petCopyBtn').addEventListener('click',function(){navigator.clipboard.writeText(document.getElementById('petInviteInput').value).then(function(){document.getElementById('petCopyBtn').textContent='Copied!';setTimeout(function(){document.getElementById('petCopyBtn').textContent='Copy link';},2000);});});
-  /* FIREBASE DATA */
   db.ref('messages').on('value',function(snap){
     var data=snap.val();postsData=data?Object.entries(data).map(function(e){return normalize(e[0],e[1]);}):[]; buildChatList();
     var own=postsData.filter(function(p){return p.user===username;}).length;var badge=document.getElementById('inboxBadge');badge.style.display=own?'':'none';badge.textContent=own;
     filterAndRender();
     if(activePostId&&document.getElementById('postOverlay').classList.contains('open'))openPostOverlay(activePostId);
   });
-  /* COMPOSER */
   var composerOverlay=document.getElementById('composerOverlay'),editor=document.getElementById('editor'),editorTitle=document.getElementById('editorTitle'),categoryInput=document.getElementById('categoryInput'),formatSelect=document.getElementById('formatSelect'),linkBtn=document.getElementById('linkBtn'),linkPanel=document.getElementById('linkPanel'),linkInput=document.getElementById('linkInput'),linkNameInput=document.getElementById('linkNameInput'),previewContainer=document.getElementById('previewContainer');
   document.getElementById('closeComposer').addEventListener('click',function(){composerOverlay.classList.remove('open');});
   function saveSelection(){var sel=window.getSelection();if(sel&&sel.rangeCount>0)savedRange=sel.getRangeAt(0).cloneRange();}
@@ -1545,10 +1113,8 @@ function initApp(){
   document.getElementById('cancelCodeBtn').addEventListener('click',function(){codePanel.classList.remove('open');});
   document.getElementById('insertCodeBtn').addEventListener('click',function(){var code=document.getElementById('codeTextarea').value;if(!code.trim())return;var lang=document.getElementById('codeLangSelect').value;var pre=document.createElement('pre'),codeEl=document.createElement('code');if(lang)codeEl.setAttribute('data-lang',lang);codeEl.textContent=code;pre.appendChild(codeEl);var br=document.createElement('p');br.innerHTML='<br>';editor.focus();restoreSelection();var sel=window.getSelection();if(sel&&sel.rangeCount){var range=sel.getRangeAt(0);range.collapse(false);range.insertNode(br);range.insertNode(pre);range.setStartAfter(br);sel.removeAllRanges();sel.addRange(range);}else{editor.appendChild(pre);editor.appendChild(br);}document.getElementById('codeTextarea').value='';codePanel.classList.remove('open');editor.focus();syncPreview();});
   var emojiPanel=document.getElementById('emojiPanel'),emojiGrid=document.getElementById('emojiGrid'),emojiSearch=document.getElementById('emojiSearch'),emojiTabs=document.getElementById('emojiTabs');
-  var TWEMOJI_BASE='https://cdn.jsdelivr.net/npm/twemoji@14/dist/svg/';
-  function emojiToTwUrl(em){var cp=[].map.call(em.match(/./gu)||[],function(c){return c.codePointAt(0).toString(16);}).filter(function(c){return c!=='fe0f';}).join('-');return TWEMOJI_BASE+cp+'.svg';}
-  var emojiData={Smileys:[['😀','grinning'],['😁','beaming'],['😂','joy'],['😊','blush'],['😎','sunglasses'],['😍','heart eyes'],['🥰','smiling hearts'],['🤗','hugging'],['🤔','thinking'],['😢','crying'],['😭','loudly crying'],['😠','angry'],['🤬','cursing'],['👻','ghost']],People:[['👋','wave'],['👌','ok'],['✌️','peace'],['👍','thumbs up'],['👎','thumbs down'],['✊','fist'],['👏','clap'],['🙌','raised hands'],['🙏','pray'],['💪','muscle']],Hearts:[['❤️','red heart'],['🧡','orange'],['💛','yellow'],['💚','green'],['💙','blue'],['💜','purple'],['💔','broken'],['💕','two hearts'],['💖','sparkling']],Nature:[['🐶','dog'],['🐱','cat'],['🌸','blossom'],['🌻','sunflower'],['🌹','rose'],['🔥','fire'],['⭐','star'],['🌙','moon'],['☀️','sun'],['🌈','rainbow'],['❄️','snowflake']],Symbols:[['✅','check'],['❌','cross'],['❓','question'],['❗','exclamation'],['💯','100'],['🔔','bell'],['🚫','no'],['⚠️','warning']]};
-  function renderEmojiGrid(emojis){emojiGrid.innerHTML=emojis.map(function(em){return'<button class="emoji-btn" type="button" title="'+em[1]+'" data-emoji="'+em[0]+'"><img src="'+emojiToTwUrl(em[0])+'" alt="'+em[0]+'" loading="lazy" onerror="this.parentElement.textContent=\''+em[0]+'\'"></button>';}).join('');}
+  var emojiData={Smileys:[['😀','grinning'],['😁','beaming'],['😂','joy'],['😊','blush'],['😎','sunglasses'],['😍','heart eyes'],['🥰','smiling hearts'],['🤗','hugging'],['🤔','thinking'],['😢','crying'],['😭','loudly crying'],['😠','angry'],['🤬','cursing'],['👻','ghost']],People:[['👋','wave'],['👌','ok'],['✌','peace'],['👍','thumbs up'],['👎','thumbs down'],['✊','fist'],['👏','clap'],['🙌','raised hands'],['🙏','pray'],['💪','muscle']],Hearts:[['❤','red heart'],['🧡','orange'],['💛','yellow'],['💚','green'],['💙','blue'],['💜','purple'],['💔','broken'],['💕','two hearts'],['💖','sparkling']],Nature:[['🐶','dog'],['🐱','cat'],['🌸','blossom'],['🌻','sunflower'],['🌹','rose'],['🔥','fire'],['⭐','star'],['🌙','moon'],['☀','sun'],['🌈','rainbow'],['❄','snowflake']],Symbols:[['✅','check'],['❌','cross'],['❓','question'],['❗','exclamation'],['💯','100'],['🔔','bell'],['🚫','no'],['⚠','warning']]};
+  function renderEmojiGrid(emojis){emojiGrid.innerHTML=emojis.map(function(em){return'<button class="emoji-btn" type="button" title="'+em[1]+'" data-emoji="'+em[0]+'">'+em[0]+'</button>';}).join('');}
   var ecats=Object.keys(emojiData);
   ecats.forEach(function(cat,i){var btn=document.createElement('button');btn.type='button';btn.className='emoji-tab'+(i===0?' active':'');btn.textContent=cat;btn.addEventListener('click',function(){document.querySelectorAll('.emoji-tab').forEach(function(t){t.classList.remove('active');});btn.classList.add('active');emojiSearch.value='';renderEmojiGrid(emojiData[cat]);});emojiTabs.appendChild(btn);});
   renderEmojiGrid(emojiData[ecats[0]]);
@@ -1559,31 +1125,17 @@ function initApp(){
   document.getElementById('saveDraftBtn').addEventListener('click',function(){localStorage.setItem('lt_draft_content',editor.innerHTML);localStorage.setItem('lt_draft_title',editorTitle.value);pushNotif('Draft saved');});
   document.getElementById('publishBtn').addEventListener('click',function(){var title=editorTitle.value.trim(),html=editor.innerHTML.trim(),text=editor.textContent.trim(),category=categoryInput.value;if(!title||!text)return;db.ref('messages').push({title:title,html:html,text:text,user:username,category:category,time:Date.now(),likes:0});editorTitle.value='';editor.innerHTML='';composerOverlay.classList.remove('open');pushNotif('Posted "'+title.slice(0,30)+'"');});
   window.addEventListener('load',function(){var c=localStorage.getItem('lt_draft_content'),t=localStorage.getItem('lt_draft_title');if(c)editor.innerHTML=c;if(t)editorTitle.value=t;syncPreview();});
-  /* MIDDLE PANEL RESIZE */
   var mpPanel=document.getElementById('middlePanel'),mpResizer=document.getElementById('mpResizer'),mpR=false,mpX=0,mpW=0;
   mpResizer.addEventListener('mousedown',function(e){mpR=true;mpX=e.clientX;mpW=mpPanel.offsetWidth;document.body.style.userSelect='none';document.body.style.cursor='ew-resize';e.preventDefault();});
   document.addEventListener('mousemove',function(e){if(mpR)mpPanel.style.width=Math.min(Math.max(mpW+(e.clientX-mpX),180),480)+'px';});
   document.addEventListener('mouseup',function(){if(mpR){mpR=false;document.body.style.cursor='';document.body.style.userSelect='';}});
-  /* COMPOSER RESIZE */
   var cRH=document.getElementById('composerResizeHandle'),cRL=document.getElementById('composerResizeLeft'),cRR=document.getElementById('composerResizeRight');
   var isRV=false,isRH=false,rSide='',rSY=0,rSH=0,rSX=0,rSW=0;
   cRH.addEventListener('mousedown',function(e){isRV=true;rSY=e.clientY;rSH=composerOverlay.offsetHeight;document.body.style.userSelect='none';document.body.style.cursor='ns-resize';});
   [cRL,cRR].forEach(function(h){h.addEventListener('mousedown',function(e){isRH=true;rSide=h===cRL?'left':'right';rSX=e.clientX;rSW=composerOverlay.offsetWidth;document.body.style.userSelect='none';document.body.style.cursor='ew-resize';e.stopPropagation();});});
   document.addEventListener('mousemove',function(e){if(isRV)composerOverlay.style.height=Math.min(Math.max(rSH+(rSY-e.clientY),120),window.innerHeight*0.8)+'px';if(isRH){var delta=rSide==='right'?e.clientX-rSX:rSX-e.clientX;composerOverlay.style.width=Math.min(Math.max(rSW+delta,320),window.innerWidth*8/9)+'px';}});
   document.addEventListener('mouseup',function(){if(isRV){isRV=false;document.body.style.cursor='';document.body.style.userSelect='';}if(isRH){isRH=false;document.body.style.cursor='';document.body.style.userSelect='';}});
-  /* MOOD CHECK-IN */
-  var MOOD_EMOJIS=[
-    {e:'😄',label:'Great',score:5,color:'#4ade80'},{e:'🙂',label:'Good',score:4,color:'#a3e635'},
-    {e:'😐',label:'Okay',score:3,color:'#facc15'},{e:'😔',label:'Low',score:2,color:'#fb923c'},
-    {e:'😢',label:'Rough',score:1,color:'#f87171'},{e:'😡',label:'Angry',score:1,color:'#ef4444'},
-    {e:'😰',label:'Anxious',score:2,color:'#a78bfa'},{e:'🥱',label:'Tired',score:2,color:'#94a3b8'},
-    {e:'🤩',label:'Excited',score:5,color:'#fbbf24'},{e:'🥰',label:'Loved',score:5,color:'#f472b6'},
-    {e:'😤',label:'Frustrated',score:1,color:'#f97316'},{e:'🥺',label:'Sad',score:1,color:'#818cf8'},
-    {e:'😌',label:'Calm',score:4,color:'#67e8f9'},{e:'🤯',label:'Overwhelmed',score:1,color:'#e879f9'},
-    {e:'😴',label:'Exhausted',score:2,color:'#6b7280'},{e:'🥳',label:'Joyful',score:5,color:'#fde68a'},
-    {e:'😶',label:'Numb',score:2,color:'#9ca3af'},{e:'🤧',label:'Unwell',score:2,color:'#60a5fa'},
-    {e:'😬',label:'Nervous',score:2,color:'#fbbf24'},{e:'🤗',label:'Grateful',score:5,color:'#34d399'}
-  ];
+  var MOOD_EMOJIS=[{e:'😄',label:'Great',score:5,color:'#4ade80'},{e:'🙂',label:'Good',score:4,color:'#a3e635'},{e:'😐',label:'Okay',score:3,color:'#facc15'},{e:'😔',label:'Low',score:2,color:'#fb923c'},{e:'😢',label:'Rough',score:1,color:'#f87171'},{e:'😡',label:'Angry',score:1,color:'#ef4444'},{e:'😰',label:'Anxious',score:2,color:'#a78bfa'},{e:'🥱',label:'Tired',score:2,color:'#94a3b8'},{e:'🤩',label:'Excited',score:5,color:'#fbbf24'},{e:'🥰',label:'Loved',score:5,color:'#f472b6'},{e:'😤',label:'Frustrated',score:1,color:'#f97316'},{e:'🥺',label:'Sad',score:1,color:'#818cf8'},{e:'😌',label:'Calm',score:4,color:'#67e8f9'},{e:'🤯',label:'Overwhelmed',score:1,color:'#e879f9'},{e:'😴',label:'Exhausted',score:2,color:'#6b7280'},{e:'🥳',label:'Joyful',score:5,color:'#fde68a'},{e:'😶',label:'Numb',score:2,color:'#9ca3af'},{e:'🤧',label:'Unwell',score:2,color:'#60a5fa'},{e:'😬',label:'Nervous',score:2,color:'#fbbf24'},{e:'🤗',label:'Grateful',score:5,color:'#34d399'}];
   var selectedMoodIdx=null;
   function getMoodLog(){try{return JSON.parse(localStorage.getItem('lt_mood_log')||'[]');}catch(e){return[];}}
   function saveMoodLog(log){localStorage.setItem('lt_mood_log',JSON.stringify(log));var u=auth.currentUser;if(u&&getDiaryCloudEnabled())db.ref('users/'+u.uid+'/moodLog').set(log).catch(function(){});}
@@ -1592,12 +1144,7 @@ function initApp(){
     selectedMoodIdx=null;
     var picker=document.getElementById('moodEmojiPicker');if(!picker)return;
     picker.innerHTML='';
-    MOOD_EMOJIS.forEach(function(m,i){
-      var btn=document.createElement('button');btn.className='mood-emoji-btn';btn.title=m.label;
-      btn.innerHTML='<span class="emoji-inner">'+m.e+'</span><span class="emoji-label">'+m.label+'</span>';
-      btn.addEventListener('click',function(){selectedMoodIdx=i;document.querySelectorAll('.mood-emoji-btn').forEach(function(b){b.classList.remove('selected');});btn.classList.add('selected');});
-      picker.appendChild(btn);
-    });
+    MOOD_EMOJIS.forEach(function(m,i){var btn=document.createElement('button');btn.className='mood-emoji-btn';btn.title=m.label;btn.innerHTML='<span class="emoji-inner">'+m.e+'</span><span class="emoji-label">'+m.label+'</span>';btn.addEventListener('click',function(){selectedMoodIdx=i;document.querySelectorAll('.mood-emoji-btn').forEach(function(b){b.classList.remove('selected');});btn.classList.add('selected');});picker.appendChild(btn);});
     var log=getMoodLog(),todayKey=getTodayKey(),todayEntry=log.find(function(e){return e.date===todayKey;});
     if(todayEntry){var idx=MOOD_EMOJIS.findIndex(function(m){return m.e===todayEntry.emoji;});if(idx>=0){selectedMoodIdx=idx;picker.children[idx]&&picker.children[idx].classList.add('selected');}var noteEl=document.getElementById('moodNote');if(noteEl)noteEl.value=todayEntry.note||'';var saveBtn=document.getElementById('moodSaveBtn');if(saveBtn)saveBtn.textContent="Update today's mood";}
     renderMoodHistory();renderMoodWeek();
@@ -1610,30 +1157,15 @@ function initApp(){
     saveMoodLog(log);renderMoodHistory();renderMoodWeek();pushNotif('Mood logged: '+mood.e+' '+mood.label);
     document.getElementById('moodSaveBtn').textContent="Update today's mood";
   });
-  function renderMoodHistory(){
-    var hist=document.getElementById('moodHistory');if(!hist)return;
-    var log=getMoodLog().slice(0,7);
-    if(!log.length){hist.innerHTML='<div style="color:var(--muted);font-size:0.82rem;text-align:center;padding:1rem">No entries yet. Log your first mood above!</div>';return;}
-    hist.innerHTML=log.map(function(e){var d=new Date(e.ts||e.date),label=d.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});return'<div class="mood-entry"><div class="mood-entry-emoji">'+e.emoji+'</div><div class="mood-entry-body"><div class="mood-entry-date">'+label+' \u00b7 '+e.label+'</div>'+(e.note?'<div class="mood-entry-note">'+escapeHtml(e.note)+'</div>':'')+'</div></div>';}).join('');
-  }
+  function renderMoodHistory(){var hist=document.getElementById('moodHistory');if(!hist)return;var log=getMoodLog().slice(0,7);if(!log.length){hist.innerHTML='<div style="color:var(--muted);font-size:0.82rem;text-align:center;padding:1rem">No entries yet.</div>';return;}hist.innerHTML=log.map(function(e){var d=new Date(e.ts||e.date),label=d.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});return'<div class="mood-entry"><div class="mood-entry-emoji">'+e.emoji+'</div><div class="mood-entry-body"><div class="mood-entry-date">'+label+' \u00b7 '+e.label+'</div>'+(e.note?'<div class="mood-entry-note">'+escapeHtml(e.note)+'</div>':'')+'</div></div>';}).join('');}
   function renderMoodWeek(){
     var chart=document.getElementById('moodWeekChart'),labels=document.getElementById('moodWeekLabels'),card=document.getElementById('moodWeekCard');
     if(!chart||!labels||!card)return;
     var log=getMoodLog();if(log.length<2){card.style.display='none';return;}card.style.display='';
     var days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],today=new Date();
     chart.innerHTML='';labels.innerHTML='';
-    for(var i=6;i>=0;i--){
-      var d=new Date(today);d.setDate(today.getDate()-i);var key=d.toISOString().slice(0,10);
-      var entry=log.find(function(e){return e.date===key;});var score=entry?entry.score:0;
-      var mdata=entry?MOOD_EMOJIS.find(function(m){return m.e===entry.emoji;}):null;
-      var color=mdata?mdata.color:'var(--line)';var pct=score?Math.round(score/5*100):8;
-      var barWrap=document.createElement('div');barWrap.style.cssText='flex:1;display:flex;flex-direction:column;align-items:center;';
-      var bar=document.createElement('div');bar.style.cssText='width:100%;border-radius:4px 4px 0 0;background:'+color+';';bar.style.height=pct+'%';bar.title=(entry?entry.emoji+' '+entry.label:'No entry');
-      barWrap.appendChild(bar);chart.appendChild(barWrap);
-      var lbl=document.createElement('div');lbl.style.cssText='flex:1;font-size:0.6rem;color:var(--muted);text-align:center;';lbl.textContent=days[d.getDay()];labels.appendChild(lbl);
-    }
+    for(var i=6;i>=0;i--){var d=new Date(today);d.setDate(today.getDate()-i);var key=d.toISOString().slice(0,10);var entry=log.find(function(e){return e.date===key;});var score=entry?entry.score:0;var mdata=entry?MOOD_EMOJIS.find(function(m){return m.e===entry.emoji;}):null;var color=mdata?mdata.color:'var(--line)';var pct=score?Math.round(score/5*100):8;var barWrap=document.createElement('div');barWrap.style.cssText='flex:1;display:flex;flex-direction:column;align-items:center;';var bar=document.createElement('div');bar.style.cssText='width:100%;border-radius:4px 4px 0 0;background:'+color+';';bar.style.height=pct+'%';bar.title=(entry?entry.emoji+' '+entry.label:'No entry');barWrap.appendChild(bar);chart.appendChild(barWrap);var lbl=document.createElement('div');lbl.style.cssText='flex:1;font-size:0.6rem;color:var(--muted);text-align:center;';lbl.textContent=days[d.getDay()];labels.appendChild(lbl);}
   }
-  /* DIARY */
   var DIARY_MOODS=['😄','🙂','😐','😔','😢','😡','😰','🥱','🤩','🥰','😤','🥺','😌','🤯','😴','🥳','😶','🤧','😬','🤗'];
   var currentDiaryId=null;
   function getDiaryEntries(){try{return JSON.parse(localStorage.getItem('lt_diary')||'[]');}catch(e){return[];}}
@@ -1641,12 +1173,8 @@ function initApp(){
   function renderDiaryList(){
     var list=document.getElementById('diaryEntryList');if(!list)return;
     var entries=getDiaryEntries();
-    if(!entries.length){list.innerHTML='<div class="diary-empty">No entries yet.<br><span style="font-size:0.78rem">Tap <strong style="color:var(--hl)">New Entry</strong> to write your first one.</span></div>';return;}
-    list.innerHTML=entries.map(function(e){
-      var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'short',day:'numeric',year:'numeric'});
-      var preview=e.body?e.body.replace(/<[^>]+>/g,'').slice(0,120):'';
-      return'<div class="diary-entry" data-diary-id="'+e.id+'"><div class="diary-entry-top"><span class="diary-entry-date">'+label+'</span><span class="diary-entry-mood">'+(e.mood||'')+'</span></div><div class="diary-entry-title">'+(e.title?escapeHtml(e.title):'Untitled')+'</div>'+(preview?'<div class="diary-entry-preview">'+escapeHtml(preview)+'</div>':'')+'</div>';
-    }).join('');
+    if(!entries.length){list.innerHTML='<div class="diary-empty">No entries yet.<br><span style="font-size:0.78rem">Tap New Entry to write your first one.</span></div>';return;}
+    list.innerHTML=entries.map(function(e){var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'short',day:'numeric',year:'numeric'});var preview=e.body?e.body.replace(/<[^>]+>/g,'').slice(0,120):'';return'<div class="diary-entry" data-diary-id="'+e.id+'"><div class="diary-entry-top"><span class="diary-entry-date">'+label+'</span><span class="diary-entry-mood">'+(e.mood||'')+'</span></div><div class="diary-entry-title">'+(e.title?escapeHtml(e.title):'Untitled')+'</div>'+(preview?'<div class="diary-entry-preview">'+escapeHtml(preview)+'</div>':'')+'</div>';}).join('');
     list.querySelectorAll('.diary-entry').forEach(function(el){el.addEventListener('click',function(){openDiaryEditor(el.dataset.diaryId);});});
   }
   document.getElementById('diaryNewBtn').addEventListener('click',function(){openDiaryEditor(null);});
@@ -1658,96 +1186,39 @@ function initApp(){
     else{document.getElementById('diaryEditorTitle').value='';document.getElementById('diaryEditorBody').innerHTML='';document.getElementById('diaryEditorDate').textContent=new Date().toLocaleString([],{dateStyle:'medium',timeStyle:'short'});document.getElementById('diaryDeleteBtn').style.display='none';}
   }
   document.getElementById('diaryEditorBack').addEventListener('click',function(){document.getElementById('diaryEditorOverlay').classList.remove('open');});
-  document.getElementById('diaryEditorSave').addEventListener('click',function(){
-    var title=document.getElementById('diaryEditorTitle').value.trim(),body=document.getElementById('diaryEditorBody').innerHTML.trim();
-    var moodBtn=document.querySelector('#diaryEditorMoods .diary-mood-btn.selected'),mood=moodBtn?moodBtn.dataset.mood:'';
-    if(!title&&!body){alert('Write something first!');return;}
-    var entries=getDiaryEntries();
-    if(currentDiaryId){entries=entries.map(function(e){return e.id===currentDiaryId?Object.assign({},e,{title:title,body:body,mood:mood,updated:Date.now()}):e;});}
-    else{entries.unshift({id:'de_'+Date.now(),title:title,body:body,mood:mood,ts:Date.now()});}
-    saveDiaryEntries(entries);document.getElementById('diaryEditorOverlay').classList.remove('open');renderDiaryList();pushNotif('Diary entry saved');
-  });
+  document.getElementById('diaryEditorSave').addEventListener('click',function(){var title=document.getElementById('diaryEditorTitle').value.trim(),body=document.getElementById('diaryEditorBody').innerHTML.trim();var moodBtn=document.querySelector('#diaryEditorMoods .diary-mood-btn.selected'),mood=moodBtn?moodBtn.dataset.mood:'';if(!title&&!body){alert('Write something first!');return;}var entries=getDiaryEntries();if(currentDiaryId){entries=entries.map(function(e){return e.id===currentDiaryId?Object.assign({},e,{title:title,body:body,mood:mood,updated:Date.now()}):e;});}else{entries.unshift({id:'de_'+Date.now(),title:title,body:body,mood:mood,ts:Date.now()});}saveDiaryEntries(entries);document.getElementById('diaryEditorOverlay').classList.remove('open');renderDiaryList();pushNotif('Diary entry saved');});
   document.getElementById('diaryDeleteBtn').addEventListener('click',function(){if(!confirm('Delete this entry?'))return;saveDiaryEntries(getDiaryEntries().filter(function(e){return e.id!==currentDiaryId;}));document.getElementById('diaryEditorOverlay').classList.remove('open');renderDiaryList();pushNotif('Entry deleted');});
-  /* DIARY BOOK VIEW */
   var bookPage=0;
   function openBookView(){var entries=getDiaryEntries();if(!entries.length){pushNotif('No diary entries yet!');return;}bookPage=0;renderBookSpread();document.getElementById('diaryBookOverlay').classList.add('open');}
-  function renderBookSpread(){
-    var entries=getDiaryEntries(),total=entries.length,totalSpreads=Math.ceil(total/2);
-    var left=entries[bookPage*2],right=entries[bookPage*2+1];
-    renderBookPage('bookPageLeft','bookPageNumLeft',left,bookPage*2+1);
-    renderBookPage('bookPageRight','bookPageNumRight',right,bookPage*2+2);
-    document.getElementById('bookPrevBtn').disabled=bookPage===0;
-    document.getElementById('bookNextBtn').disabled=bookPage>=totalSpreads-1;
-    document.getElementById('bookPageInfo').textContent='Entries '+(bookPage*2+1)+'\u2013'+(Math.min(bookPage*2+2,total))+' of '+total;
-  }
-  function renderBookPage(pageId,numId,entry,pageNum){
-    var el=document.getElementById(pageId),numEl=document.getElementById(numId);
-    if(!entry){el.innerHTML='<div class="book-blank">\u2014</div>';numEl.textContent='';return;}
-    var d=new Date(entry.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-    var bodyText=entry.body?entry.body.replace(/<[^>]+>/g,''):'';
-    el.innerHTML='<div class="book-page-title">'+(entry.title?escapeHtml(entry.title):'Untitled')+'</div>'
-      +'<div class="book-page-date">'+label+'</div>'
-      +(entry.mood?'<div class="book-page-mood">'+entry.mood+'</div>':'')
-      +'<div class="book-page-body">'+escapeHtml(bodyText)+'</div>'
-      +'<div class="book-page-fade"></div>';
-    numEl.textContent=pageNum;
-  }
+  function renderBookSpread(){var entries=getDiaryEntries(),total=entries.length,totalSpreads=Math.ceil(total/2);var left=entries[bookPage*2],right=entries[bookPage*2+1];renderBookPage('bookPageLeft','bookPageNumLeft',left,bookPage*2+1);renderBookPage('bookPageRight','bookPageNumRight',right,bookPage*2+2);document.getElementById('bookPrevBtn').disabled=bookPage===0;document.getElementById('bookNextBtn').disabled=bookPage>=totalSpreads-1;document.getElementById('bookPageInfo').textContent='Entries '+(bookPage*2+1)+'-'+(Math.min(bookPage*2+2,total))+' of '+total;}
+  function renderBookPage(pageId,numId,entry,pageNum){var el=document.getElementById(pageId),numEl=document.getElementById(numId);if(!entry){el.innerHTML='<div class="book-blank">-</div>';numEl.textContent='';return;}var d=new Date(entry.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});var bodyText=entry.body?entry.body.replace(/<[^>]+>/g,''):'';el.innerHTML='<div class="book-page-title">'+(entry.title?escapeHtml(entry.title):'Untitled')+'</div><div class="book-page-date">'+label+'</div>'+(entry.mood?'<div class="book-page-mood">'+entry.mood+'</div>':'')+'<div class="book-page-body">'+escapeHtml(bodyText)+'</div><div class="book-page-fade"></div>';numEl.textContent=pageNum;}
   document.getElementById('diaryBookBtn').addEventListener('click',openBookView);
   document.getElementById('diaryBookClose').addEventListener('click',function(){document.getElementById('diaryBookOverlay').classList.remove('open');});
   document.getElementById('bookPrevBtn').addEventListener('click',function(){if(bookPage>0){bookPage--;renderBookSpread();}});
   document.getElementById('bookNextBtn').addEventListener('click',function(){var entries=getDiaryEntries(),total=Math.ceil(entries.length/2);if(bookPage<total-1){bookPage++;renderBookSpread();}});
-  /* DIARY PDF EXPORT */
   document.getElementById('diaryExportBtn').addEventListener('click',function(){
     var entries=getDiaryEntries();if(!entries.length){pushNotif('No diary entries to export!');return;}
     var jsPDFLib=window.jspdf?window.jspdf.jsPDF:(window.jsPDF||null);
-    if(!jsPDFLib){
-      var win=window.open('','_blank');
-      var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>My Diary</title><style>body{font-family:Georgia,serif;max-width:700px;margin:2rem auto;color:#222;line-height:1.7}h1{color:#b8860b}.entry{margin-bottom:3rem;border-bottom:1px solid #ddd;padding-bottom:2rem}.entry-title{font-size:1.3rem;font-weight:700;color:#333;margin-bottom:0.2rem}.entry-meta{font-size:0.8rem;color:#888;margin-bottom:0.75rem}.entry-body{font-size:0.95rem}@media print{body{margin:1rem}}</style></head><body><h1>My Diary</h1><p style="color:#888;font-size:0.85rem">Exported '+new Date().toLocaleDateString()+'</p><hr style="margin:1.5rem 0"/>';
-      entries.forEach(function(e){var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});var body=e.body?e.body.replace(/<[^>]+>/g,''):'';html+='<div class="entry"><div class="entry-title">'+(e.mood?e.mood+' ':'')+escapeHtml(e.title||'Untitled')+'</div><div class="entry-meta">'+label+'</div><div class="entry-body">'+escapeHtml(body)+'</div></div>';});
-      html+='</body></html>';win.document.write(html);win.document.close();win.print();return;
-    }
+    if(!jsPDFLib){var win=window.open('','_blank');var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>My Diary</title><style>body{font-family:Georgia,serif;max-width:700px;margin:2rem auto;color:#222;line-height:1.7}h1{color:#b8860b}.entry{margin-bottom:3rem;border-bottom:1px solid #ddd;padding-bottom:2rem}.entry-title{font-size:1.3rem;font-weight:700;color:#333;margin-bottom:0.2rem}.entry-meta{font-size:0.8rem;color:#888;margin-bottom:0.75rem}@media print{body{margin:1rem}}</style></head><body><h1>My Diary</h1><p style="color:#888;font-size:0.85rem">Exported '+new Date().toLocaleDateString()+'</p><hr style="margin:1.5rem 0"/>';entries.forEach(function(e){var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});var body=e.body?e.body.replace(/<[^>]+>/g,''):'';html+='<div class="entry"><div class="entry-title">'+(e.mood?e.mood+' ':'')+escapeHtml(e.title||'Untitled')+'</div><div class="entry-meta">'+label+'</div><div>'+escapeHtml(body)+'</div></div>';});html+='</body></html>';win.document.write(html);win.document.close();win.print();return;}
     var doc=new jsPDFLib({orientation:'portrait',unit:'mm',format:'a4'});
     var pageW=210,pageH=297,margin=20,contentW=pageW-margin*2,lineH=7,y=margin;
-    doc.setFillColor(26,26,26);doc.rect(0,0,pageW,pageH,'F');
-    doc.setFontSize(32);doc.setFont('helvetica','bold');doc.setTextColor(255,222,89);doc.text('My Diary',pageW/2,pageH/2-10,{align:'center'});
-    doc.setFontSize(12);doc.setFont('helvetica','normal');doc.setTextColor(138,138,154);doc.text('Exported '+new Date().toLocaleDateString(),pageW/2,pageH/2+8,{align:'center'});
-    doc.text(entries.length+' entries',pageW/2,pageH/2+18,{align:'center'});
-    entries.forEach(function(e){
-      doc.addPage();y=margin;doc.setFillColor(26,26,22);doc.rect(0,0,pageW,pageH,'F');
-      var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-      doc.setFontSize(18);doc.setFont('helvetica','bold');doc.setTextColor(255,222,89);
-      var titleLines=doc.splitTextToSize((e.mood?e.mood+' ':'')+( e.title||'Untitled'),contentW);
-      titleLines.forEach(function(l){doc.text(l,margin,y);y+=9;});
-      doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(138,138,154);doc.text(label,margin,y);y+=10;
-      doc.setDrawColor(58,58,58);doc.line(margin,y,pageW-margin,y);y+=8;
-      var body=e.body?e.body.replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,''):'(no content)';
-      doc.setFontSize(11);doc.setFont('helvetica','normal');doc.setTextColor(224,224,224);
-      var bodyLines=doc.splitTextToSize(body,contentW);
-      bodyLines.forEach(function(line){if(y+lineH>pageH-margin){doc.addPage();doc.setFillColor(26,26,22);doc.rect(0,0,pageW,pageH,'F');y=margin;}doc.text(line,margin,y);y+=lineH;});
-    });
+    doc.setFillColor(26,26,26);doc.rect(0,0,pageW,pageH,'F');doc.setFontSize(32);doc.setFont('helvetica','bold');doc.setTextColor(255,222,89);doc.text('My Diary',pageW/2,pageH/2-10,{align:'center'});doc.setFontSize(12);doc.setFont('helvetica','normal');doc.setTextColor(138,138,154);doc.text('Exported '+new Date().toLocaleDateString(),pageW/2,pageH/2+8,{align:'center'});doc.text(entries.length+' entries',pageW/2,pageH/2+18,{align:'center'});
+    entries.forEach(function(e){doc.addPage();y=margin;doc.setFillColor(26,26,22);doc.rect(0,0,pageW,pageH,'F');var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});doc.setFontSize(18);doc.setFont('helvetica','bold');doc.setTextColor(255,222,89);var titleLines=doc.splitTextToSize((e.mood?e.mood+' ':'')+( e.title||'Untitled'),contentW);titleLines.forEach(function(l){doc.text(l,margin,y);y+=9;});doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(138,138,154);doc.text(label,margin,y);y+=10;doc.setDrawColor(58,58,58);doc.line(margin,y,pageW-margin,y);y+=8;var body=e.body?e.body.replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,''):'(no content)';doc.setFontSize(11);doc.setFont('helvetica','normal');doc.setTextColor(224,224,224);var bodyLines=doc.splitTextToSize(body,contentW);bodyLines.forEach(function(line){if(y+lineH>pageH-margin){doc.addPage();doc.setFillColor(26,26,22);doc.rect(0,0,pageW,pageH,'F');y=margin;}doc.text(line,margin,y);y+=lineH;});});
     doc.save('my-diary-'+new Date().toISOString().slice(0,10)+'.pdf');pushNotif('Diary exported as PDF!');
   });
-  /* ANNOUNCEMENTS */
   var ADMIN_UIDS=['admin'];
   function isAdmin(){var u=auth.currentUser;return u&&ADMIN_UIDS.indexOf(u.uid)>=0;}
   function renderAnnouncements(){
     var adminCompose=document.getElementById('annAdminCompose');if(adminCompose)adminCompose.style.display=isAdmin()?'':'none';
-    db.ref('announcements').orderByChild('ts').limitToLast(20).once('value',function(snap){
-      var list=document.getElementById('annList');if(!list)return;var data=snap.val();if(!data){list.innerHTML='<div class="ann-empty">No announcements yet.</div>';return;}
-      var items=Object.entries(data).map(function(e){return Object.assign({id:e[0]},e[1]);});
-      items.sort(function(a,b){if(a.type==='pinned'&&b.type!=='pinned')return -1;if(b.type==='pinned'&&a.type!=='pinned')return 1;return b.ts-a.ts;});
-      list.innerHTML=items.map(function(item){var d=new Date(item.ts).toLocaleDateString([],{month:'short',day:'numeric',year:'numeric'});var bc=item.type==='update'?'update':item.type==='pinned'?'pinned':'info';var bl=item.type==='pinned'?'\uD83D\uDCCC Pinned':item.type==='update'?'Update':'Info';return'<div class="ann-item'+(item.type==='pinned'?' pinned':'')+'"><div class="ann-item-top"><span class="ann-badge '+bc+'">'+bl+'</span></div><div class="ann-title">'+escapeHtml(item.title)+'</div><div class="ann-body" style="margin-top:0.35rem">'+escapeHtml(item.body)+'</div><div class="ann-footer">'+d+(item.author?' \u00b7 '+escapeHtml(item.author):'')+'</div>'+(isAdmin()?'<button class="btn-sm" style="margin-top:0.5rem;color:var(--danger);border-color:var(--danger)" data-del-ann="'+item.id+'">Delete</button>':'')+'</div>';}).join('');
-      list.querySelectorAll('[data-del-ann]').forEach(function(btn){btn.addEventListener('click',function(){if(!confirm('Delete announcement?'))return;db.ref('announcements/'+btn.dataset.delAnn).remove();renderAnnouncements();});});
-    });
+    db.ref('announcements').orderByChild('ts').limitToLast(20).once('value',function(snap){var list=document.getElementById('annList');if(!list)return;var data=snap.val();if(!data){list.innerHTML='<div class="ann-empty">No announcements yet.</div>';return;}var items=Object.entries(data).map(function(e){return Object.assign({id:e[0]},e[1]);});items.sort(function(a,b){if(a.type==='pinned'&&b.type!=='pinned')return -1;if(b.type==='pinned'&&a.type!=='pinned')return 1;return b.ts-a.ts;});list.innerHTML=items.map(function(item){var d=new Date(item.ts).toLocaleDateString([],{month:'short',day:'numeric',year:'numeric'});var bc=item.type==='update'?'update':item.type==='pinned'?'pinned':'info';var bl=item.type==='pinned'?'Pinned':item.type==='update'?'Update':'Info';return'<div class="ann-item'+(item.type==='pinned'?' pinned':'')+'"><div class="ann-item-top"><span class="ann-badge '+bc+'">'+bl+'</span></div><div class="ann-title">'+escapeHtml(item.title)+'</div><div class="ann-body" style="margin-top:0.35rem">'+escapeHtml(item.body)+'</div><div class="ann-footer">'+d+(item.author?' \u00b7 '+escapeHtml(item.author):'')+'</div>'+(isAdmin()?'<button class="btn-sm" style="margin-top:0.5rem;color:var(--danger);border-color:var(--danger)" data-del-ann="'+item.id+'">Delete</button>':'')+'</div>';}).join('');list.querySelectorAll('[data-del-ann]').forEach(function(btn){btn.addEventListener('click',function(){if(!confirm('Delete?'))return;db.ref('announcements/'+btn.dataset.delAnn).remove();renderAnnouncements();});});});
     db.ref('announcements').orderByChild('ts').once('value',function(snap){var lastSeen=parseInt(localStorage.getItem('lt_ann_seen')||'0'),data=snap.val();if(!data)return;var newCount=Object.values(data).filter(function(a){return a.ts>lastSeen;}).length;var badge=document.getElementById('annBadge');if(badge){badge.style.display=newCount>0?'':'none';badge.textContent=newCount;}});
   }
   document.getElementById('annPostBtn').addEventListener('click',function(){var title=document.getElementById('annTitleInput').value.trim(),body=document.getElementById('annBodyInput').value.trim(),type=document.getElementById('annTypeSelect').value;if(!title||!body)return;db.ref('announcements').push({title:title,body:body,type:type,ts:Date.now(),author:username});document.getElementById('annTitleInput').value='';document.getElementById('annBodyInput').value='';renderAnnouncements();pushNotif('Announcement posted');});
   db.ref('announcements').orderByChild('ts').limitToLast(5).once('value',function(snap){var lastSeen=parseInt(localStorage.getItem('lt_ann_seen')||'0'),data=snap.val();if(!data)return;var newCount=Object.values(data).filter(function(a){return a.ts>lastSeen;}).length;var badge=document.getElementById('annBadge');if(badge&&newCount>0){badge.style.display='';badge.textContent=newCount;}});
-  /* SYNC USER DATA */
   (function syncUserData(){var u=auth.currentUser;if(!u)return;if(getDiaryCloudEnabled()){db.ref('users/'+u.uid+'/moodLog').once('value').then(function(snap){if(snap.val()&&snap.val().length)localStorage.setItem('lt_mood_log',JSON.stringify(snap.val()));}).catch(function(){});db.ref('users/'+u.uid+'/diary').once('value').then(function(snap){if(snap.val()&&snap.val().length)localStorage.setItem('lt_diary',JSON.stringify(snap.val()));}).catch(function(){});}})();
   }catch(e){console.error('[initApp crash]',e);alert('App init error: '+e.message);}
-} // end initApp
-}); // end DOMContentLoaded
+}
+});
 </script>
 </body>
 </html>
