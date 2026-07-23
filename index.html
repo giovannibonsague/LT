@@ -72,18 +72,6 @@ button,input,select,textarea{font-family:inherit;}
 .sb-spacer{flex:1;}
 .sb-bottom-section{flex-shrink:0;border-top:1px solid var(--line);padding:0.4rem;}
 #sidebar.collapsed .sb-bottom-section .nav-btn-label{display:none;}
-#sidebar.collapsed .sb-petition-body{display:none;}
-#sidebar.collapsed .sb-petition-mini{justify-content:center;padding:0.5rem;margin:0;}
-.sb-petition-mini{margin:0.4rem 0 0;border:1px solid var(--line);border-radius:10px;background:#111;padding:0.6rem;cursor:pointer;transition:border-color 150ms;display:flex;align-items:flex-start;gap:0.55rem;}
-.sb-petition-mini:hover{border-color:var(--hl-border);}
-.sb-petition-icon{flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--hl-dim);border-radius:7px;}
-.sb-petition-icon svg{width:14px;height:14px;stroke:var(--hl);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.sb-petition-body{flex:1;min-width:0;}
-.sb-petition-mini h5{font-size:0.75rem;color:var(--hl);margin-bottom:0.2rem;font-weight:700;}
-.sb-petition-mini p{font-size:0.65rem;color:var(--muted);line-height:1.4;margin-bottom:0.35rem;}
-.sb-petition-bar{height:4px;background:var(--line);border-radius:2px;overflow:hidden;}
-.sb-petition-fill{height:100%;background:var(--hl);border-radius:2px;width:0%;transition:width 700ms ease;}
-.sb-petition-stat{font-size:0.62rem;color:var(--muted);margin-top:0.25rem;}
 #middlePanel{width:280px;min-width:220px;flex-shrink:0;border-right:1px solid var(--line);background:var(--surface2);display:flex;flex-direction:column;overflow:hidden;position:relative;}
 .mp-header{padding:0.85rem 1rem 0.55rem;flex-shrink:0;border-bottom:1px solid var(--line);}
 .mp-title{font-size:1rem;font-weight:800;color:var(--text);}
@@ -236,16 +224,28 @@ button,input,select,textarea{font-family:inherit;}
 .post-main a{color:var(--hl);}
 .post-divider{border:none;border-top:1px solid var(--line);margin:1rem 0;}
 .post-actions{display:flex;justify-content:flex-end;margin-top:0.6rem;}
-.reply-composer{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:0.8rem;margin-top:1rem;}
-.reply-context{font-size:0.75rem;color:var(--hl);margin-bottom:0.4rem;}
-.reply-composer textarea{width:100%;min-height:72px;resize:vertical;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:0.55rem;font:inherit;font-size:0.84rem;outline:none;}
+.reply-composer{background:transparent;border:none;padding:0;margin-top:1.2rem;}
+.reply-context{font-size:0.75rem;color:var(--hl);margin-bottom:0.4rem;font-weight:600;display:flex;align-items:center;gap:0.3rem;}
+.reply-composer-inner{display:flex;align-items:flex-end;gap:0.55rem;background:var(--surface2);border:1px solid var(--line2);border-radius:14px;padding:0.5rem 0.6rem 0.5rem 0.75rem;transition:border-color 200ms;}
+.reply-composer-inner:focus-within{border-color:var(--hl-border);}
+.reply-composer textarea{width:100%;min-height:22px;max-height:140px;resize:none;background:transparent;color:var(--text);border:none;padding:0.1rem 0;font:inherit;font-size:0.86rem;line-height:1.5;outline:none;}
 .reply-actions{margin-top:0.55rem;display:flex;gap:0.5rem;justify-content:flex-end;}
-.reply-list{margin-top:1rem;display:grid;gap:0.6rem;}
-.reply{background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:0.7rem;}
-.reply-body{color:var(--text);margin-top:0.3rem;font-size:0.84rem;line-height:1.6;overflow-wrap:anywhere;}
+.reply-list{margin-top:1.2rem;display:flex;flex-direction:column;gap:0.05rem;}
+.reply{display:flex;align-items:flex-start;gap:0.65rem;padding:0.4rem 0;}
+.reply-avatar{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.66rem;font-weight:700;color:#fff;margin-top:1px;}
+.reply-content{flex:1;min-width:0;}
+.reply-header{display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.2rem;}
+.reply-author{font-size:0.82rem;font-weight:700;}
+.reply-time{font-size:0.68rem;color:var(--muted);}
+.reply-body{display:inline-block;max-width:100%;background:var(--surface2);border:1px solid var(--line2);border-radius:4px 14px 14px 14px;padding:0.5rem 0.8rem;color:var(--text);font-size:0.85rem;line-height:1.55;overflow-wrap:anywhere;}
 .reply-body a{color:var(--hl);}
-.reply-tools{margin-top:0.45rem;display:flex;gap:0.4rem;}
-.reply-children{margin-top:0.6rem;margin-left:0.8rem;padding-left:0.7rem;border-left:2px solid var(--line2);display:grid;gap:0.6rem;}
+.reply-tools{margin-top:0.3rem;display:flex;align-items:center;gap:1rem;}
+.reply-tools .btn-sm{background:transparent;border:none;padding:0;color:var(--muted);font-size:0.72rem;font-weight:700;cursor:pointer;transition:color 150ms;}
+.reply-tools .btn-sm:hover{color:var(--hl);}
+.reply-tools .report-flag{color:transparent;padding:0;}
+.reply:hover .reply-tools .report-flag{color:var(--muted);}
+.reply-tools .report-flag:hover{color:var(--danger)!important;}
+.reply-children{margin-top:0.35rem;margin-left:2.4rem;padding-left:0.9rem;border-left:2px solid var(--line2);display:flex;flex-direction:column;gap:0.05rem;}
 .content-view{flex:1;overflow-y:auto;padding:1.5rem;display:none;flex-direction:column;gap:1.2rem;}
 .content-view.show{display:flex;}
 .view-hero h1{font-size:1.2rem;font-weight:800;color:var(--hl);}
@@ -345,31 +345,6 @@ button,input,select,textarea{font-family:inherit;}
 .ann-compose h3{font-size:0.84rem;color:var(--hl);font-weight:700;margin-bottom:0.75rem;}
 .ann-compose input,.ann-compose textarea,.ann-compose select{width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:0.5rem 0.7rem;font:inherit;font-size:0.84rem;outline:none;margin-bottom:0.5rem;}
 .ann-compose textarea{min-height:72px;resize:vertical;}
-#viewPetition{flex:1;overflow-y:auto;padding:1.5rem;display:none;flex-direction:column;}
-#viewPetition.show{display:flex;}
-.petition-hero h1{font-size:1.5rem;color:var(--hl);margin-bottom:0.4rem;font-weight:800;}
-.petition-hero p{color:var(--muted);font-size:0.9rem;line-height:1.65;max-width:640px;}
-.petition-big-sign-btn{padding:0.65rem 1.8rem;background:var(--hl);color:#121212;border:none;border-radius:10px;font:inherit;font-size:0.92rem;font-weight:700;cursor:pointer;transition:all 150ms;}
-.petition-big-sign-btn:hover{background:#ffe97a;transform:translateY(-1px);}
-.petition-big-sign-btn:disabled{background:#2a2a1a;color:#666;cursor:default;transform:none;}
-.petition-count-big{font-size:2rem;font-weight:800;color:var(--hl);}
-.petition-count-label{color:var(--muted);font-size:0.82rem;}
-.petition-goal-track{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:1.4rem;}
-.petition-goal-track h3{font-size:0.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1.2rem;}
-.petition-timeline{position:relative;padding-bottom:2rem;}
-.petition-track-bar{position:relative;height:6px;background:var(--line2);border-radius:3px;}
-.petition-track-fill{position:absolute;top:0;left:0;height:100%;background:var(--hl);border-radius:3px;transition:width 700ms ease;}
-.petition-milestones-row{position:relative;height:36px;}
-.pm-node{position:absolute;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;}
-.pm-dot{width:12px;height:12px;border-radius:50%;background:var(--line2);border:2px solid var(--bg);transition:all 300ms;flex-shrink:0;margin-top:-3px;}
-.pm-node.reached .pm-dot{background:var(--hl);}
-.pm-node.current .pm-dot{background:var(--hl);box-shadow:0 0 0 3px rgba(255,222,89,0.35);width:16px;height:16px;margin-top:-5px;}
-.pm-label{font-size:0.6rem;color:var(--muted);margin-top:5px;white-space:nowrap;}
-.pm-node.reached .pm-label,.pm-node.current .pm-label{color:var(--hl);font-weight:700;}
-.invite-link-box{display:flex;gap:0.5rem;align-items:center;max-width:520px;}
-.invite-link-input{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:8px;color:var(--muted);font:inherit;font-size:0.8rem;padding:0.5rem 0.75rem;outline:none;}
-.invite-copy-btn{background:var(--surface);border:1px solid var(--line);border-radius:8px;color:var(--muted);padding:0.5rem 0.9rem;font:inherit;font-size:0.78rem;cursor:pointer;white-space:nowrap;}
-.invite-copy-btn:hover{border-color:var(--hl-border);color:var(--hl);}
 .settings-view{flex:1;overflow-y:auto;padding:1.5rem;display:none;flex-direction:column;gap:1.2rem;}
 .settings-view.show{display:flex;}
 .settings-section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;}
@@ -527,8 +502,6 @@ button,input,select,textarea{font-family:inherit;}
   #sidebar.collapsed .sb-logo-text{display:block !important;}
   #sidebar.collapsed .nav-btn-label{display:inline !important;}
   #sidebar.collapsed .sb-section-label{opacity:1 !important;}
-  #sidebar.collapsed .sb-petition-body{display:block !important;}
-  #sidebar.collapsed .sb-petition-mini{justify-content:flex-start !important;padding:0.6rem !important;margin:0.4rem 0 0 !important;}
   #sidebarResizer,.sb-toggle{display:none !important;}
   .topbar-menu-btn{display:flex;}
   .chat-back-btn{display:flex;}
@@ -542,8 +515,6 @@ button,input,select,textarea{font-family:inherit;}
   .chat-header-controls{margin-left:0 !important;width:100%;}
   #searchInput{width:100% !important;flex:1;}
   .content-view,.settings-view{padding:1rem;}
-  .petition-hero{margin-bottom:1.2rem !important;}
-  .petition-goal-track{padding:1rem;}
   .notif-panel{right:0.5rem;left:0.5rem;width:auto;}
   .acct-dropdown{right:0.5rem;width:190px;}
   #composerOverlay{left:0 !important;width:100% !important;height:92vh !important;max-height:92vh;border-radius:16px 16px 0 0;transform:translateY(100%) !important;}
@@ -570,7 +541,6 @@ button,input,select,textarea{font-family:inherit;}
   .mood-emoji-btn .emoji-inner{font-size:1.4rem;}
   .chat-avatar{width:36px;height:36px;}
   .msg-group{max-width:88%;}
-  .petition-count-big{font-size:1.6rem;}
   .auth-box{padding:1.5rem 1.25rem;}
 }
 </style>
@@ -599,10 +569,6 @@ button,input,select,textarea{font-family:inherit;}
     <button class="nav-btn" id="navPrivacy"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="nav-btn-label">Privacy</span></button>
     <button class="nav-btn" id="navReports" style="display:none"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span class="nav-btn-label">Reports</span><span class="nav-badge" id="reportsBadge" style="display:none">0</span></button>
     <button class="nav-btn" id="navSettings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="nav-btn-label">Settings</span></button>
-    <div class="sb-petition-mini" id="sbPetitionMini">
-      <div class="sb-petition-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-      <div class="sb-petition-body"><h5>Sign Petition</h5><p>Mental wellness deserves to be promoted.</p><div class="sb-petition-bar"><div class="sb-petition-fill" id="sbPetFill"></div></div><div class="sb-petition-stat"><span id="sbPetCount">0</span> signed</div></div>
-    </div>
   </div>
 </aside>
 <div id="middlePanel">
@@ -655,12 +621,6 @@ button,input,select,textarea{font-family:inherit;}
       </div>
       <div class="poll-modal-overlay" id="pollModal"><div class="poll-modal"><h3>Create a poll</h3><input class="poll-question-input" id="pollQuestion" type="text" placeholder="Ask a question..."/><div class="poll-options" id="pollOptions"><div class="poll-option-row"><input class="poll-option-input" type="text" placeholder="Option 1"/><button class="poll-option-del" tabindex="-1"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="poll-option-row"><input class="poll-option-input" type="text" placeholder="Option 2"/><button class="poll-option-del" tabindex="-1"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div><button class="poll-add-opt" id="pollAddOption">+ Add option</button><div class="poll-footer"><button class="btn-sm" id="pollCancel">Cancel</button><button class="btn-sm primary" id="pollSend">Send poll</button></div></div></div>
       <div class="send-later-overlay" id="sendLaterModal"><div class="send-later-modal"><h3>Send later</h3><p>Your message will be posted at the scheduled time.</p><input class="send-later-time" id="sendLaterTime" type="datetime-local"/><div class="send-later-footer"><button class="btn-sm" id="sendLaterCancel">Cancel</button><button class="btn-sm primary" id="sendLaterConfirm">Schedule</button></div></div></div>
-    </div>
-    <div id="viewPetition">
-      <div class="petition-hero" style="margin-bottom:1.8rem"><h1>Sign the Petition</h1><p>Mental wellness deserves to be promoted, recognized, and taken seriously in our schools, workplaces, and communities.</p></div>
-      <div style="display:flex;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:1.4rem"><div><div class="petition-count-big" id="petCountBig">0</div><div class="petition-count-label">people have signed</div></div><div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap"><button class="petition-big-sign-btn" id="petitionSignBtn">Sign Petition</button><span id="petSignedLabel" style="display:none;color:var(--hl);font-weight:700;font-size:0.88rem">You have signed!</span></div></div>
-      <div class="petition-goal-track"><h3>Goal Progress</h3><div class="petition-timeline"><div class="petition-track-bar"><div class="petition-track-fill" id="petTrackFill"></div></div><div class="petition-milestones-row" id="petMilestonesRow"></div></div></div>
-      <div style="margin-top:1.2rem"><h3 style="font-size:0.84rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.55rem">Invite Others</h3><p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.55rem">Share this link:</p><div class="invite-link-box"><input class="invite-link-input" id="petInviteInput" type="text" readonly/><button class="invite-copy-btn" id="petCopyBtn">Copy link</button></div></div>
     </div>
     <div class="settings-view" id="viewSettings">
       <div style="margin-bottom:0.5rem"><h1 style="font-size:1.2rem;color:var(--hl);font-weight:800">Settings</h1></div>
@@ -718,10 +678,10 @@ button,input,select,textarea{font-family:inherit;}
       </div>
       <div class="settings-section"><h3>Diary Storage</h3>
         <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">Store diary on cloud</label><span style="font-size:0.72rem;color:var(--muted)">Off = local device only</span></div><label class="toggle-switch"><input type="checkbox" id="privacyDiaryCloud" checked><span class="toggle-slider"></span></label></div>
+        <div class="settings-row"><div><label style="display:block;margin-bottom:0.2rem">Encrypt diary entries</label><span style="font-size:0.72rem;color:var(--muted)">Encrypts your diary content before it's stored</span></div><label class="toggle-switch"><input type="checkbox" id="privacyDiaryEncrypt" checked><span class="toggle-slider"></span></label></div>
       </div>
       <div class="settings-section"><h3>Your Data</h3>
         <div class="settings-row"><label>Clear local draft</label><button class="btn-sm" id="clearDraftBtn">Clear</button></div>
-        <div class="settings-row"><label>Remove petition signature</label><button class="btn-sm" id="removeSigBtn">Remove</button></div>
       </div>
     </div>
   </div>
@@ -733,7 +693,7 @@ button,input,select,textarea{font-family:inherit;}
       <h2 id="overlayTitle"></h2><div class="post-meta" id="overlayMeta"></div><div class="post-main" id="overlayBody"></div>
       <div class="post-actions"><button class="report-flag" id="overlayReportPost"><svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M7 4h10l-2.8 3L17 10H7z"/></svg></button></div>
       <hr class="post-divider"/>
-      <section class="reply-composer"><div class="reply-context" id="replyContext">Replying to message</div><textarea id="replyInput" placeholder="Write a reply..."></textarea><div class="reply-actions"><button class="btn-sm" id="cancelReplyTarget">Cancel target</button><button class="btn-sm primary" id="submitReply">Reply</button></div></section>
+      <section class="reply-composer"><div class="reply-context" id="replyContext">Replying to message</div><div class="reply-composer-inner"><textarea id="replyInput" placeholder="Write a reply..." rows="1"></textarea></div><div class="reply-actions"><button class="btn-sm" id="cancelReplyTarget">Cancel target</button><button class="btn-sm primary" id="submitReply">Reply</button></div></section>
       <section class="reply-list" id="replyList"></section>
     </article>
   </div>
@@ -988,12 +948,12 @@ function initApp(){
     document.getElementById('chatHeaderName').textContent=cat.id;
     document.getElementById('topbarTitle').textContent=cat.id;document.getElementById('topbarSub').textContent=cat.desc;
     var cs=document.getElementById('categoryInput');for(var i=0;i<cs.options.length;i++){if(cs.options[i].value===catId){cs.selectedIndex=i;break;}}
+    var si=document.getElementById('searchInput');if(si)si.style.display='';
     filterAndRender._hasScrolled=false;filterAndRender();
   }
   function showView(v){
-    ['viewWelcome','viewChat','viewPetition','viewSettings','viewPrivacy','viewMood','viewDiary','viewAnnouncements','viewReports'].forEach(function(id){var el=document.getElementById(id);if(el){el.style.display='none';el.classList.remove('show');}});
+    ['viewWelcome','viewChat','viewSettings','viewPrivacy','viewMood','viewDiary','viewAnnouncements','viewReports'].forEach(function(id){var el=document.getElementById(id);if(el){el.style.display='none';el.classList.remove('show');}});
     if(v==='chat'){document.getElementById('viewChat').style.display='flex';}
-    else if(v==='petition'){document.getElementById('viewPetition').style.display='flex';document.getElementById('viewPetition').classList.add('show');}
     else if(v==='settings'){document.getElementById('viewSettings').style.display='flex';document.getElementById('viewSettings').classList.add('show');updateSettingsAvatarMini&&updateSettingsAvatarMini();}
     else if(v==='privacy'){document.getElementById('viewPrivacy').style.display='flex';document.getElementById('viewPrivacy').classList.add('show');}
     else if(v==='mood'){document.getElementById('viewMood').style.display='flex';document.getElementById('viewMood').classList.add('show');}
@@ -1002,7 +962,7 @@ function initApp(){
     else if(v==='reports'){document.getElementById('viewReports').style.display='flex';document.getElementById('viewReports').classList.add('show');}
     else{document.getElementById('viewWelcome').style.display='flex';}
   }
-  document.getElementById('navChats').addEventListener('click',function(){document.body.classList.add('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');currentView='chats';if(dmMsgListenerRef){dmMsgListenerRef.off();dmMsgListenerRef=null;}document.getElementById('mpSearchInput').style.display='';var plusWrap=document.querySelector('.msg-plus-wrap');if(plusWrap)plusWrap.style.display='';msgInput.disabled=false;msgInput.placeholder='Send a message...';document.getElementById('middlePanel').style.display='';document.getElementById('mpTitle').textContent='Chats & Messages';if(selectedCategory)showView('chat');else showView('welcome');document.getElementById('topbarTitle').textContent='Chats & Messages';document.getElementById('topbarSub').textContent='Select a chat to start reading';buildChatList();});
+  document.getElementById('navChats').addEventListener('click',function(){document.body.classList.add('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');currentView='chats';if(dmMsgListenerRef){dmMsgListenerRef.off();dmMsgListenerRef=null;}document.getElementById('mpSearchInput').style.display='';var plusWrap=document.querySelector('.msg-plus-wrap');if(plusWrap)plusWrap.style.display='';msgInput.disabled=false;msgInput.placeholder='Send a message...';document.getElementById('middlePanel').style.display='';document.getElementById('mpTitle').textContent='Chats & Messages';if(selectedCategory)showView('chat');else showView('welcome');document.getElementById('topbarTitle').textContent='Chats & Messages';document.getElementById('topbarSub').textContent='Select a chat to start reading';var si=document.getElementById('searchInput');if(si)si.style.display='';buildChatList();});
   document.getElementById('navMessages').addEventListener('click',function(){
     document.body.classList.add('mobile-list-mode');
     document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');currentView='dms';selectedCategory=null;selectedDMThread=null;
@@ -1013,15 +973,14 @@ function initApp(){
     document.getElementById('topbarTitle').textContent='Direct Messages';document.getElementById('topbarSub').textContent='Select a conversation, or message someone from their post';
     if(dmMsgListenerRef){dmMsgListenerRef.off();dmMsgListenerRef=null;}
     var plusWrap=document.querySelector('.msg-plus-wrap');if(plusWrap)plusWrap.style.display='none';
+    var si=document.getElementById('searchInput');if(si)si.style.display='none';
     msgInput.placeholder='Select a conversation to reply...';msgInput.disabled=true;msgSendBtn.disabled=true;
     postList.innerHTML='<div class="empty">No conversation selected.<br><span style="font-size:0.78rem">Tap "Message" on someone\'s post to start a DM, or pick a conversation on the left.</span></div>';
     renderDMThreadList();
   });
-  document.getElementById('sbPetitionMini').addEventListener('click',openPetitionView);
-  document.getElementById('navDiary').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='My Diary';document.getElementById('topbarSub').textContent='Private entries';showView('diary');document.getElementById('middlePanel').style.display='none';renderDiaryList();});
+  document.getElementById('navDiary').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='My Diary';document.getElementById('topbarSub').textContent='Private entries';showView('diary');document.getElementById('middlePanel').style.display='none';loadDiaryEntries().then(renderDiaryList);});
   document.getElementById('navAnnouncements').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Announcements';document.getElementById('topbarSub').textContent='Updates from the team';showView('announcements');document.getElementById('middlePanel').style.display='none';renderAnnouncements();localStorage.setItem('lt_ann_seen',Date.now());document.getElementById('annBadge').style.display='none';});
   document.getElementById('navMood').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Mood Check-in';document.getElementById('topbarSub').textContent='Daily mood tracker';showView('mood');document.getElementById('middlePanel').style.display='none';renderMoodView();});
-  function openPetitionView(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});document.getElementById('topbarTitle').textContent='Sign Petition';document.getElementById('topbarSub').textContent='Mental wellness awareness';showView('petition');document.getElementById('middlePanel').style.display='none';}
   document.getElementById('navSettings').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Settings';document.getElementById('topbarSub').textContent='Your preferences';showView('settings');document.getElementById('middlePanel').style.display='none';updateSettingsAvatarMini&&updateSettingsAvatarMini();});
   document.getElementById('navPrivacy').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Privacy';document.getElementById('topbarSub').textContent='Your data & safety';showView('privacy');document.getElementById('middlePanel').style.display='none';});
   var sidebar=document.getElementById('sidebar'),sbToggleIcon=document.getElementById('sbToggleIcon');
@@ -1039,7 +998,7 @@ function initApp(){
   var topbarMenuBtn=document.getElementById('topbarMenuBtn');
   if(topbarMenuBtn)topbarMenuBtn.addEventListener('click',function(e){e.stopPropagation();openMobileSidebar();});
   if(sidebarBackdrop)sidebarBackdrop.addEventListener('click',closeMobileSidebar);
-  sidebar.addEventListener('click',function(e){if(e.target.closest('.nav-btn')||e.target.closest('.sb-petition-mini'))closeMobileSidebar();});
+  sidebar.addEventListener('click',function(e){if(e.target.closest('.nav-btn'))closeMobileSidebar();});
   var chatBackBtn=document.getElementById('chatBackBtn');
   if(chatBackBtn)chatBackBtn.addEventListener('click',function(){document.body.classList.add('mobile-list-mode');});
   function postMarkup(post,idx,arr){
@@ -1065,6 +1024,7 @@ function initApp(){
   }
   var postList=document.getElementById('postList'),searchInput=document.getElementById('searchInput'),sortSelect=document.getElementById('sortSelect'),msgInput=document.getElementById('msgInput'),msgSendBtn=document.getElementById('msgSendBtn');
   function filterAndRender(){
+    if(currentView!=='chats')return;
     var q=searchInput.value.trim().toLowerCase(),sort=sortSelect.value;
     var visible=postsData.filter(function(p){if(selectedCategory)return p.category.toLowerCase()===selectedCategory.toLowerCase();return true;}).filter(function(p){return!q||(p.title.toLowerCase()+' '+p.plainText).includes(q);});
     visible.sort(function(a,b){return sort==='oldest'?a.time-b.time:b.time-a.time;});
@@ -1107,6 +1067,7 @@ function initApp(){
     document.getElementById('chatHeaderName').textContent=dispName;document.getElementById('chatHeaderSub').textContent='Direct message';
     document.getElementById('topbarTitle').textContent=dispName;document.getElementById('topbarSub').textContent='Direct message';
     var plusWrap=document.querySelector('.msg-plus-wrap');if(plusWrap)plusWrap.style.display='none';
+    var si=document.getElementById('searchInput');if(si)si.style.display='none';
     msgInput.disabled=false;msgInput.placeholder='Message '+dispName+'...';msgInput.value='';msgInput.style.height='auto';msgSendBtn.disabled=true;
     markDMRead(tid);listenToDMThread(tid);renderDMThreadList();
   }
@@ -1198,7 +1159,21 @@ function initApp(){
   });
   function flattenReplies(obj){if(!obj)return[];return Object.entries(obj).map(function(e){var id=e[0],r=e[1];return{id:id,parentId:r.parentId||null,text:r.text||'',html:r.html||escapeHtml(r.text||''),user:r.user||'Anonymous',uid:r.uid||null,time:Number(r.time)||Date.now()};});}
   function buildReplyTree(replies){var map=new Map(),roots=[];replies.forEach(function(r){map.set(r.id,Object.assign({},r,{children:[]}));});map.forEach(function(r){if(r.parentId&&map.has(r.parentId))map.get(r.parentId).children.push(r);else roots.push(r);});function srt(a){a.sort(function(x,y){return x.time-y.time;});a.forEach(function(i){srt(i.children);});}srt(roots);return roots;}
-  function renderReplyNode(node){var dmBtnHtml=(node.uid&&node.uid!==(auth.currentUser&&auth.currentUser.uid))?'<button class="btn-sm" data-dm-user="'+node.uid+'" data-dm-nick="'+escapeHtml(node.user)+'">Message</button>':'';return'<div class="reply" data-reply-id="'+node.id+'"><div class="post-meta">'+escapeHtml(getDisplayName(node.user))+' \u00b7 '+formatTime(node.time)+'</div><div class="reply-body">'+node.html+'</div><div class="reply-tools"><button class="btn-sm" data-reply-action="reply" data-reply-id="'+node.id+'">\u21a9 Reply</button>'+dmBtnHtml+'<button class="report-flag" data-report-type="reply" data-reply-id="'+node.id+'"><svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M7 4h10l-2.8 3L17 10H7z"/></svg></button></div>'+(node.children.length?'<div class="reply-children">'+node.children.map(renderReplyNode).join('')+'</div>':'')+'</div>';}
+  function renderReplyNode(node){
+    var dmBtnHtml=(node.uid&&node.uid!==(auth.currentUser&&auth.currentUser.uid))?'<button class="btn-sm" data-dm-user="'+node.uid+'" data-dm-nick="'+escapeHtml(node.user)+'">Message</button>':'';
+    var dispName=getDisplayName(node.user),avStyle,avInits;
+    if(node.user===username){avStyle=getAvatarStyle();avInits=getAvatarInitials(username);}
+    else{var dc=avatarColor(dispName);avStyle='background:'+dc+';color:#fff;';avInits=avatarInitials(dispName);}
+    return'<div class="reply" data-reply-id="'+node.id+'">'
+      +'<div class="reply-avatar" style="'+avStyle+'">'+escapeHtml(avInits)+'</div>'
+      +'<div class="reply-content">'
+        +'<div class="reply-header"><span class="reply-author" style="color:'+(node.user===username?'var(--hl)':avatarColor(dispName))+'">'+escapeHtml(dispName)+'</span><span class="reply-time">'+formatTime(node.time)+'</span></div>'
+        +'<div class="reply-body">'+node.html+'</div>'
+        +'<div class="reply-tools"><button class="btn-sm" data-reply-action="reply" data-reply-id="'+node.id+'">Reply</button>'+dmBtnHtml+'<button class="report-flag" data-report-type="reply" data-reply-id="'+node.id+'"><svg viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M7 4h10l-2.8 3L17 10H7z"/></svg></button></div>'
+        +(node.children.length?'<div class="reply-children">'+node.children.map(renderReplyNode).join('')+'</div>':'')
+      +'</div>'
+    +'</div>';
+  }
   function setReplyTarget(id,label){replyParentId=id;document.getElementById('replyContext').textContent=label;}
   function openPostOverlay(postId){var post=postsData.find(function(p){return p.id===postId;});if(!post)return;activePostId=post.id;document.getElementById('overlayTitle').textContent=post.title;document.getElementById('overlayMeta').textContent='by '+getDisplayName(post.user)+' \u00b7 '+formatTime(post.time)+' \u00b7 '+post.category;document.getElementById('overlayBody').innerHTML=post.html||'';document.getElementById('overlayReportPost').dataset.postId=post.id;var tree=buildReplyTree(flattenReplies(post.replies));document.getElementById('replyList').innerHTML=tree.length?tree.map(renderReplyNode).join(''):'<div class="empty">No replies yet.</div>';setReplyTarget(null,'Replying to message');document.getElementById('replyInput').value='';document.getElementById('postOverlay').classList.add('open');}
   document.getElementById('closePostOverlay').addEventListener('click',function(){document.getElementById('postOverlay').classList.remove('open');activePostId='';});
@@ -1251,75 +1226,105 @@ function initApp(){
   document.getElementById('settingsSaveBtn').addEventListener('click',function(){var nick=document.getElementById('settingNickname').value.trim()||'Anonymous';if(nick!==username){var u=auth.currentUser;if(u){dbGlobal.ref('users/'+u.uid+'/nick').set(nick);setCachedNick(nick);username=nick;document.getElementById('acctName').textContent=username;document.getElementById('acctAvatar').textContent=username.charAt(0).toUpperCase();document.getElementById('ddName').textContent=username.charAt(0).toUpperCase()+username.slice(1);document.getElementById('ddNick').textContent='@'+username.toLowerCase();updatePrivacyRow();}}sortSelect.value=document.getElementById('settingSort').value;filterAndRender();pushNotif('Settings saved');});
   document.getElementById('resetWarningsBtn').addEventListener('click',function(){CATEGORIES.forEach(function(c){localStorage.removeItem(warningSeenKey(c.id));});pushNotif('Warning history reset');});
   document.getElementById('clearDraftBtn').addEventListener('click',function(){localStorage.removeItem('lt_draft_content');localStorage.removeItem('lt_draft_title');document.getElementById('editorTitle').value='';document.getElementById('editor').innerHTML='';pushNotif('Draft cleared');});
-  document.getElementById('removeSigBtn').addEventListener('click',function(){localStorage.removeItem('lt_petition_signed');document.getElementById('petitionSignBtn').disabled=false;document.getElementById('petitionSignBtn').textContent='Sign Petition';document.getElementById('petSignedLabel').style.display='none';pushNotif('Petition signature removed');});
   var privDiaryCloud=document.getElementById('privacyDiaryCloud');
   privDiaryCloud.checked=getDiaryCloudEnabled();
   privDiaryCloud.addEventListener('change',function(){localStorage.setItem('lt_diary_cloud',this.checked?'1':'0');pushNotif(this.checked?'Diary syncing to cloud':'Diary saved locally only');});
-  var PETITION_GOALS=[5,10,20,50,75,100,150,200];
-  var petRef=db.ref('petition/count');
-  function updatePetitionUI(count){document.getElementById('petCountBig').textContent=count;document.getElementById('sbPetCount').textContent=count;var maxGoal=PETITION_GOALS[PETITION_GOALS.length-1],currentGoal=PETITION_GOALS.find(function(g){return g>count;})||maxGoal;document.getElementById('petTrackFill').style.width=Math.min(count/maxGoal*100,100)+'%';document.getElementById('sbPetFill').style.width=Math.min(count/PETITION_GOALS[0]*100,100)+'%';document.getElementById('petMilestonesRow').innerHTML=PETITION_GOALS.map(function(g){var reached=count>=g,current=g===currentGoal,left=(g/maxGoal*100).toFixed(2);return'<div class="pm-node'+(reached?' reached':'')+(current?' current':'')+'" style="left:'+left+'%"><div class="pm-dot"></div><div class="pm-label">'+g+'</div></div>';}).join('');var hs=localStorage.getItem('lt_petition_signed')==='1';document.getElementById('petitionSignBtn').disabled=hs;document.getElementById('petitionSignBtn').textContent=hs?'Signed!':'Sign Petition';document.getElementById('petSignedLabel').style.display=hs?'':'none';}
-  petRef.on('value',function(snap){updatePetitionUI(snap.val()||0);});
-  document.getElementById('petitionSignBtn').addEventListener('click',function(){if(localStorage.getItem('lt_petition_signed')==='1')return;localStorage.setItem('lt_petition_signed','1');petRef.transaction(function(c){return(c||0)+1;});pushNotif('You signed the petition!');});
-  document.getElementById('petInviteInput').value=window.location.href.split('?')[0]+'?ref=petition';
-  document.getElementById('petCopyBtn').addEventListener('click',function(){navigator.clipboard.writeText(document.getElementById('petInviteInput').value).then(function(){document.getElementById('petCopyBtn').textContent='Copied!';setTimeout(function(){document.getElementById('petCopyBtn').textContent='Copy link';},2000);});});
-  db.ref('messages').on('value',function(snap){
-    var data=snap.val();postsData=data?Object.entries(data).map(function(e){return normalize(e[0],e[1]);}):[]; buildChatList();
-    var own=postsData.filter(function(p){return p.user===username;}).length;var badge=document.getElementById('inboxBadge');badge.style.display=own?'':'none';badge.textContent=own;
-    filterAndRender();
-    if(activePostId&&document.getElementById('postOverlay').classList.contains('open'))openPostOverlay(activePostId);
+  var privDiaryEncrypt=document.getElementById('privacyDiaryEncrypt');
+  privDiaryEncrypt.checked=getDiaryEncryptEnabled();
+  privDiaryEncrypt.addEventListener('change',function(){localStorage.setItem('lt_diary_encrypt',this.checked?'1':'0');reencryptDiaryEntries();pushNotif(this.checked?'Diary entries will be encrypted':'Diary encryption turned off');});
+  var settingsView=document.getElementById('viewSettings');
+  var DIARY_MOODS=['😄','🙂','😐','😔','😢','😡','😰','🥱','🤩','🥰','😤','🥺','😌','🤯','😴','🥳','😶','🤧','😬','🤗'];
+  var currentDiaryId=null;
+  var diaryEntriesCache=[];
+  function getDiaryEncryptEnabled(){return localStorage.getItem('lt_diary_encrypt')!=='0';}
+  function b64FromBytes(bytes){var bin='';bytes.forEach(function(b){bin+=String.fromCharCode(b);});return btoa(bin);}
+  function bytesFromB64(b64){return Uint8Array.from(atob(b64),function(c){return c.charCodeAt(0);});}
+  function bytesToKey(b64){return crypto.subtle.importKey('raw',bytesFromB64(b64),{name:'AES-GCM'},false,['encrypt','decrypt']);}
+  function getOrCreateDiaryKey(){
+    return new Promise(function(resolve){
+      var b64=localStorage.getItem('lt_diary_key');
+      if(b64){bytesToKey(b64).then(resolve);return;}
+      crypto.subtle.generateKey({name:'AES-GCM',length:256},true,['encrypt','decrypt']).then(function(key){
+        return crypto.subtle.exportKey('raw',key);
+      }).then(function(raw){
+        var nb64=b64FromBytes(new Uint8Array(raw));localStorage.setItem('lt_diary_key',nb64);
+        bytesToKey(nb64).then(resolve);
+      });
+    });
+  }
+  function encryptDiaryPayload(entries){
+    if(!window.crypto||!window.crypto.subtle||!getDiaryEncryptEnabled())return Promise.resolve({encrypted:false,entries:entries});
+    return getOrCreateDiaryKey().then(function(key){
+      var iv=crypto.getRandomValues(new Uint8Array(12));
+      var enc=new TextEncoder().encode(JSON.stringify(entries));
+      return crypto.subtle.encrypt({name:'AES-GCM',iv:iv},key,enc).then(function(cipher){
+        return{encrypted:true,iv:b64FromBytes(iv),data:b64FromBytes(new Uint8Array(cipher))};
+      });
+    });
+  }
+  function decryptDiaryPayload(payload){
+    if(!payload)return Promise.resolve([]);
+    if(Array.isArray(payload))return Promise.resolve(payload);
+    if(!payload.encrypted)return Promise.resolve(payload.entries||[]);
+    if(!window.crypto||!window.crypto.subtle)return Promise.resolve([]);
+    var b64=localStorage.getItem('lt_diary_key');
+    if(!b64)return Promise.resolve([]);
+    return bytesToKey(b64).then(function(key){
+      return crypto.subtle.decrypt({name:'AES-GCM',iv:bytesFromB64(payload.iv)},key,bytesFromB64(payload.data)).then(function(plain){
+        try{return JSON.parse(new TextDecoder().decode(plain));}catch(e){return[];}
+      }).catch(function(){return[];});
+    });
+  }
+  function getDiaryEntries(){return diaryEntriesCache;}
+  function persistDiaryEntries(entries){
+    encryptDiaryPayload(entries).then(function(payload){
+      localStorage.setItem('lt_diary',JSON.stringify(payload));
+      if(getDiaryCloudEnabled()){var u=auth.currentUser;if(u)dbGlobal.ref('users/'+u.uid+'/diary').set(payload).catch(function(){});}
+    });
+  }
+  function saveDiaryEntries(entries){diaryEntriesCache=entries;persistDiaryEntries(entries);}
+  function loadDiaryEntries(){
+    var raw=localStorage.getItem('lt_diary'),localPayload=null;
+    try{localPayload=raw?JSON.parse(raw):[];}catch(e){localPayload=[];}
+    return decryptDiaryPayload(localPayload).then(function(entries){diaryEntriesCache=entries;return entries;});
+  }
+  function reencryptDiaryEntries(){persistDiaryEntries(diaryEntriesCache);}
+  function renderDiaryList(){
+    var list=document.getElementById('diaryEntryList');if(!list)return;
+    var entries=getDiaryEntries();
+    if(!entries.length){list.innerHTML='<div class="diary-empty">No entries yet.<br><span style="font-size:0.78rem">Tap New Entry to write your first one.</span></div>';return;}
+    list.innerHTML=entries.map(function(e){var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'short',day:'numeric',year:'numeric'});var preview=e.body?e.body.replace(/<[^>]+>/g,'').slice(0,120):'';return'<div class="diary-entry" data-diary-id="'+e.id+'"><div class="diary-entry-top"><span class="diary-entry-date">'+label+'</span><span class="diary-entry-mood">'+(e.mood||'')+'</span></div><div class="diary-entry-title">'+(e.title?escapeHtml(e.title):'Untitled')+'</div>'+(preview?'<div class="diary-entry-preview">'+escapeHtml(preview)+'</div>':'')+'</div>';}).join('');
+    list.querySelectorAll('.diary-entry').forEach(function(el){el.addEventListener('click',function(){openDiaryEditor(el.dataset.diaryId);});});
+  }
+  document.getElementById('diaryNewBtn').addEventListener('click',function(){openDiaryEditor(null);});
+  function openDiaryEditor(id){
+    currentDiaryId=id;document.getElementById('diaryEditorOverlay').classList.add('open');
+    var moodRow=document.getElementById('diaryEditorMoods');moodRow.innerHTML='';
+    DIARY_MOODS.forEach(function(em){var btn=document.createElement('button');btn.className='diary-mood-btn';btn.dataset.mood=em;btn.innerHTML='<span class="emoji-inner">'+em+'</span>';btn.addEventListener('click',function(){moodRow.querySelectorAll('.diary-mood-btn').forEach(function(b){b.classList.remove('selected');});btn.classList.add('selected');});moodRow.appendChild(btn);});
+    if(id){var entries=getDiaryEntries(),entry=entries.find(function(e){return e.id===id;});if(entry){document.getElementById('diaryEditorTitle').value=entry.title||'';document.getElementById('diaryEditorBody').innerHTML=entry.body||'';document.getElementById('diaryEditorDate').textContent=new Date(entry.ts).toLocaleString([],{dateStyle:'medium',timeStyle:'short'});document.getElementById('diaryDeleteBtn').style.display='';if(entry.mood)moodRow.querySelectorAll('.diary-mood-btn').forEach(function(b){if(b.dataset.mood===entry.mood)b.classList.add('selected');});}}
+    else{document.getElementById('diaryEditorTitle').value='';document.getElementById('diaryEditorBody').innerHTML='';document.getElementById('diaryEditorDate').textContent=new Date().toLocaleString([],{dateStyle:'medium',timeStyle:'short'});document.getElementById('diaryDeleteBtn').style.display='none';}
+  }
+  document.getElementById('diaryEditorBack').addEventListener('click',function(){document.getElementById('diaryEditorOverlay').classList.remove('open');});
+  document.getElementById('diaryEditorSave').addEventListener('click',function(){var title=document.getElementById('diaryEditorTitle').value.trim(),body=document.getElementById('diaryEditorBody').innerHTML.trim();var moodBtn=document.querySelector('#diaryEditorMoods .diary-mood-btn.selected'),mood=moodBtn?moodBtn.dataset.mood:'';if(!title&&!body){alert('Write something first!');return;}var entries=getDiaryEntries();if(currentDiaryId){entries=entries.map(function(e){return e.id===currentDiaryId?Object.assign({},e,{title:title,body:body,mood:mood,updated:Date.now()}):e;});}else{entries=entries.slice();entries.unshift({id:'de_'+Date.now(),title:title,body:body,mood:mood,ts:Date.now()});}saveDiaryEntries(entries);document.getElementById('diaryEditorOverlay').classList.remove('open');renderDiaryList();pushNotif('Diary entry saved');});
+  document.getElementById('diaryDeleteBtn').addEventListener('click',function(){if(!confirm('Delete this entry?'))return;saveDiaryEntries(getDiaryEntries().filter(function(e){return e.id!==currentDiaryId;}));document.getElementById('diaryEditorOverlay').classList.remove('open');renderDiaryList();pushNotif('Entry deleted');});
+  var bookPage=0;
+  function openBookView(){var entries=getDiaryEntries();if(!entries.length){pushNotif('No diary entries yet!');return;}bookPage=0;renderBookSpread();document.getElementById('diaryBookOverlay').classList.add('open');}
+  function renderBookSpread(){var entries=getDiaryEntries(),total=entries.length,totalSpreads=Math.ceil(total/2);var left=entries[bookPage*2],right=entries[bookPage*2+1];renderBookPage('bookPageLeft','bookPageNumLeft',left,bookPage*2+1);renderBookPage('bookPageRight','bookPageNumRight',right,bookPage*2+2);document.getElementById('bookPrevBtn').disabled=bookPage===0;document.getElementById('bookNextBtn').disabled=bookPage>=totalSpreads-1;document.getElementById('bookPageInfo').textContent='Entries '+(bookPage*2+1)+'-'+(Math.min(bookPage*2+2,total))+' of '+total;}
+  function renderBookPage(pageId,numId,entry,pageNum){var el=document.getElementById(pageId),numEl=document.getElementById(numId);if(!entry){el.innerHTML='<div class="book-blank">-</div>';numEl.textContent='';return;}var d=new Date(entry.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});var bodyText=entry.body?entry.body.replace(/<[^>]+>/g,''):'';el.innerHTML='<div class="book-page-title">'+(entry.title?escapeHtml(entry.title):'Untitled')+'</div><div class="book-page-date">'+label+'</div>'+(entry.mood?'<div class="book-page-mood">'+entry.mood+'</div>':'')+'<div class="book-page-body">'+escapeHtml(bodyText)+'</div><div class="book-page-fade"></div>';numEl.textContent=pageNum;}
+  document.getElementById('diaryBookBtn').addEventListener('click',openBookView);
+  document.getElementById('diaryBookClose').addEventListener('click',function(){document.getElementById('diaryBookOverlay').classList.remove('open');});
+  document.getElementById('bookPrevBtn').addEventListener('click',function(){if(bookPage>0){bookPage--;renderBookSpread();}});
+  document.getElementById('bookNextBtn').addEventListener('click',function(){var entries=getDiaryEntries(),total=Math.ceil(entries.length/2);if(bookPage<total-1){bookPage++;renderBookSpread();}});
+  document.getElementById('diaryExportBtn').addEventListener('click',function(){
+    var entries=getDiaryEntries();if(!entries.length){pushNotif('No diary entries to export!');return;}
+    var jsPDFLib=window.jspdf?window.jspdf.jsPDF:(window.jsPDF||null);
+    if(!jsPDFLib){var win=window.open('','_blank');var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>My Diary</title><style>body{font-family:Georgia,serif;max-width:700px;margin:2rem auto;color:#222;line-height:1.7}h1{color:#b8860b}.entry{margin-bottom:3rem;border-bottom:1px solid #ddd;padding-bottom:2rem}.entry-title{font-size:1.3rem;font-weight:700;color:#333;margin-bottom:0.2rem}.entry-meta{font-size:0.8rem;color:#888;margin-bottom:0.75rem}@media print{body{margin:1rem}}</style></head><body><h1>My Diary</h1><p style="color:#888;font-size:0.85rem">Exported '+new Date().toLocaleDateString()+'</p><hr style="margin:1.5rem 0"/>';entries.forEach(function(e){var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});var body=e.body?e.body.replace(/<[^>]+>/g,''):'';html+='<div class="entry"><div class="entry-title">'+(e.mood?e.mood+' ':'')+escapeHtml(e.title||'Untitled')+'</div><div class="entry-meta">'+label+'</div><div>'+escapeHtml(body)+'</div></div>';});html+='</body></html>';win.document.write(html);win.document.close();win.print();return;}
+    var doc=new jsPDFLib({orientation:'portrait',unit:'mm',format:'a4'});
+    var pageW=210,pageH=297,margin=20,contentW=pageW-margin*2,lineH=7,y=margin;
+    doc.setFillColor(26,26,26);doc.rect(0,0,pageW,pageH,'F');doc.setFontSize(32);doc.setFont('helvetica','bold');doc.setTextColor(255,222,89);doc.text('My Diary',pageW/2,pageH/2-10,{align:'center'});doc.setFontSize(12);doc.setFont('helvetica','normal');doc.setTextColor(138,138,154);doc.text('Exported '+new Date().toLocaleDateString(),pageW/2,pageH/2+8,{align:'center'});doc.text(entries.length+' entries',pageW/2,pageH/2+18,{align:'center'});
+    entries.forEach(function(e){doc.addPage();y=margin;doc.setFillColor(26,26,22);doc.rect(0,0,pageW,pageH,'F');var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});doc.setFontSize(18);doc.setFont('helvetica','bold');doc.setTextColor(255,222,89);var titleLines=doc.splitTextToSize((e.mood?e.mood+' ':'')+( e.title||'Untitled'),contentW);titleLines.forEach(function(l){doc.text(l,margin,y);y+=9;});doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(138,138,154);doc.text(label,margin,y);y+=10;doc.setDrawColor(58,58,58);doc.line(margin,y,pageW-margin,y);y+=8;var body=e.body?e.body.replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,''):'(no content)';doc.setFontSize(11);doc.setFont('helvetica','normal');doc.setTextColor(224,224,224);var bodyLines=doc.splitTextToSize(body,contentW);bodyLines.forEach(function(line){if(y+lineH>pageH-margin){doc.addPage();doc.setFillColor(26,26,22);doc.rect(0,0,pageW,pageH,'F');y=margin;}doc.text(line,margin,y);y+=lineH;});});
+    doc.save('my-diary-'+new Date().toISOString().slice(0,10)+'.pdf');pushNotif('Diary exported as PDF!');
   });
-  var composerOverlay=document.getElementById('composerOverlay'),editor=document.getElementById('editor'),editorTitle=document.getElementById('editorTitle'),categoryInput=document.getElementById('categoryInput'),formatSelect=document.getElementById('formatSelect'),linkBtn=document.getElementById('linkBtn'),linkPanel=document.getElementById('linkPanel'),linkInput=document.getElementById('linkInput'),linkNameInput=document.getElementById('linkNameInput'),previewContainer=document.getElementById('previewContainer');
-  document.getElementById('closeComposer').addEventListener('click',function(){composerOverlay.classList.remove('open');});
-  function saveSelection(){var sel=window.getSelection();if(sel&&sel.rangeCount>0)savedRange=sel.getRangeAt(0).cloneRange();}
-  function restoreSelection(){if(!savedRange)return;var sel=window.getSelection();sel.removeAllRanges();sel.addRange(savedRange);}
-  function insertNodeAtCursor(node){restoreSelection();var sel=window.getSelection();if(!sel||!sel.rangeCount)return;var range=sel.getRangeAt(0);range.deleteContents();range.insertNode(node);range.setStartAfter(node);range.collapse(true);sel.removeAllRanges();sel.addRange(range);}
-  function updateToolbar(){document.getElementById('boldBtn').classList.toggle('active',document.queryCommandState('bold'));document.getElementById('italicBtn').classList.toggle('active',document.queryCommandState('italic'));document.getElementById('underlineBtn').classList.toggle('active',document.queryCommandState('underline'));document.getElementById('strikeBtn').classList.toggle('active',document.queryCommandState('strikeThrough'));}
-  function syncPreview(){var frame=document.getElementById('previewFrame');if(!frame){frame=document.createElement('iframe');frame.id='previewFrame';frame.style.cssText='width:100%;height:100%;border:none;background:#151515;display:block;';frame.sandbox='allow-scripts allow-same-origin';previewContainer.innerHTML='';previewContainer.appendChild(frame);}var doc=frame.contentDocument||frame.contentWindow.document;doc.open();doc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{margin:0;padding:0.75rem;background:#151515;color:#f8f8f8;font-family:system-ui,sans-serif;font-size:0.88rem;line-height:1.65}h1,h2{color:#ffde59}a{color:#ffde59}blockquote{border-left:3px solid #ffde59;margin:0.5rem 0;padding:0.3rem 0.7rem;color:#bcbcbc;background:#1a1a1a;border-radius:0 6px 6px 0}pre{background:#0a0a0a;border:1px solid #3a3a3a;border-radius:6px;padding:0.6rem 0.8rem;font-family:monospace;font-size:0.78rem;color:#e0e0e0;overflow-x:auto;white-space:pre-wrap}code{background:#1a1a1a;border:1px solid #333;border-radius:3px;padding:0 4px;font-family:monospace;font-size:0.82em;color:#ffde59}.pt{font-size:1.2rem;font-weight:800;color:#ffde59;margin:0 0 0.35rem}.pm{color:#8a8a9a;font-size:0.75rem;margin-bottom:0.6rem}</style></head><body><div class="pt">'+(editorTitle.value||'Untitled')+'</div><div class="pm">Preview</div><div>'+editor.innerHTML+'</div></body></html>');doc.close();}
-  function toggleFmt(id,cmd){document.getElementById(id).addEventListener('click',function(){document.execCommand(cmd);updateToolbar();editor.focus();syncPreview();});}
-  toggleFmt('boldBtn','bold');toggleFmt('italicBtn','italic');toggleFmt('underlineBtn','underline');toggleFmt('strikeBtn','strikeThrough');toggleFmt('ulBtn','insertUnorderedList');toggleFmt('olBtn','insertOrderedList');
-  document.getElementById('h1Btn').addEventListener('click',function(){document.execCommand('formatBlock',false,'h1');editor.focus();syncPreview();});
-  document.getElementById('h2Btn').addEventListener('click',function(){document.execCommand('formatBlock',false,'h2');editor.focus();syncPreview();});
-  document.getElementById('quoteBtn').addEventListener('click',function(){document.execCommand('formatBlock',false,'blockquote');editor.focus();syncPreview();});
-  document.getElementById('hrBtn').addEventListener('click',function(){document.execCommand('insertHorizontalRule');editor.focus();syncPreview();});
-  document.getElementById('codeInlineBtn').addEventListener('click',function(){saveSelection();var sel=window.getSelection(),text=sel&&!sel.isCollapsed?sel.toString():'code',code=document.createElement('code');code.textContent=text;insertNodeAtCursor(code);editor.focus();syncPreview();});
-  document.getElementById('clearBtn').addEventListener('click',function(){document.execCommand('removeFormat',false,null);editor.focus();updateToolbar();syncPreview();});
-  editor.addEventListener('keyup',function(){saveSelection();updateToolbar();syncPreview();});
-  editor.addEventListener('mouseup',function(){saveSelection();updateToolbar();});
-  editor.addEventListener('focus',saveSelection);editor.addEventListener('input',syncPreview);editorTitle.addEventListener('input',syncPreview);
-  editor.addEventListener('keydown',function(e){var ctrl=e.ctrlKey||e.metaKey;if(e.key==='Enter'){setTimeout(function(){document.execCommand('formatBlock',false,'p');},0);return;}if(ctrl&&e.key==='b'){e.preventDefault();document.execCommand('bold');updateToolbar();syncPreview();}if(ctrl&&e.key==='i'){e.preventDefault();document.execCommand('italic');updateToolbar();syncPreview();}if(ctrl&&e.key==='u'){e.preventDefault();document.execCommand('underline');updateToolbar();syncPreview();}if(ctrl&&e.key==='k'){e.preventDefault();linkBtn.click();}});
-  formatSelect.addEventListener('change',function(){document.execCommand('formatBlock',false,formatSelect.value);editor.focus();});
-  if(linkBtn)linkBtn.addEventListener('click',function(e){saveSelection();var rect=linkBtn.getBoundingClientRect();linkPanel.style.top=(rect.bottom+4)+'px';linkPanel.style.left=rect.left+'px';linkPanel.style.display=linkPanel.style.display==='block'?'none':'block';if(linkPanel.style.display==='block')linkNameInput.focus();e.stopPropagation();});
-  document.getElementById('insertLinkBtn').addEventListener('click',function(){var url=linkInput.value.trim(),text=linkNameInput.value.trim()||url;if(!url)return;editor.focus();restoreSelection();var sel=window.getSelection();if(!sel||!sel.rangeCount)return;var range=sel.getRangeAt(0);range.deleteContents();var link=document.createElement('a');link.href=url;link.textContent=text;link.style.color='#ffde59';range.insertNode(link);range.setStartAfter(link);range.setEndAfter(link);sel.removeAllRanges();sel.addRange(range);linkPanel.style.display='none';editor.focus();syncPreview();});
-  var dlx=false,dlox=0,dloy=0;document.getElementById('linkHeader').addEventListener('mousedown',function(e){dlx=true;dlox=e.clientX-linkPanel.offsetLeft;dloy=e.clientY-linkPanel.offsetTop;});
-  document.addEventListener('mousemove',function(e){if(!dlx)return;linkPanel.style.left=(e.clientX-dlox)+'px';linkPanel.style.top=(e.clientY-dloy)+'px';});
-  document.addEventListener('mouseup',function(){dlx=false;});
-  var codePanel=document.getElementById('codePanel');
-  document.getElementById('codeBlockBtn').addEventListener('click',function(){saveSelection();var rect=this.getBoundingClientRect();codePanel.style.top=(rect.bottom+6)+'px';codePanel.style.left=Math.min(rect.left,window.innerWidth-380)+'px';codePanel.classList.toggle('open');if(codePanel.classList.contains('open'))document.getElementById('codeTextarea').focus();});
-  document.getElementById('cancelCodeBtn').addEventListener('click',function(){codePanel.classList.remove('open');});
-  document.getElementById('insertCodeBtn').addEventListener('click',function(){var code=document.getElementById('codeTextarea').value;if(!code.trim())return;var lang=document.getElementById('codeLangSelect').value;var pre=document.createElement('pre'),codeEl=document.createElement('code');if(lang)codeEl.setAttribute('data-lang',lang);codeEl.textContent=code;pre.appendChild(codeEl);var br=document.createElement('p');br.innerHTML='<br>';editor.focus();restoreSelection();var sel=window.getSelection();if(sel&&sel.rangeCount){var range=sel.getRangeAt(0);range.collapse(false);range.insertNode(br);range.insertNode(pre);range.setStartAfter(br);sel.removeAllRanges();sel.addRange(range);}else{editor.appendChild(pre);editor.appendChild(br);}document.getElementById('codeTextarea').value='';codePanel.classList.remove('open');editor.focus();syncPreview();});
-  var emojiPanel=document.getElementById('emojiPanel'),emojiGrid=document.getElementById('emojiGrid'),emojiSearch=document.getElementById('emojiSearch'),emojiTabs=document.getElementById('emojiTabs');
-  var emojiData={Smileys:[['😀','grinning'],['😁','beaming'],['😂','joy'],['😊','blush'],['😎','sunglasses'],['😍','heart eyes'],['🥰','smiling hearts'],['🤗','hugging'],['🤔','thinking'],['😢','crying'],['😭','loudly crying'],['😠','angry'],['🤬','cursing'],['👻','ghost']],People:[['👋','wave'],['👌','ok'],['✌','peace'],['👍','thumbs up'],['👎','thumbs down'],['✊','fist'],['👏','clap'],['🙌','raised hands'],['🙏','pray'],['💪','muscle']],Hearts:[['❤','red heart'],['🧡','orange'],['💛','yellow'],['💚','green'],['💙','blue'],['💜','purple'],['💔','broken'],['💕','two hearts'],['💖','sparkling']],Nature:[['🐶','dog'],['🐱','cat'],['🌸','blossom'],['🌻','sunflower'],['🌹','rose'],['🔥','fire'],['⭐','star'],['🌙','moon'],['☀','sun'],['🌈','rainbow'],['❄','snowflake']],Symbols:[['✅','check'],['❌','cross'],['❓','question'],['❗','exclamation'],['💯','100'],['🔔','bell'],['🚫','no'],['⚠','warning']]};
-  function renderEmojiGrid(emojis){emojiGrid.innerHTML=emojis.map(function(em){return'<button class="emoji-btn" type="button" title="'+em[1]+'" data-emoji="'+em[0]+'">'+em[0]+'</button>';}).join('');}
-  var ecats=Object.keys(emojiData);
-  ecats.forEach(function(cat,i){var btn=document.createElement('button');btn.type='button';btn.className='emoji-tab'+(i===0?' active':'');btn.textContent=cat;btn.addEventListener('click',function(){document.querySelectorAll('.emoji-tab').forEach(function(t){t.classList.remove('active');});btn.classList.add('active');emojiSearch.value='';renderEmojiGrid(emojiData[cat]);});emojiTabs.appendChild(btn);});
-  renderEmojiGrid(emojiData[ecats[0]]);
-  if(emojiSearch)emojiSearch.addEventListener('input',function(){var q=emojiSearch.value.toLowerCase();if(!q){renderEmojiGrid(emojiData[ecats[0]]);return;}var res=ecats.reduce(function(acc,c){return acc.concat(emojiData[c].filter(function(em){return em[1].includes(q);}));},[]);renderEmojiGrid(res.slice(0,60));});
-  if(emojiGrid)emojiGrid.addEventListener('click',function(e){var btn=e.target.closest('.emoji-btn');if(!btn)return;editor.focus();restoreSelection();document.execCommand('insertText',false,btn.dataset.emoji);syncPreview();});
-  document.getElementById('emojiBtn').addEventListener('click',function(e){saveSelection();var rect=e.currentTarget.getBoundingClientRect(),panelW=320,left=rect.left;if(left+panelW>window.innerWidth)left=window.innerWidth-panelW-8;emojiPanel.style.top=(rect.bottom+6)+'px';emojiPanel.style.left=left+'px';emojiPanel.classList.toggle('open');if(emojiPanel.classList.contains('open'))emojiSearch.focus();});
-  document.addEventListener('click',function(e){if(!emojiPanel.contains(e.target)&&e.target.id!=='emojiBtn')emojiPanel.classList.remove('open');if(!codePanel.contains(e.target)&&e.target.id!=='codeBlockBtn')codePanel.classList.remove('open');if(!linkPanel.contains(e.target)&&e.target.id!=='linkBtn')linkPanel.style.display='none';});
-  document.getElementById('saveDraftBtn').addEventListener('click',function(){localStorage.setItem('lt_draft_content',editor.innerHTML);localStorage.setItem('lt_draft_title',editorTitle.value);pushNotif('Draft saved');});
-  document.getElementById('publishBtn').addEventListener('click',function(){var title=editorTitle.value.trim(),html=editor.innerHTML.trim(),text=editor.textContent.trim(),category=categoryInput.value;if(!title||!text)return;db.ref('messages').push({title:title,html:html,text:text,user:username,uid:(auth.currentUser&&auth.currentUser.uid)||null,category:category,time:Date.now(),likes:0});editorTitle.value='';editor.innerHTML='';composerOverlay.classList.remove('open');pushNotif('Posted "'+title.slice(0,30)+'"');});
-  window.addEventListener('load',function(){var c=localStorage.getItem('lt_draft_content'),t=localStorage.getItem('lt_draft_title');if(c)editor.innerHTML=c;if(t)editorTitle.value=t;syncPreview();});
-  var mpPanel=document.getElementById('middlePanel'),mpResizer=document.getElementById('mpResizer'),mpR=false,mpX=0,mpW=0;
-  mpResizer.addEventListener('mousedown',function(e){mpR=true;mpX=e.clientX;mpW=mpPanel.offsetWidth;document.body.style.userSelect='none';document.body.style.cursor='ew-resize';e.preventDefault();});
-  document.addEventListener('mousemove',function(e){if(mpR)mpPanel.style.width=Math.min(Math.max(mpW+(e.clientX-mpX),180),480)+'px';});
-  document.addEventListener('mouseup',function(){if(mpR){mpR=false;document.body.style.cursor='';document.body.style.userSelect='';}});
-  var cRH=document.getElementById('composerResizeHandle'),cRL=document.getElementById('composerResizeLeft'),cRR=document.getElementById('composerResizeRight');
-  var isRV=false,isRH=false,rSide='',rSY=0,rSH=0,rSX=0,rSW=0;
-  cRH.addEventListener('mousedown',function(e){isRV=true;rSY=e.clientY;rSH=composerOverlay.offsetHeight;document.body.style.userSelect='none';document.body.style.cursor='ns-resize';});
-  [cRL,cRR].forEach(function(h){h.addEventListener('mousedown',function(e){isRH=true;rSide=h===cRL?'left':'right';rSX=e.clientX;rSW=composerOverlay.offsetWidth;document.body.style.userSelect='none';document.body.style.cursor='ew-resize';e.stopPropagation();});});
-  document.addEventListener('mousemove',function(e){if(isRV)composerOverlay.style.height=Math.min(Math.max(rSH+(rSY-e.clientY),120),window.innerHeight*0.8)+'px';if(isRH){var delta=rSide==='right'?e.clientX-rSX:rSX-e.clientX;composerOverlay.style.width=Math.min(Math.max(rSW+delta,320),window.innerWidth*8/9)+'px';}});
-  document.addEventListener('mouseup',function(){if(isRV){isRV=false;document.body.style.cursor='';document.body.style.userSelect='';}if(isRH){isRH=false;document.body.style.cursor='';document.body.style.userSelect='';}});
   var MOOD_EMOJIS=[{e:'😄',label:'Great',score:5,color:'#4ade80'},{e:'🙂',label:'Good',score:4,color:'#a3e635'},{e:'😐',label:'Okay',score:3,color:'#facc15'},{e:'😔',label:'Low',score:2,color:'#fb923c'},{e:'😢',label:'Rough',score:1,color:'#f87171'},{e:'😡',label:'Angry',score:1,color:'#ef4444'},{e:'😰',label:'Anxious',score:2,color:'#a78bfa'},{e:'🥱',label:'Tired',score:2,color:'#94a3b8'},{e:'🤩',label:'Excited',score:5,color:'#fbbf24'},{e:'🥰',label:'Loved',score:5,color:'#f472b6'},{e:'😤',label:'Frustrated',score:1,color:'#f97316'},{e:'🥺',label:'Sad',score:1,color:'#818cf8'},{e:'😌',label:'Calm',score:4,color:'#67e8f9'},{e:'🤯',label:'Overwhelmed',score:1,color:'#e879f9'},{e:'😴',label:'Exhausted',score:2,color:'#6b7280'},{e:'🥳',label:'Joyful',score:5,color:'#fde68a'},{e:'😶',label:'Numb',score:2,color:'#9ca3af'},{e:'🤧',label:'Unwell',score:2,color:'#60a5fa'},{e:'😬',label:'Nervous',score:2,color:'#fbbf24'},{e:'🤗',label:'Grateful',score:5,color:'#34d399'}];
   var selectedMoodIdx=null;
   function getMoodLog(){try{return JSON.parse(localStorage.getItem('lt_mood_log')||'[]');}catch(e){return[];}}
@@ -1351,46 +1356,6 @@ function initApp(){
     chart.innerHTML='';labels.innerHTML='';
     for(var i=6;i>=0;i--){var d=new Date(today);d.setDate(today.getDate()-i);var key=d.toISOString().slice(0,10);var entry=log.find(function(e){return e.date===key;});var score=entry?entry.score:0;var mdata=entry?MOOD_EMOJIS.find(function(m){return m.e===entry.emoji;}):null;var color=mdata?mdata.color:'var(--line)';var pct=score?Math.round(score/5*100):8;var barWrap=document.createElement('div');barWrap.style.cssText='flex:1;display:flex;flex-direction:column;align-items:center;';var bar=document.createElement('div');bar.style.cssText='width:100%;border-radius:4px 4px 0 0;background:'+color+';';bar.style.height=pct+'%';bar.title=(entry?entry.emoji+' '+entry.label:'No entry');barWrap.appendChild(bar);chart.appendChild(barWrap);var lbl=document.createElement('div');lbl.style.cssText='flex:1;font-size:0.6rem;color:var(--muted);text-align:center;';lbl.textContent=days[d.getDay()];labels.appendChild(lbl);}
   }
-  var DIARY_MOODS=['😄','🙂','😐','😔','😢','😡','😰','🥱','🤩','🥰','😤','🥺','😌','🤯','😴','🥳','😶','🤧','😬','🤗'];
-  var currentDiaryId=null;
-  function getDiaryEntries(){try{return JSON.parse(localStorage.getItem('lt_diary')||'[]');}catch(e){return[];}}
-  function saveDiaryEntries(entries){localStorage.setItem('lt_diary',JSON.stringify(entries));if(getDiaryCloudEnabled()){var u=auth.currentUser;if(u)db.ref('users/'+u.uid+'/diary').set(entries).catch(function(){});}}
-  function renderDiaryList(){
-    var list=document.getElementById('diaryEntryList');if(!list)return;
-    var entries=getDiaryEntries();
-    if(!entries.length){list.innerHTML='<div class="diary-empty">No entries yet.<br><span style="font-size:0.78rem">Tap New Entry to write your first one.</span></div>';return;}
-    list.innerHTML=entries.map(function(e){var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'short',day:'numeric',year:'numeric'});var preview=e.body?e.body.replace(/<[^>]+>/g,'').slice(0,120):'';return'<div class="diary-entry" data-diary-id="'+e.id+'"><div class="diary-entry-top"><span class="diary-entry-date">'+label+'</span><span class="diary-entry-mood">'+(e.mood||'')+'</span></div><div class="diary-entry-title">'+(e.title?escapeHtml(e.title):'Untitled')+'</div>'+(preview?'<div class="diary-entry-preview">'+escapeHtml(preview)+'</div>':'')+'</div>';}).join('');
-    list.querySelectorAll('.diary-entry').forEach(function(el){el.addEventListener('click',function(){openDiaryEditor(el.dataset.diaryId);});});
-  }
-  document.getElementById('diaryNewBtn').addEventListener('click',function(){openDiaryEditor(null);});
-  function openDiaryEditor(id){
-    currentDiaryId=id;document.getElementById('diaryEditorOverlay').classList.add('open');
-    var moodRow=document.getElementById('diaryEditorMoods');moodRow.innerHTML='';
-    DIARY_MOODS.forEach(function(em){var btn=document.createElement('button');btn.className='diary-mood-btn';btn.dataset.mood=em;btn.innerHTML='<span class="emoji-inner">'+em+'</span>';btn.addEventListener('click',function(){moodRow.querySelectorAll('.diary-mood-btn').forEach(function(b){b.classList.remove('selected');});btn.classList.add('selected');});moodRow.appendChild(btn);});
-    if(id){var entries=getDiaryEntries(),entry=entries.find(function(e){return e.id===id;});if(entry){document.getElementById('diaryEditorTitle').value=entry.title||'';document.getElementById('diaryEditorBody').innerHTML=entry.body||'';document.getElementById('diaryEditorDate').textContent=new Date(entry.ts).toLocaleString([],{dateStyle:'medium',timeStyle:'short'});document.getElementById('diaryDeleteBtn').style.display='';if(entry.mood)moodRow.querySelectorAll('.diary-mood-btn').forEach(function(b){if(b.dataset.mood===entry.mood)b.classList.add('selected');});}}
-    else{document.getElementById('diaryEditorTitle').value='';document.getElementById('diaryEditorBody').innerHTML='';document.getElementById('diaryEditorDate').textContent=new Date().toLocaleString([],{dateStyle:'medium',timeStyle:'short'});document.getElementById('diaryDeleteBtn').style.display='none';}
-  }
-  document.getElementById('diaryEditorBack').addEventListener('click',function(){document.getElementById('diaryEditorOverlay').classList.remove('open');});
-  document.getElementById('diaryEditorSave').addEventListener('click',function(){var title=document.getElementById('diaryEditorTitle').value.trim(),body=document.getElementById('diaryEditorBody').innerHTML.trim();var moodBtn=document.querySelector('#diaryEditorMoods .diary-mood-btn.selected'),mood=moodBtn?moodBtn.dataset.mood:'';if(!title&&!body){alert('Write something first!');return;}var entries=getDiaryEntries();if(currentDiaryId){entries=entries.map(function(e){return e.id===currentDiaryId?Object.assign({},e,{title:title,body:body,mood:mood,updated:Date.now()}):e;});}else{entries.unshift({id:'de_'+Date.now(),title:title,body:body,mood:mood,ts:Date.now()});}saveDiaryEntries(entries);document.getElementById('diaryEditorOverlay').classList.remove('open');renderDiaryList();pushNotif('Diary entry saved');});
-  document.getElementById('diaryDeleteBtn').addEventListener('click',function(){if(!confirm('Delete this entry?'))return;saveDiaryEntries(getDiaryEntries().filter(function(e){return e.id!==currentDiaryId;}));document.getElementById('diaryEditorOverlay').classList.remove('open');renderDiaryList();pushNotif('Entry deleted');});
-  var bookPage=0;
-  function openBookView(){var entries=getDiaryEntries();if(!entries.length){pushNotif('No diary entries yet!');return;}bookPage=0;renderBookSpread();document.getElementById('diaryBookOverlay').classList.add('open');}
-  function renderBookSpread(){var entries=getDiaryEntries(),total=entries.length,totalSpreads=Math.ceil(total/2);var left=entries[bookPage*2],right=entries[bookPage*2+1];renderBookPage('bookPageLeft','bookPageNumLeft',left,bookPage*2+1);renderBookPage('bookPageRight','bookPageNumRight',right,bookPage*2+2);document.getElementById('bookPrevBtn').disabled=bookPage===0;document.getElementById('bookNextBtn').disabled=bookPage>=totalSpreads-1;document.getElementById('bookPageInfo').textContent='Entries '+(bookPage*2+1)+'-'+(Math.min(bookPage*2+2,total))+' of '+total;}
-  function renderBookPage(pageId,numId,entry,pageNum){var el=document.getElementById(pageId),numEl=document.getElementById(numId);if(!entry){el.innerHTML='<div class="book-blank">-</div>';numEl.textContent='';return;}var d=new Date(entry.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});var bodyText=entry.body?entry.body.replace(/<[^>]+>/g,''):'';el.innerHTML='<div class="book-page-title">'+(entry.title?escapeHtml(entry.title):'Untitled')+'</div><div class="book-page-date">'+label+'</div>'+(entry.mood?'<div class="book-page-mood">'+entry.mood+'</div>':'')+'<div class="book-page-body">'+escapeHtml(bodyText)+'</div><div class="book-page-fade"></div>';numEl.textContent=pageNum;}
-  document.getElementById('diaryBookBtn').addEventListener('click',openBookView);
-  document.getElementById('diaryBookClose').addEventListener('click',function(){document.getElementById('diaryBookOverlay').classList.remove('open');});
-  document.getElementById('bookPrevBtn').addEventListener('click',function(){if(bookPage>0){bookPage--;renderBookSpread();}});
-  document.getElementById('bookNextBtn').addEventListener('click',function(){var entries=getDiaryEntries(),total=Math.ceil(entries.length/2);if(bookPage<total-1){bookPage++;renderBookSpread();}});
-  document.getElementById('diaryExportBtn').addEventListener('click',function(){
-    var entries=getDiaryEntries();if(!entries.length){pushNotif('No diary entries to export!');return;}
-    var jsPDFLib=window.jspdf?window.jspdf.jsPDF:(window.jsPDF||null);
-    if(!jsPDFLib){var win=window.open('','_blank');var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>My Diary</title><style>body{font-family:Georgia,serif;max-width:700px;margin:2rem auto;color:#222;line-height:1.7}h1{color:#b8860b}.entry{margin-bottom:3rem;border-bottom:1px solid #ddd;padding-bottom:2rem}.entry-title{font-size:1.3rem;font-weight:700;color:#333;margin-bottom:0.2rem}.entry-meta{font-size:0.8rem;color:#888;margin-bottom:0.75rem}@media print{body{margin:1rem}}</style></head><body><h1>My Diary</h1><p style="color:#888;font-size:0.85rem">Exported '+new Date().toLocaleDateString()+'</p><hr style="margin:1.5rem 0"/>';entries.forEach(function(e){var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});var body=e.body?e.body.replace(/<[^>]+>/g,''):'';html+='<div class="entry"><div class="entry-title">'+(e.mood?e.mood+' ':'')+escapeHtml(e.title||'Untitled')+'</div><div class="entry-meta">'+label+'</div><div>'+escapeHtml(body)+'</div></div>';});html+='</body></html>';win.document.write(html);win.document.close();win.print();return;}
-    var doc=new jsPDFLib({orientation:'portrait',unit:'mm',format:'a4'});
-    var pageW=210,pageH=297,margin=20,contentW=pageW-margin*2,lineH=7,y=margin;
-    doc.setFillColor(26,26,26);doc.rect(0,0,pageW,pageH,'F');doc.setFontSize(32);doc.setFont('helvetica','bold');doc.setTextColor(255,222,89);doc.text('My Diary',pageW/2,pageH/2-10,{align:'center'});doc.setFontSize(12);doc.setFont('helvetica','normal');doc.setTextColor(138,138,154);doc.text('Exported '+new Date().toLocaleDateString(),pageW/2,pageH/2+8,{align:'center'});doc.text(entries.length+' entries',pageW/2,pageH/2+18,{align:'center'});
-    entries.forEach(function(e){doc.addPage();y=margin;doc.setFillColor(26,26,22);doc.rect(0,0,pageW,pageH,'F');var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'long',day:'numeric',year:'numeric'});doc.setFontSize(18);doc.setFont('helvetica','bold');doc.setTextColor(255,222,89);var titleLines=doc.splitTextToSize((e.mood?e.mood+' ':'')+( e.title||'Untitled'),contentW);titleLines.forEach(function(l){doc.text(l,margin,y);y+=9;});doc.setFontSize(10);doc.setFont('helvetica','normal');doc.setTextColor(138,138,154);doc.text(label,margin,y);y+=10;doc.setDrawColor(58,58,58);doc.line(margin,y,pageW-margin,y);y+=8;var body=e.body?e.body.replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,''):'(no content)';doc.setFontSize(11);doc.setFont('helvetica','normal');doc.setTextColor(224,224,224);var bodyLines=doc.splitTextToSize(body,contentW);bodyLines.forEach(function(line){if(y+lineH>pageH-margin){doc.addPage();doc.setFillColor(26,26,22);doc.rect(0,0,pageW,pageH,'F');y=margin;}doc.text(line,margin,y);y+=lineH;});});
-    doc.save('my-diary-'+new Date().toISOString().slice(0,10)+'.pdf');pushNotif('Diary exported as PDF!');
-  });
   var adminStatus=false,reportsListenerAttached=false;
   function isAdmin(){return adminStatus;}
   function refreshAdminUI(){
@@ -1464,7 +1429,7 @@ function initApp(){
   }
   document.getElementById('annPostBtn').addEventListener('click',function(){var title=document.getElementById('annTitleInput').value.trim(),body=document.getElementById('annBodyInput').value.trim(),type=document.getElementById('annTypeSelect').value;if(!title||!body)return;db.ref('announcements').push({title:title,body:body,type:type,ts:Date.now(),author:username});document.getElementById('annTitleInput').value='';document.getElementById('annBodyInput').value='';renderAnnouncements();pushNotif('Announcement posted');});
   db.ref('announcements').orderByChild('ts').limitToLast(5).once('value',function(snap){var lastSeen=parseInt(localStorage.getItem('lt_ann_seen')||'0'),data=snap.val();if(!data)return;var newCount=Object.values(data).filter(function(a){return a.ts>lastSeen;}).length;var badge=document.getElementById('annBadge');if(badge&&newCount>0){badge.style.display='';badge.textContent=newCount;}});
-  (function syncUserData(){var u=auth.currentUser;if(!u)return;if(getDiaryCloudEnabled()){db.ref('users/'+u.uid+'/moodLog').once('value').then(function(snap){if(snap.val()&&snap.val().length)localStorage.setItem('lt_mood_log',JSON.stringify(snap.val()));}).catch(function(){});db.ref('users/'+u.uid+'/diary').once('value').then(function(snap){if(snap.val()&&snap.val().length)localStorage.setItem('lt_diary',JSON.stringify(snap.val()));}).catch(function(){});}})();
+  (function syncUserData(){var u=auth.currentUser;if(!u)return;if(getDiaryCloudEnabled()){db.ref('users/'+u.uid+'/moodLog').once('value').then(function(snap){if(snap.val()&&snap.val().length)localStorage.setItem('lt_mood_log',JSON.stringify(snap.val()));}).catch(function(){});db.ref('users/'+u.uid+'/diary').once('value').then(function(snap){var v=snap.val();if(v)localStorage.setItem('lt_diary',JSON.stringify(v));}).catch(function(){});}})();
   }catch(e){console.error('[initApp crash]',e);alert('App init error: '+e.message);}
 }
 });
