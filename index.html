@@ -934,7 +934,7 @@ function initApp(){
     if(!lastChatRestored){lastChatRestored=true;var last=localStorage.getItem('lt_last_chat');if(last){var fb=mpChatList.querySelector('[data-cat="'+CSS.escape(last)+'"]');if(fb)fb.click();}}
     var sc=document.getElementById('mpSubCount');if(sc)sc.textContent=filtered.length+' categor'+(filtered.length!==1?'ies':'y');
   }
-  if(mpSearchInput)mpSearchInput.addEventListener('input',function(){buildChatList(mpSearchInput.value.trim().toLowerCase());});
+  if(mpSearchInput)mpSearchInput.addEventListener('input',function(){var q=mpSearchInput.value.trim().toLowerCase();if(currentView==='dms')renderDMThreadList(q);else buildChatList(q);});
   function openCategory(catId){var cfg=sensitiveCategories[catId];if(cfg&&!hasSeenWarning(catId)){showCatWarning(catId,function(){markWarningSeen(catId);_openCategory(catId);});return;}_openCategory(catId);}
   function _openCategory(catId){
     document.body.classList.remove('mobile-list-mode');
@@ -962,11 +962,11 @@ function initApp(){
     else if(v==='reports'){document.getElementById('viewReports').style.display='flex';document.getElementById('viewReports').classList.add('show');}
     else{document.getElementById('viewWelcome').style.display='flex';}
   }
-  document.getElementById('navChats').addEventListener('click',function(){document.body.classList.add('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');currentView='chats';if(dmMsgListenerRef){dmMsgListenerRef.off();dmMsgListenerRef=null;}document.getElementById('mpSearchInput').style.display='';var plusWrap=document.querySelector('.msg-plus-wrap');if(plusWrap)plusWrap.style.display='';msgInput.disabled=false;msgInput.placeholder='Send a message...';document.getElementById('middlePanel').style.display='';document.getElementById('mpTitle').textContent='Chats & Messages';if(selectedCategory)showView('chat');else showView('welcome');document.getElementById('topbarTitle').textContent='Chats & Messages';document.getElementById('topbarSub').textContent='Select a chat to start reading';var si=document.getElementById('searchInput');if(si)si.style.display='';buildChatList();});
+  document.getElementById('navChats').addEventListener('click',function(){document.body.classList.add('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');currentView='chats';if(dmMsgListenerRef){dmMsgListenerRef.off();dmMsgListenerRef=null;}var mps=document.getElementById('mpSearchInput');mps.style.display='';mps.placeholder='Search categories...';mps.value='';var plusWrap=document.querySelector('.msg-plus-wrap');if(plusWrap)plusWrap.style.display='';msgInput.disabled=false;msgInput.placeholder='Send a message...';document.getElementById('middlePanel').style.display='';document.getElementById('mpTitle').textContent='Chats & Messages';if(selectedCategory)showView('chat');else showView('welcome');document.getElementById('topbarTitle').textContent='Chats & Messages';document.getElementById('topbarSub').textContent='Select a chat to start reading';var si=document.getElementById('searchInput');if(si)si.style.display='';buildChatList();});
   document.getElementById('navMessages').addEventListener('click',function(){
     document.body.classList.add('mobile-list-mode');
     document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');currentView='dms';selectedCategory=null;selectedDMThread=null;
-    document.getElementById('middlePanel').style.display='';document.getElementById('mpTitle').textContent='Messages';document.getElementById('mpSearchInput').style.display='none';
+    document.getElementById('middlePanel').style.display='';document.getElementById('mpTitle').textContent='Messages';var mps=document.getElementById('mpSearchInput');mps.style.display='';mps.placeholder='Search conversations...';mps.value='';dmSearchQuery='';
     showView('chat');
     var av=document.getElementById('chatHeaderAvatar');av.style.background='linear-gradient(135deg,#2a2a3a,#111118)';av.innerHTML='<svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#ffde59;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>';
     document.getElementById('chatHeaderName').textContent='Direct Messages';document.getElementById('chatHeaderSub').textContent='Private conversations';
@@ -1060,7 +1060,7 @@ function initApp(){
     document.body.classList.remove('mobile-list-mode');
     document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});document.getElementById('navMessages').classList.add('active');
     currentView='dms';selectedCategory=null;selectedDMThread=tid;selectedDMOtherUid=otherUid;selectedDMOtherNick=otherNick;
-    document.getElementById('middlePanel').style.display='';document.getElementById('mpTitle').textContent='Messages';var mpSearch=document.getElementById('mpSearchInput');if(mpSearch)mpSearch.style.display='none';
+    document.getElementById('middlePanel').style.display='';document.getElementById('mpTitle').textContent='Messages';var mpSearch=document.getElementById('mpSearchInput');if(mpSearch){mpSearch.style.display='';mpSearch.placeholder='Search conversations...';}
     showView('chat');
     var av=document.getElementById('chatHeaderAvatar'),dispName=getDisplayName(otherNick),dc=avatarColor(dispName);
     av.style.background=dc;av.innerHTML='<span style="color:#fff;font-weight:700;font-size:0.8rem">'+escapeHtml(avatarInitials(dispName))+'</span>';
@@ -1109,11 +1109,15 @@ function initApp(){
     dbGlobal.ref('dmMeta/'+selectedDMThread).update(upd);
     msgInput.value='';msgInput.style.height='auto';msgSendBtn.disabled=true;
   }
-  function renderDMThreadList(){
+  var dmSearchQuery='';
+  function renderDMThreadList(q){
     if(currentView!=='dms')return;
+    if(q!==undefined)dmSearchQuery=q;else q=dmSearchQuery;
     var list=document.getElementById('mpChatList');if(!list)return;
     if(!dmThreadsData.length){list.innerHTML='<div class="empty" style="margin-top:1.5rem">No conversations yet.<br><span style="font-size:0.78rem">Tap "Message" on a post to start one.</span></div>';return;}
-    list.innerHTML=dmThreadsData.map(function(t,idx){
+    var filtered=dmThreadsData.filter(function(t){return!q||getDisplayName(t.otherNick).toLowerCase().includes(q);});
+    if(!filtered.length){list.innerHTML='<div class="empty" style="margin-top:1.5rem">No conversations match "'+escapeHtml(q)+'".</div>';return;}
+    list.innerHTML=filtered.map(function(t,idx){
       var dispName=getDisplayName(t.otherNick),dc=avatarColor(dispName),active=t.id===selectedDMThread;
       return'<button class="chat-item'+(active?' active':'')+'" data-thread-id="'+t.id+'" data-other-uid="'+t.otherUid+'" data-other-nick="'+escapeHtml(t.otherNick)+'" style="animation-delay:'+(idx*18)+'ms">'
         +'<div class="chat-avatar" style="background:'+dc+'"><span style="color:#fff;font-weight:700;font-size:0.85rem">'+escapeHtml(avatarInitials(dispName))+'</span></div>'
