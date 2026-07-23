@@ -643,7 +643,10 @@ button,input,select,textarea{font-family:inherit;}
       </div>
     </div>
     <div class="content-view" id="viewMood">
-      <div class="view-hero"><h1>Mood Check-in</h1><p>How are you feeling today? Log your mood daily.</p></div>
+      <div class="view-hero" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem">
+        <div><h1>Mood Check-in</h1><p>How are you feeling today? Log your mood daily.</p></div>
+        <input id="moodSearchInput" type="search" placeholder="Search entries..." style="background:var(--surface2);border:1px solid var(--line);border-radius:999px;color:var(--text);padding:0.3rem 0.7rem;font:inherit;font-size:0.78rem;outline:none;width:160px;flex-shrink:0;"/>
+      </div>
       <div class="mood-card"><h3>Today's mood</h3><div class="mood-emojis" id="moodEmojiPicker"></div><textarea class="mood-note" id="moodNote" placeholder="Add a note (optional)..." rows="2"></textarea><button class="btn-sm primary" id="moodSaveBtn" style="width:100%;padding:0.55rem">Save today's mood</button></div>
       <div class="mood-card" id="moodWeekCard" style="display:none"><h3>This week</h3><div style="display:flex;gap:4px;align-items:flex-end;height:56px;" id="moodWeekChart"></div><div style="display:flex;gap:4px;margin-top:4px;" id="moodWeekLabels"></div></div>
       <div class="mood-card"><h3>Recent entries</h3><div class="mood-history" id="moodHistory"></div></div>
@@ -652,6 +655,7 @@ button,input,select,textarea{font-family:inherit;}
       <div class="view-hero" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem">
         <div><h1>My Diary</h1><p>Private entries.</p></div>
         <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
+          <input id="diarySearchInput" type="search" placeholder="Search diary..." style="background:var(--surface2);border:1px solid var(--line);border-radius:999px;color:var(--text);padding:0.3rem 0.7rem;font:inherit;font-size:0.78rem;outline:none;width:160px;"/>
           <button class="btn-sm" id="diaryBookBtn">Book View</button>
           <button class="btn-sm primary" id="diaryExportBtn">Export PDF</button>
           <button class="diary-new-btn" id="diaryNewBtn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>New Entry</button>
@@ -978,7 +982,7 @@ function initApp(){
     postList.innerHTML='<div class="empty">No conversation selected.<br><span style="font-size:0.78rem">Tap "Message" on someone\'s post to start a DM, or pick a conversation on the left.</span></div>';
     renderDMThreadList();
   });
-  document.getElementById('navDiary').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='My Diary';document.getElementById('topbarSub').textContent='Private entries';showView('diary');document.getElementById('middlePanel').style.display='none';loadDiaryEntries().then(renderDiaryList);});
+  document.getElementById('navDiary').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='My Diary';document.getElementById('topbarSub').textContent='Private entries';showView('diary');document.getElementById('middlePanel').style.display='none';var dsi=document.getElementById('diarySearchInput');if(dsi)dsi.value='';diarySearchQuery='';loadDiaryEntries().then(function(){renderDiaryList('');});});
   document.getElementById('navAnnouncements').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Announcements';document.getElementById('topbarSub').textContent='Updates from the team';showView('announcements');document.getElementById('middlePanel').style.display='none';renderAnnouncements();localStorage.setItem('lt_ann_seen',Date.now());document.getElementById('annBadge').style.display='none';});
   document.getElementById('navMood').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Mood Check-in';document.getElementById('topbarSub').textContent='Daily mood tracker';showView('mood');document.getElementById('middlePanel').style.display='none';renderMoodView();});
   document.getElementById('navSettings').addEventListener('click',function(){document.body.classList.remove('mobile-list-mode');document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});this.classList.add('active');document.getElementById('topbarTitle').textContent='Settings';document.getElementById('topbarSub').textContent='Your preferences';showView('settings');document.getElementById('middlePanel').style.display='none';updateSettingsAvatarMini&&updateSettingsAvatarMini();});
@@ -1293,14 +1297,20 @@ function initApp(){
     return decryptDiaryPayload(localPayload).then(function(entries){diaryEntriesCache=entries;return entries;});
   }
   function reencryptDiaryEntries(){persistDiaryEntries(diaryEntriesCache);}
-  function renderDiaryList(){
+  var diarySearchQuery='';
+  function renderDiaryList(q){
+    if(q!==undefined)diarySearchQuery=q;else q=diarySearchQuery;
     var list=document.getElementById('diaryEntryList');if(!list)return;
     var entries=getDiaryEntries();
     if(!entries.length){list.innerHTML='<div class="diary-empty">No entries yet.<br><span style="font-size:0.78rem">Tap New Entry to write your first one.</span></div>';return;}
-    list.innerHTML=entries.map(function(e){var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'short',day:'numeric',year:'numeric'});var preview=e.body?e.body.replace(/<[^>]+>/g,'').slice(0,120):'';return'<div class="diary-entry" data-diary-id="'+e.id+'"><div class="diary-entry-top"><span class="diary-entry-date">'+label+'</span><span class="diary-entry-mood">'+(e.mood||'')+'</span></div><div class="diary-entry-title">'+(e.title?escapeHtml(e.title):'Untitled')+'</div>'+(preview?'<div class="diary-entry-preview">'+escapeHtml(preview)+'</div>':'')+'</div>';}).join('');
+    var filtered=q?entries.filter(function(e){var t=(e.title||'').toLowerCase();var b=(e.body?e.body.replace(/<[^>]+>/g,''):'').toLowerCase();return t.includes(q)||b.includes(q);}):entries;
+    if(!filtered.length){list.innerHTML='<div class="diary-empty">No entries match "'+escapeHtml(q)+'".</div>';return;}
+    list.innerHTML=filtered.map(function(e){var d=new Date(e.ts),label=d.toLocaleDateString([],{weekday:'long',month:'short',day:'numeric',year:'numeric'});var preview=e.body?e.body.replace(/<[^>]+>/g,'').slice(0,120):'';return'<div class="diary-entry" data-diary-id="'+e.id+'"><div class="diary-entry-top"><span class="diary-entry-date">'+label+'</span><span class="diary-entry-mood">'+(e.mood||'')+'</span></div><div class="diary-entry-title">'+(e.title?escapeHtml(e.title):'Untitled')+'</div>'+(preview?'<div class="diary-entry-preview">'+escapeHtml(preview)+'</div>':'')+'</div>';}).join('');
     list.querySelectorAll('.diary-entry').forEach(function(el){el.addEventListener('click',function(){openDiaryEditor(el.dataset.diaryId);});});
   }
   document.getElementById('diaryNewBtn').addEventListener('click',function(){openDiaryEditor(null);});
+  var diarySearchInputEl=document.getElementById('diarySearchInput');
+  if(diarySearchInputEl)diarySearchInputEl.addEventListener('input',function(){renderDiaryList(this.value.trim().toLowerCase());});
   function openDiaryEditor(id){
     currentDiaryId=id;document.getElementById('diaryEditorOverlay').classList.add('open');
     var moodRow=document.getElementById('diaryEditorMoods');moodRow.innerHTML='';
@@ -1341,7 +1351,8 @@ function initApp(){
     MOOD_EMOJIS.forEach(function(m,i){var btn=document.createElement('button');btn.className='mood-emoji-btn';btn.title=m.label;btn.innerHTML='<span class="emoji-inner">'+m.e+'</span><span class="emoji-label">'+m.label+'</span>';btn.addEventListener('click',function(){selectedMoodIdx=i;document.querySelectorAll('.mood-emoji-btn').forEach(function(b){b.classList.remove('selected');});btn.classList.add('selected');});picker.appendChild(btn);});
     var log=getMoodLog(),todayKey=getTodayKey(),todayEntry=log.find(function(e){return e.date===todayKey;});
     if(todayEntry){var idx=MOOD_EMOJIS.findIndex(function(m){return m.e===todayEntry.emoji;});if(idx>=0){selectedMoodIdx=idx;picker.children[idx]&&picker.children[idx].classList.add('selected');}var noteEl=document.getElementById('moodNote');if(noteEl)noteEl.value=todayEntry.note||'';var saveBtn=document.getElementById('moodSaveBtn');if(saveBtn)saveBtn.textContent="Update today's mood";}
-    renderMoodHistory();renderMoodWeek();
+    var msi=document.getElementById('moodSearchInput');if(msi)msi.value='';
+    renderMoodHistory('');renderMoodWeek();
   }
   document.getElementById('moodSaveBtn').addEventListener('click',function(){
     if(selectedMoodIdx===null){alert('Pick a mood first!');return;}
@@ -1351,7 +1362,18 @@ function initApp(){
     saveMoodLog(log);renderMoodHistory();renderMoodWeek();pushNotif('Mood logged: '+mood.e+' '+mood.label);
     document.getElementById('moodSaveBtn').textContent="Update today's mood";
   });
-  function renderMoodHistory(){var hist=document.getElementById('moodHistory');if(!hist)return;var log=getMoodLog().slice(0,7);if(!log.length){hist.innerHTML='<div style="color:var(--muted);font-size:0.82rem;text-align:center;padding:1rem">No entries yet.</div>';return;}hist.innerHTML=log.map(function(e){var d=new Date(e.ts||e.date),label=d.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});return'<div class="mood-entry"><div class="mood-entry-emoji">'+e.emoji+'</div><div class="mood-entry-body"><div class="mood-entry-date">'+label+' \u00b7 '+e.label+'</div>'+(e.note?'<div class="mood-entry-note">'+escapeHtml(e.note)+'</div>':'')+'</div></div>';}).join('');}
+  var moodSearchQuery='';
+  function renderMoodHistory(q){
+    if(q!==undefined)moodSearchQuery=q;else q=moodSearchQuery;
+    var hist=document.getElementById('moodHistory');if(!hist)return;
+    var log=getMoodLog();
+    if(q){log=log.filter(function(e){return(e.note||'').toLowerCase().includes(q)||(e.label||'').toLowerCase().includes(q);});}
+    else{log=log.slice(0,7);}
+    if(!log.length){hist.innerHTML='<div style="color:var(--muted);font-size:0.82rem;text-align:center;padding:1rem">'+(q?'No entries match "'+escapeHtml(q)+'".':'No entries yet.')+'</div>';return;}
+    hist.innerHTML=log.map(function(e){var d=new Date(e.ts||e.date),label=d.toLocaleDateString([],{weekday:'short',month:'short',day:'numeric'});return'<div class="mood-entry"><div class="mood-entry-emoji">'+e.emoji+'</div><div class="mood-entry-body"><div class="mood-entry-date">'+label+' \u00b7 '+e.label+'</div>'+(e.note?'<div class="mood-entry-note">'+escapeHtml(e.note)+'</div>':'')+'</div></div>';}).join('');
+  }
+  var moodSearchInputEl=document.getElementById('moodSearchInput');
+  if(moodSearchInputEl)moodSearchInputEl.addEventListener('input',function(){renderMoodHistory(this.value.trim().toLowerCase());});
   function renderMoodWeek(){
     var chart=document.getElementById('moodWeekChart'),labels=document.getElementById('moodWeekLabels'),card=document.getElementById('moodWeekCard');
     if(!chart||!labels||!card)return;
