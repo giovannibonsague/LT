@@ -253,15 +253,19 @@ button,input,select,textarea{font-family:inherit;}
 .view-hero p{font-size:0.84rem;color:var(--muted);margin-top:0.2rem;line-height:1.6;}
 .mood-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.4rem;}
 .mood-card h3{font-size:0.84rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;font-weight:700;}
-.mood-emojis{display:flex;gap:0.45rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem;}
-.mood-emoji-btn{position:relative;font-size:0;background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:0;cursor:pointer;transition:border-color 200ms,transform 200ms,box-shadow 200ms,background 200ms;width:52px;height:52px;display:flex;align-items:center;justify-content:center;overflow:visible;flex-shrink:0;}
-.mood-emoji-btn .emoji-inner{font-size:1.55rem;line-height:1;display:block;transition:transform 280ms cubic-bezier(0.34,1.5,0.64,1);pointer-events:none;user-select:none;}
-.mood-emoji-btn .emoji-label{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);font-size:0.6rem;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity 150ms;pointer-events:none;}
-.mood-emoji-btn:hover{border-color:var(--hl-border);background:var(--hl-dim);box-shadow:0 6px 20px rgba(255,222,89,0.2);}
-.mood-emoji-btn:hover .emoji-inner{transform:translateY(-10px) scale(1.25);}
-.mood-emoji-btn:hover .emoji-label{opacity:1;}
-.mood-emoji-btn.selected{border-color:var(--hl);background:var(--hl-dim);box-shadow:0 0 0 3px rgba(255,222,89,0.2);}
-.mood-emoji-btn.selected .emoji-inner{transform:translateY(-6px) scale(1.15);}
+.mood-carousel{position:relative;display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-bottom:0.85rem;}
+.mood-carousel-track-wrap{position:relative;flex:1;height:120px;overflow:hidden;display:flex;align-items:center;justify-content:center;touch-action:pan-y;cursor:grab;}
+.mood-carousel-track-wrap:active{cursor:grabbing;}
+.mood-carousel-track{position:relative;width:100%;height:100%;}
+.mood-carousel-item{position:absolute;top:50%;left:50%;width:60px;height:60px;margin:-30px 0 0 -30px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 420ms cubic-bezier(0.22,1,0.36,1),opacity 380ms,border-color 200ms,background 200ms,box-shadow 200ms;}
+.mood-carousel-item .emoji-inner{font-size:1.5rem;line-height:1;pointer-events:none;user-select:none;}
+.mood-carousel-item.center{border-color:var(--hl);background:var(--hl-dim);box-shadow:0 0 0 4px rgba(255,222,89,0.18),0 10px 26px rgba(0,0,0,0.35);}
+.mood-carousel-item.center .emoji-inner{font-size:2rem;}
+.mood-carousel-nav{width:32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--line2);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 150ms;}
+.mood-carousel-nav:hover{border-color:var(--hl-border);color:var(--hl);background:var(--hl-dim);transform:scale(1.08);}
+.mood-carousel-nav svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.mood-carousel-label{text-align:center;margin-bottom:1rem;min-height:1.3rem;}
+.mood-carousel-label .mc-name{font-size:0.85rem;font-weight:700;color:var(--hl);}
 .mood-note{width:100%;max-width:420px;display:block;margin:0 auto 0.75rem;background:var(--bg);border:1px solid var(--line2);border-radius:9px;color:var(--text);padding:0.55rem 0.75rem;font:inherit;font-size:0.84rem;outline:none;resize:none;min-height:64px;}
 .mood-history{display:flex;flex-direction:column;gap:0.5rem;}
 .mood-entry{background:var(--bg);border:1px solid var(--line2);border-radius:10px;padding:0.7rem 0.9rem;display:flex;align-items:flex-start;gap:0.75rem;}
@@ -541,8 +545,9 @@ button,input,select,textarea{font-family:inherit;}
   .diary-editor-body{padding:1.25rem;}
 }
 @media (max-width:480px){
-  .mood-emoji-btn{width:48px;height:48px;}
-  .mood-emoji-btn .emoji-inner{font-size:1.4rem;}
+  .mood-carousel-item{width:52px;height:52px;margin:-26px 0 0 -26px;}
+  .mood-carousel-item .emoji-inner{font-size:1.3rem;}
+  .mood-carousel-item.center .emoji-inner{font-size:1.7rem;}
   .chat-avatar{width:36px;height:36px;}
   .msg-group{max-width:88%;}
   .auth-box{padding:1.5rem 1.25rem;}
@@ -651,7 +656,16 @@ button,input,select,textarea{font-family:inherit;}
         <div><h1>Mood Check-in</h1><p>How are you feeling today? Log your mood daily.</p></div>
         <input id="moodSearchInput" type="search" placeholder="Search entries..." style="background:var(--surface2);border:1px solid var(--line);border-radius:999px;color:var(--text);padding:0.3rem 0.7rem;font:inherit;font-size:0.78rem;outline:none;width:160px;flex-shrink:0;"/>
       </div>
-      <div class="mood-card"><h3>Today's mood</h3><div class="mood-emojis" id="moodEmojiPicker"></div><textarea class="mood-note" id="moodNote" placeholder="Add a note (optional)..." rows="2"></textarea><button class="btn-sm primary" id="moodSaveBtn" style="width:100%;padding:0.55rem">Save today's mood</button></div>
+      <div class="mood-card"><h3>Today's mood</h3>
+        <div class="mood-carousel">
+          <button class="mood-carousel-nav" id="moodPrevBtn" aria-label="Previous mood"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <div class="mood-carousel-track-wrap" id="moodCarouselWrap"><div class="mood-carousel-track" id="moodCarouselTrack"></div></div>
+          <button class="mood-carousel-nav" id="moodNextBtn" aria-label="Next mood"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+        <div class="mood-carousel-label" id="moodCarouselLabel"></div>
+        <textarea class="mood-note" id="moodNote" placeholder="Add a note (optional)..." rows="2"></textarea>
+        <button class="btn-sm primary" id="moodSaveBtn" style="width:100%;padding:0.55rem">Save today's mood</button>
+      </div>
       <div class="mood-card" id="moodWeekCard" style="display:none"><h3>This week</h3><div style="display:flex;gap:4px;align-items:flex-end;height:56px;" id="moodWeekChart"></div><div style="display:flex;gap:4px;margin-top:4px;" id="moodWeekLabels"></div></div>
       <div class="mood-card"><h3>Recent entries</h3><div class="mood-history" id="moodHistory"></div></div>
     </div>
@@ -1344,23 +1358,77 @@ function initApp(){
     doc.save('my-diary-'+new Date().toISOString().slice(0,10)+'.pdf');pushNotif('Diary exported as PDF!');
   });
   var MOOD_EMOJIS=[{e:'😄',label:'Great',score:5,color:'#4ade80'},{e:'🙂',label:'Good',score:4,color:'#a3e635'},{e:'😐',label:'Okay',score:3,color:'#facc15'},{e:'😔',label:'Low',score:2,color:'#fb923c'},{e:'😢',label:'Rough',score:1,color:'#f87171'},{e:'😡',label:'Angry',score:1,color:'#ef4444'},{e:'😰',label:'Anxious',score:2,color:'#a78bfa'},{e:'🥱',label:'Tired',score:2,color:'#94a3b8'},{e:'🤩',label:'Excited',score:5,color:'#fbbf24'},{e:'🥰',label:'Loved',score:5,color:'#f472b6'},{e:'😤',label:'Frustrated',score:1,color:'#f97316'},{e:'🥺',label:'Sad',score:1,color:'#818cf8'},{e:'😌',label:'Calm',score:4,color:'#67e8f9'},{e:'🤯',label:'Overwhelmed',score:1,color:'#e879f9'},{e:'😴',label:'Exhausted',score:2,color:'#6b7280'},{e:'🥳',label:'Joyful',score:5,color:'#fde68a'},{e:'😶',label:'Numb',score:2,color:'#9ca3af'},{e:'🤧',label:'Unwell',score:2,color:'#60a5fa'},{e:'😬',label:'Nervous',score:2,color:'#fbbf24'},{e:'🤗',label:'Grateful',score:5,color:'#34d399'}];
-  var selectedMoodIdx=null;
+  var moodCarouselIdx=2,moodCarouselBuilt=false;
   function getMoodLog(){try{return JSON.parse(localStorage.getItem('lt_mood_log')||'[]');}catch(e){return[];}}
   function saveMoodLog(log){localStorage.setItem('lt_mood_log',JSON.stringify(log));var u=auth.currentUser;if(u&&getDiaryCloudEnabled())db.ref('users/'+u.uid+'/moodLog').set(log).catch(function(){});}
   function getTodayKey(){return new Date().toISOString().slice(0,10);}
+  function circularOffset(i,center,len){var d=i-center;d=((d%len)+len)%len;if(d>len/2)d-=len;return d;}
+  function positionMoodCarousel(){
+    var track=document.getElementById('moodCarouselTrack');if(!track)return;
+    var len=MOOD_EMOJIS.length,SPACING=56,WINDOW=3;
+    Array.prototype.forEach.call(track.children,function(el){
+      var i=parseInt(el.dataset.idx,10),o=circularOffset(i,moodCarouselIdx,len),abs=Math.abs(o);
+      el.classList.toggle('center',o===0);
+      if(abs>WINDOW){
+        el.style.transform='translateX('+(o<0?-240:240)+'px) scale(0.3)';
+        el.style.opacity='0';el.style.pointerEvents='none';el.style.zIndex='0';
+      } else {
+        var scale=o===0?1:(abs===1?0.74:(abs===2?0.55:0.42));
+        var opacity=o===0?1:(abs===1?0.65:(abs===2?0.35:0.16));
+        el.style.transform='translateX('+(o*SPACING)+'px) scale('+scale+')';
+        el.style.opacity=String(opacity);el.style.pointerEvents='auto';el.style.zIndex=String(10-abs);
+      }
+    });
+    var label=document.getElementById('moodCarouselLabel');
+    if(label){var m=MOOD_EMOJIS[moodCarouselIdx];label.innerHTML='<span class="mc-name">'+escapeHtml(m.label)+'</span>';}
+  }
+  function moodCarouselGo(delta){var len=MOOD_EMOJIS.length;moodCarouselIdx=((moodCarouselIdx+delta)%len+len)%len;positionMoodCarousel();}
+  function buildMoodCarousel(){
+    var track=document.getElementById('moodCarouselTrack');if(!track||moodCarouselBuilt)return;
+    MOOD_EMOJIS.forEach(function(m,i){
+      var el=document.createElement('div');el.className='mood-carousel-item';el.dataset.idx=i;el.title=m.label;
+      el.innerHTML='<span class="emoji-inner">'+m.e+'</span>';
+      el.addEventListener('click',function(){moodCarouselIdx=i;positionMoodCarousel();});
+      track.appendChild(el);
+    });
+    moodCarouselBuilt=true;
+    var prevBtn=document.getElementById('moodPrevBtn'),nextBtn=document.getElementById('moodNextBtn');
+    if(prevBtn)prevBtn.addEventListener('click',function(){moodCarouselGo(-1);});
+    if(nextBtn)nextBtn.addEventListener('click',function(){moodCarouselGo(1);});
+    var wrap=document.getElementById('moodCarouselWrap');
+    if(wrap){
+      var startX=0,dragging=false,moved=false;
+      function onDown(x){startX=x;dragging=true;moved=false;}
+      function onMove(x){if(!dragging)return;if(Math.abs(x-startX)>6)moved=true;}
+      function onUp(x){if(!dragging)return;dragging=false;var dx=x-startX;if(moved){if(dx<-40)moodCarouselGo(1);else if(dx>40)moodCarouselGo(-1);}}
+      wrap.addEventListener('mousedown',function(e){onDown(e.clientX);e.preventDefault();});
+      document.addEventListener('mousemove',function(e){onMove(e.clientX);});
+      document.addEventListener('mouseup',function(e){onUp(e.clientX);});
+      wrap.addEventListener('touchstart',function(e){onDown(e.touches[0].clientX);},{passive:true});
+      wrap.addEventListener('touchmove',function(e){onMove(e.touches[0].clientX);},{passive:true});
+      wrap.addEventListener('touchend',function(e){onUp(e.changedTouches[0].clientX);},{passive:true});
+    }
+  }
   function renderMoodView(){
-    selectedMoodIdx=null;
-    var picker=document.getElementById('moodEmojiPicker');if(!picker)return;
-    picker.innerHTML='';
-    MOOD_EMOJIS.forEach(function(m,i){var btn=document.createElement('button');btn.className='mood-emoji-btn';btn.title=m.label;btn.innerHTML='<span class="emoji-inner">'+m.e+'</span><span class="emoji-label">'+m.label+'</span>';btn.addEventListener('click',function(){selectedMoodIdx=i;document.querySelectorAll('.mood-emoji-btn').forEach(function(b){b.classList.remove('selected');});btn.classList.add('selected');});picker.appendChild(btn);});
+    buildMoodCarousel();
     var log=getMoodLog(),todayKey=getTodayKey(),todayEntry=log.find(function(e){return e.date===todayKey;});
-    if(todayEntry){var idx=MOOD_EMOJIS.findIndex(function(m){return m.e===todayEntry.emoji;});if(idx>=0){selectedMoodIdx=idx;picker.children[idx]&&picker.children[idx].classList.add('selected');}var noteEl=document.getElementById('moodNote');if(noteEl)noteEl.value=todayEntry.note||'';var saveBtn=document.getElementById('moodSaveBtn');if(saveBtn)saveBtn.textContent="Update today's mood";}
+    var saveBtn=document.getElementById('moodSaveBtn'),noteEl=document.getElementById('moodNote');
+    if(todayEntry){
+      var idx=MOOD_EMOJIS.findIndex(function(m){return m.e===todayEntry.emoji;});
+      moodCarouselIdx=idx>=0?idx:2;
+      if(noteEl)noteEl.value=todayEntry.note||'';
+      if(saveBtn)saveBtn.textContent="Update today's mood";
+    } else {
+      moodCarouselIdx=2;
+      if(noteEl)noteEl.value='';
+      if(saveBtn)saveBtn.textContent="Save today's mood";
+    }
+    positionMoodCarousel();
     var msi=document.getElementById('moodSearchInput');if(msi)msi.value='';
     renderMoodHistory('');renderMoodWeek();
   }
   document.getElementById('moodSaveBtn').addEventListener('click',function(){
-    if(selectedMoodIdx===null){alert('Pick a mood first!');return;}
-    var mood=MOOD_EMOJIS[selectedMoodIdx],note=document.getElementById('moodNote').value.trim(),log=getMoodLog(),todayKey=getTodayKey();
+    var mood=MOOD_EMOJIS[moodCarouselIdx],note=document.getElementById('moodNote').value.trim(),log=getMoodLog(),todayKey=getTodayKey();
     log=log.filter(function(e){return e.date!==todayKey;});
     log.unshift({date:todayKey,emoji:mood.e,label:mood.label,score:mood.score,note:note,ts:Date.now()});
     saveMoodLog(log);renderMoodHistory();renderMoodWeek();pushNotif('Mood logged: '+mood.e+' '+mood.label);
