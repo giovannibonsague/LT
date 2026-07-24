@@ -253,18 +253,19 @@ button,input,select,textarea{font-family:inherit;}
 .view-hero p{font-size:0.84rem;color:var(--muted);margin-top:0.2rem;line-height:1.6;}
 .mood-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.4rem;}
 .mood-card h3{font-size:0.84rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;font-weight:700;}
-.mood-carousel{position:relative;display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-bottom:0.5rem;}
-.mood-carousel-track-wrap{position:relative;flex:1;height:200px;overflow:hidden;display:flex;justify-content:center;touch-action:pan-y;cursor:grab;}
+.mood-carousel{position:relative;display:flex;align-items:flex-start;justify-content:center;gap:0.5rem;margin-bottom:0.4rem;}
+.mood-carousel-track-wrap{position:relative;flex:1;height:150px;overflow:hidden;display:flex;justify-content:center;touch-action:pan-y;cursor:grab;max-width:360px;}
 .mood-carousel-track-wrap:active{cursor:grabbing;}
-.mood-carousel-track{position:relative;width:100%;height:100%;}
-.mood-carousel-item{position:absolute;top:36px;left:50%;width:60px;height:60px;margin:0 0 0 -30px;border-radius:50%;background:var(--bg);border:2px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 420ms cubic-bezier(0.22,1,0.36,1),opacity 380ms,border-color 200ms,background 200ms,box-shadow 200ms;}
-.mood-carousel-item .emoji-inner{font-size:1.5rem;line-height:1;pointer-events:none;user-select:none;}
+.mood-carousel-arc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+.mood-carousel-track{position:relative;width:100%;height:100%;z-index:2;}
+.mood-carousel-item{position:absolute;top:24px;left:50%;width:56px;height:56px;margin:0 0 0 -28px;border-radius:50%;background:var(--bg);border:2px solid var(--line2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 420ms cubic-bezier(0.22,1,0.36,1),opacity 380ms,border-color 200ms,background 200ms,box-shadow 200ms;}
+.mood-carousel-item .emoji-inner{font-size:1.4rem;line-height:1;pointer-events:none;user-select:none;}
 .mood-carousel-item.center{border-color:var(--hl);background:var(--hl-dim);box-shadow:0 0 0 4px rgba(255,222,89,0.18),0 10px 26px rgba(0,0,0,0.35);}
-.mood-carousel-item.center .emoji-inner{font-size:2rem;}
-.mood-carousel-nav{width:32px;height:32px;border-radius:50%;background:var(--surface2);border:1px solid var(--line2);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 150ms;align-self:flex-start;margin-top:52px;}
+.mood-carousel-item.center .emoji-inner{font-size:1.85rem;}
+.mood-carousel-nav{width:30px;height:30px;border-radius:50%;background:var(--surface2);border:1px solid var(--line2);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all 150ms;align-self:flex-start;margin-top:37px;}
 .mood-carousel-nav:hover{border-color:var(--hl-border);color:var(--hl);background:var(--hl-dim);transform:scale(1.08);}
-.mood-carousel-nav svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.mood-carousel-label{text-align:center;margin-bottom:1rem;min-height:1.3rem;}
+.mood-carousel-nav svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.mood-carousel-label{text-align:center;margin-bottom:0.85rem;min-height:1.3rem;}
 .mood-carousel-label .mc-name{font-size:0.85rem;font-weight:700;color:var(--hl);}
 .mood-note{width:100%;max-width:420px;display:block;margin:0 auto 0.75rem;background:var(--bg);border:1px solid var(--line2);border-radius:9px;color:var(--text);padding:0.55rem 0.75rem;font:inherit;font-size:0.84rem;outline:none;resize:none;min-height:64px;}
 .mood-history{display:flex;flex-direction:column;gap:0.5rem;}
@@ -545,9 +546,9 @@ button,input,select,textarea{font-family:inherit;}
   .diary-editor-body{padding:1.25rem;}
 }
 @media (max-width:480px){
-  .mood-carousel-item{width:52px;height:52px;margin:0 0 0 -26px;}
-  .mood-carousel-item .emoji-inner{font-size:1.3rem;}
-  .mood-carousel-item.center .emoji-inner{font-size:1.7rem;}
+  .mood-carousel-item{width:48px;height:48px;margin:0 0 0 -24px;}
+  .mood-carousel-item .emoji-inner{font-size:1.2rem;}
+  .mood-carousel-item.center .emoji-inner{font-size:1.6rem;}
   .chat-avatar{width:36px;height:36px;}
   .msg-group{max-width:88%;}
   .auth-box{padding:1.5rem 1.25rem;}
@@ -659,7 +660,7 @@ button,input,select,textarea{font-family:inherit;}
       <div class="mood-card"><h3>Today's mood</h3>
         <div class="mood-carousel">
           <button class="mood-carousel-nav" id="moodPrevBtn" aria-label="Previous mood"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <div class="mood-carousel-track-wrap" id="moodCarouselWrap"><div class="mood-carousel-track" id="moodCarouselTrack"></div></div>
+          <div class="mood-carousel-track-wrap" id="moodCarouselWrap"><svg class="mood-carousel-arc" id="moodCarouselArc" preserveAspectRatio="none"><defs><linearGradient id="moodArcGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" style="stop-color:var(--hl-border);stop-opacity:0"/><stop offset="50%" style="stop-color:var(--hl-border);stop-opacity:0.9"/><stop offset="100%" style="stop-color:var(--hl-border);stop-opacity:0"/></linearGradient></defs><path id="moodCarouselArcPath" d="" fill="none" stroke="url(#moodArcGrad)" stroke-width="2" stroke-linecap="round"/></svg><div class="mood-carousel-track" id="moodCarouselTrack"></div></div>
           <button class="mood-carousel-nav" id="moodNextBtn" aria-label="Next mood"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
         <div class="mood-carousel-label" id="moodCarouselLabel"></div>
@@ -1363,26 +1364,41 @@ function initApp(){
   function saveMoodLog(log){localStorage.setItem('lt_mood_log',JSON.stringify(log));var u=auth.currentUser;if(u&&getDiaryCloudEnabled())db.ref('users/'+u.uid+'/moodLog').set(log).catch(function(){});}
   function getTodayKey(){return new Date().toISOString().slice(0,10);}
   function circularOffset(i,center,len){var d=i-center;d=((d%len)+len)%len;if(d>len/2)d-=len;return d;}
+  function updateMoodArc(wrapW,wrapH,anchorY,radius,maxAngleDeg){
+    var svg=document.getElementById('moodCarouselArc'),path=document.getElementById('moodCarouselArcPath');
+    if(!svg||!path)return;
+    svg.setAttribute('viewBox','0 0 '+wrapW+' '+wrapH);
+    svg.setAttribute('width',wrapW);svg.setAttribute('height',wrapH);
+    var cx=wrapW/2,steps=32,d='';
+    for(var s=0;s<=steps;s++){
+      var t=-maxAngleDeg+(2*maxAngleDeg)*(s/steps),rad=t*Math.PI/180;
+      var x=cx+radius*Math.sin(rad),y=anchorY+radius*(1-Math.cos(rad));
+      d+=(s===0?'M':'L')+x.toFixed(1)+' '+y.toFixed(1)+' ';
+    }
+    path.setAttribute('d',d.trim());
+  }
   function positionMoodCarousel(){
     var track=document.getElementById('moodCarouselTrack'),wrapEl=document.getElementById('moodCarouselWrap');if(!track)return;
-    var len=MOOD_EMOJIS.length,WINDOW=3,STEP_DEG=22;
+    var len=MOOD_EMOJIS.length,WINDOW=3,STEP_DEG=20,ANCHOR_Y=52;
     var wrapW=wrapEl?wrapEl.clientWidth:280;
-    var RADIUS=Math.max(85,Math.min(170,wrapW*0.4));
+    var RADIUS=Math.max(65,Math.min(110,wrapW*0.34));
     Array.prototype.forEach.call(track.children,function(el){
       var i=parseInt(el.dataset.idx,10),o=circularOffset(i,moodCarouselIdx,len),abs=Math.abs(o);
       el.classList.toggle('center',o===0);
+      var angleRad=o*STEP_DEG*Math.PI/180;
+      var x=RADIUS*Math.sin(angleRad),y=RADIUS*(1-Math.cos(angleRad)),rot=o*5;
       if(abs>WINDOW){
-        el.style.transform='translate('+(o<0?-RADIUS-60:RADIUS+60)+'px,90px) scale(0.28)';
+        var scaleFar=Math.max(0.2,0.46-(abs-WINDOW)*0.06);
+        el.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px) rotate('+rot+'deg) scale('+scaleFar+')';
         el.style.opacity='0';el.style.pointerEvents='none';el.style.zIndex='0';
       } else {
-        var angleRad=o*STEP_DEG*Math.PI/180;
-        var x=RADIUS*Math.sin(angleRad),y=RADIUS*(1-Math.cos(angleRad)),rot=o*5;
         var scale=o===0?1:(abs===1?0.8:(abs===2?0.62:0.46));
         var opacity=o===0?1:(abs===1?0.7:(abs===2?0.4:0.18));
         el.style.transform='translate('+x.toFixed(1)+'px,'+y.toFixed(1)+'px) rotate('+rot+'deg) scale('+scale+')';
         el.style.opacity=String(opacity);el.style.pointerEvents='auto';el.style.zIndex=String(10-abs);
       }
     });
+    updateMoodArc(wrapW,150,ANCHOR_Y,RADIUS,WINDOW*STEP_DEG);
     var label=document.getElementById('moodCarouselLabel');
     if(label){var m=MOOD_EMOJIS[moodCarouselIdx];label.innerHTML='<span class="mc-name">'+escapeHtml(m.label)+'</span>';}
   }
